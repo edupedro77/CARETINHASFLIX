@@ -2,259 +2,331 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#11121b">
-<meta name="description" content="Uma missão confidencial de quatro dias, com quatro mini jogos secretos para jogar no celular.">
-<title>Operação: Feriadão</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#090909">
+<title>CARETINHAS+ | Nosso cinema particular</title>
 <style>
-:root{--bg:#101119;--panel:#191b27;--panel2:#202332;--ink:#f5f2eb;--muted:#aaa9b7;--red:#fa5368;--pink:#ff8b9a;--gold:#f6d58b;--line:rgba(255,255,255,.12);--green:#a7e6c0;--radius:22px;--shadow:0 22px 60px rgba(0,0,0,.28)}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 15% 0%,rgba(250,83,104,.14),transparent 35%),radial-gradient(ellipse at 95% 40%,rgba(120,95,210,.12),transparent 34%),var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.55}button{font:inherit;cursor:pointer}a{color:inherit}.shell{width:min(1120px,calc(100% - 36px));margin:auto}.topbar{display:flex;justify-content:space-between;align-items:center;padding:22px 0;border-bottom:1px solid var(--line);gap:16px}.brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:.12em;font-size:.9rem}.brandmark{width:36px;height:36px;display:grid;place-items:center;background:var(--red);color:#1a1117;border-radius:12px;box-shadow:0 7px 24px #fa536833}.status{font-size:.72rem;text-transform:uppercase;letter-spacing:.13em;color:var(--green);display:flex;align-items:center;gap:8px}.dot{height:8px;width:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 4px #a7e6c01c}.hero{display:grid;grid-template-columns:1.12fr .88fr;gap:36px;align-items:center;padding:62px 0 50px}.eyebrow{display:inline-flex;align-items:center;gap:9px;border:1px solid #fa536855;background:#fa536815;color:#ff9ba8;border-radius:999px;padding:7px 12px;font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.14em}.eyebrow .mini-dot{width:6px;height:6px;border-radius:100%;background:var(--red)}h1{font-size:clamp(2.8rem,7vw,5.6rem);line-height:.94;letter-spacing:-.065em;margin:22px 0 20px;max-width:690px}h1 span{display:block;color:var(--red)}.lead{color:#c4c2cf;font-size:clamp(1rem,2vw,1.15rem);max-width:610px}.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}.btn{border:0;border-radius:14px;padding:13px 18px;font-weight:850;transition:transform .18s ease,filter .18s ease;display:inline-flex;align-items:center;justify-content:center;gap:9px}.btn:hover{transform:translateY(-2px);filter:brightness(1.07)}.btn-primary{background:var(--red);color:#210f16;box-shadow:0 12px 28px #fa53682c}.btn-secondary{background:var(--panel2);border:1px solid var(--line);color:var(--ink)}.hero-art{min-height:355px;position:relative;display:grid;place-items:center}.orbit{width:min(100%,390px);aspect-ratio:1;border-radius:50%;border:1px dashed #fa829044;position:absolute;animation:spin 42s linear infinite}.orbit:before,.orbit:after{content:"";position:absolute;border:1px solid #fa829024;border-radius:50%;inset:28px}.orbit:after{inset:58px}.poster{width:min(86%,315px);aspect-ratio:4/5;border-radius:26px;background:linear-gradient(145deg,#363044,#1b1c2a 52%,#3f1c2b);border:1px solid #ffffff24;box-shadow:var(--shadow);position:relative;overflow:hidden;padding:24px;transform:rotate(3deg)}.poster:before{content:"";position:absolute;width:280px;height:280px;border-radius:50%;border:35px solid #fa536821;top:-90px;right:-110px}.poster:after{content:"";position:absolute;width:230px;height:230px;border-radius:50%;background:#f6d58b0c;bottom:-80px;left:-70px}.stamp{position:relative;z-index:1;border:1px solid #f6d58b8a;color:var(--gold);font-size:.65rem;font-weight:900;letter-spacing:.18em;padding:6px 9px;display:inline-block;transform:rotate(-4deg)}.poster-icon{position:relative;z-index:1;font-size:5.2rem;margin:30px 0 6px;filter:drop-shadow(0 10px 20px #0005)}.poster h2{position:relative;z-index:1;font-size:2rem;line-height:.95;letter-spacing:-.05em;margin:0}.poster h2 span{color:var(--red)}.poster p{position:relative;z-index:1;color:#c2bbc9;font-size:.76rem;margin-top:14px}.poster-foot{position:absolute;z-index:1;bottom:20px;left:24px;right:24px;border-top:1px solid #ffffff27;padding-top:10px;display:flex;justify-content:space-between;text-transform:uppercase;letter-spacing:.12em;font-size:.56rem;color:#c2bbc9}.float-note{position:absolute;right:0;top:14%;background:#f6d58b;color:#211b23;padding:10px 13px;border-radius:12px;font-size:.75rem;font-weight:900;transform:rotate(7deg);box-shadow:0 8px 24px #0003}.float-note.bottom{top:auto;right:auto;left:-2%;bottom:13%;background:var(--green);transform:rotate(-7deg)}@keyframes spin{to{transform:rotate(360deg)}}
-.section-head{display:flex;justify-content:space-between;align-items:end;gap:20px;margin:20px 0 20px}.section-kicker{color:var(--red);font-size:.72rem;font-weight:900;letter-spacing:.15em;text-transform:uppercase}.section-head h2{font-size:clamp(1.7rem,4vw,2.7rem);line-height:1.05;letter-spacing:-.045em;margin:6px 0}.section-head p{color:var(--muted);max-width:420px;margin:0;font-size:.92rem}.progress-box{min-width:170px}.progress-label{display:flex;justify-content:space-between;color:var(--muted);font-size:.75rem;margin-bottom:8px}.progress{height:7px;background:#ffffff14;border-radius:99px;overflow:hidden}.progress-bar{height:100%;width:0;background:linear-gradient(90deg,var(--red),var(--gold));border-radius:99px;transition:width .3s ease}.missions{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.mission{background:linear-gradient(160deg,#202230,#171923);border:1px solid var(--line);border-radius:var(--radius);padding:18px;display:flex;flex-direction:column;min-height:290px;position:relative;overflow:hidden;transition:transform .2s,border-color .2s}.mission:hover{transform:translateY(-4px);border-color:#fa536866}.mission.done{border-color:#a7e6c077}.mission.done:after{content:"✓";position:absolute;right:14px;top:14px;color:var(--green);font-weight:900;font-size:1.05rem}.mission-top{display:flex;align-items:center;justify-content:space-between;color:var(--muted);font-size:.72rem;text-transform:uppercase;letter-spacing:.1em}.day-icon{font-size:2.4rem;margin:18px 0 10px}.mission h3{font-size:1.2rem;line-height:1.1;margin:0 0 9px;letter-spacing:-.025em}.mission p{color:var(--muted);font-size:.86rem;margin:0 0 18px}.mission .mission-bottom{margin-top:auto}.tag{display:inline-flex;border-radius:99px;background:#fa536818;color:#ff9ca7;padding:5px 9px;font-size:.68rem;font-weight:800}.mission-btn{margin-top:12px;width:100%;border:1px solid var(--line);background:#ffffff08;color:var(--ink);border-radius:12px;padding:10px;font-size:.8rem;font-weight:850}.mission.done .mission-btn{background:#a7e6c018;color:var(--green);border-color:#a7e6c044}.section{padding:36px 0}.briefing{display:grid;grid-template-columns:.8fr 1.2fr;gap:18px}.brief-card,.rules-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:24px}.brief-card h3,.rules-card h3{margin:0 0 10px;font-size:1.25rem}.brief-card p{color:var(--muted);margin:0 0 18px}.quote{border-left:3px solid var(--red);padding:12px 0 12px 15px;color:#e9e3e8;font-size:1rem}.random-result{margin-top:15px;padding:13px;border-radius:12px;background:#ffffff08;border:1px dashed #ffffff27;display:none;color:var(--gold);font-size:.9rem}.random-result.show{display:block}.rules{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.rule{display:flex;gap:10px;align-items:flex-start;color:#cbc8d3;font-size:.88rem}.rule b{color:var(--ink)}.rule-icon{width:28px;height:28px;flex:none;display:grid;place-items:center;background:#fa536817;border-radius:9px}.finale{margin:26px 0 64px;padding:clamp(24px,5vw,48px);border:1px solid #fa53684a;border-radius:28px;background:radial-gradient(ellipse at 100% 0%,#fa536820,transparent 42%),linear-gradient(140deg,#24202f,#181923);text-align:center;position:relative;overflow:hidden}.finale .big-heart{font-size:2.6rem}.finale h2{font-size:clamp(2rem,5vw,3.7rem);letter-spacing:-.05em;line-height:1.02;margin:12px 0}.finale p{color:#c7c2d0;max-width:620px;margin:0 auto 23px}.finale .signoff{font-size:.78rem;color:#ff9eaa;letter-spacing:.1em;text-transform:uppercase;font-weight:900;margin-top:19px}.footer{border-top:1px solid var(--line);padding:24px 0 35px;display:flex;justify-content:space-between;gap:15px;color:#858594;font-size:.75rem}.toast{position:fixed;bottom:20px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:var(--green);color:#15251b;padding:12px 18px;border-radius:13px;font-size:.86rem;font-weight:850;box-shadow:var(--shadow);transition:all .25s;z-index:10}.toast.show{opacity:1;transform:translate(-50%,0)}.hidden{display:none!important}
-@media(max-width:850px){.hero{grid-template-columns:1fr .8fr;gap:16px}.hero-art{min-height:290px}.poster{width:94%;padding:18px}.poster-icon{font-size:4rem;margin-top:26px}.poster h2{font-size:1.6rem}.poster-foot{left:18px;right:18px}.missions{grid-template-columns:repeat(2,1fr)}.briefing{grid-template-columns:1fr}.float-note{right:-4%}.float-note.bottom{left:0}}
-@media(max-width:580px){.shell{width:min(100% - 26px,1120px)}.topbar{padding:16px 0}.status{font-size:.62rem}.hero{grid-template-columns:1fr;padding:40px 0 28px}.hero h1{font-size:clamp(3rem,14vw,4.6rem)}.hero-art{min-height:300px;margin:0 10px}.poster{width:245px;max-width:78%;aspect-ratio:4/4.7}.poster-icon{font-size:4rem;margin:18px 0 6px}.poster h2{font-size:1.8rem}.float-note{right:3%;top:8%}.float-note.bottom{left:3%;bottom:8%}.section-head{display:block}.progress-box{margin-top:18px}.missions{grid-template-columns:1fr 1fr;gap:10px}.mission{padding:14px;min-height:285px}.mission h3{font-size:1.08rem}.mission p{font-size:.8rem}.day-icon{font-size:2rem;margin:16px 0 9px}.brief-card,.rules-card{padding:18px}.rules{grid-template-columns:1fr}.finale{margin-bottom:42px}.footer{display:block}.footer span{display:block;margin:4px 0}}
-@media(max-width:370px){.missions{grid-template-columns:1fr}.mission{min-height:245px}.status{display:none}}
-@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;scroll-behavior:auto!important;transition:none!important}}
-
-/* MINI JOGOS */
-.arcade-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px}.game-card{background:linear-gradient(160deg,#202230,#171923);border:1px solid var(--line);border-radius:var(--radius);padding:18px;min-width:0}.game-icon{font-size:2.2rem;margin:8px 0}.game-card h3{font-size:1.15rem;margin:0 0 7px}.game-card p{color:var(--muted);font-size:.86rem;min-height:54px;margin:0 0 13px}.game-stat{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0;font-size:.78rem;color:var(--gold)}.game-stat span{background:#ffffff0b;border:1px solid var(--line);border-radius:9px;padding:6px 9px}.game-field{position:relative;min-height:150px;background:#101119;border:1px dashed #ffffff35;border-radius:14px;overflow:hidden;margin-top:12px}.target-btn{position:absolute;width:43px;height:43px;border:0;border-radius:14px;background:var(--red);color:#281017;font-size:1.2rem;font-weight:900;box-shadow:0 5px 18px #fa536844;display:grid;place-items:center}.target-btn:disabled{opacity:.45}.game-message{min-height:22px;margin-top:10px;font-size:.82rem;color:var(--green)}.memory-board{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:12px}.memory-card{aspect-ratio:1;border:1px solid #ffffff22;border-radius:12px;background:linear-gradient(145deg,#292b3b,#191b27);color:var(--ink);font-size:1.45rem;display:grid;place-items:center;transition:transform .15s,background .15s;padding:0}.memory-card:hover{transform:translateY(-2px)}.memory-card.flipped,.memory-card.matched{background:#fa53681c;border-color:#fa536877}.memory-card.matched{background:#a7e6c018;border-color:#a7e6c066}.memory-card:disabled{cursor:default}.code-row{display:flex;gap:8px;margin-top:12px}.code-row input{width:100%;min-width:0;background:#101119;border:1px solid #ffffff2b;border-radius:12px;padding:12px;color:var(--ink);font:inherit;letter-spacing:.15em}.code-row input:focus{outline:2px solid #fa536877}.code-hint{font-size:.75rem;color:var(--muted);margin-top:9px}.game-win{color:var(--green)!important;font-weight:800}.game-lock{font-size:.72rem;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;font-weight:800}
-@media(max-width:850px){.arcade-grid{grid-template-columns:1fr 1fr}.game-card:last-child{grid-column:1/-1}}
-@media(max-width:580px){.arcade-grid{grid-template-columns:1fr}.game-card:last-child{grid-column:auto}.game-card p{min-height:0}.game-field{min-height:160px}}
-
-
-/* ARCADE UPGRADE: high-contrast mobile-first game interface */
-.arcade-section{position:relative;isolation:isolate;overflow:hidden;border-radius:30px;padding:clamp(20px,4vw,42px);margin:24px 0;background:linear-gradient(145deg,rgba(24,24,39,.98),rgba(15,16,26,.98));border:1px solid rgba(255,255,255,.10);box-shadow:0 30px 90px rgba(0,0,0,.24)}
-.arcade-backdrop{position:absolute;inset:0;z-index:-1;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:28px 28px;mask-image:linear-gradient(to bottom,black,transparent 80%)}
-.arcade-head{position:relative;align-items:center;margin-top:0}.arcade-head h2{font-size:clamp(2rem,5vw,3.4rem)}.neon-text{color:var(--pink);text-shadow:0 0 24px rgba(250,83,104,.32)}.arcade-progress{min-width:210px;padding:15px;border:1px solid var(--line);border-radius:15px;background:rgba(255,255,255,.035)}.arcade-progress-track{height:9px}.arcade-progress #gamesWonBar{background:linear-gradient(90deg,#fa5368,#c1a3ff,#a7e6c0)}#gamesProgressCaption{display:block;color:var(--muted);font-size:.68rem;margin-top:8px;letter-spacing:.07em;text-transform:uppercase}
-.arcade-banner{display:flex;align-items:center;gap:13px;padding:15px 17px;margin:24px 0 18px;border:1px solid rgba(246,213,139,.24);background:linear-gradient(90deg,rgba(246,213,139,.09),rgba(250,83,104,.04));border-radius:16px}.arcade-banner-icon{font-size:1.75rem}.arcade-banner>div:nth-child(2){display:grid;gap:3px;flex:1}.arcade-banner strong{font-size:.73rem;letter-spacing:.11em;color:var(--gold)}.arcade-banner span{font-size:.82rem;color:var(--muted)}.arcade-chip{font-size:.65rem;font-weight:900;letter-spacing:.11em;color:var(--pink);border:1px solid #fa536855;padding:7px 9px;border-radius:9px;white-space:nowrap}
-.arcade-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.game-card{--accent:var(--red);position:relative;isolation:isolate;min-width:0;overflow:hidden;padding:clamp(16px,2.3vw,24px);border-radius:22px;border:1px solid rgba(255,255,255,.11);background:linear-gradient(155deg,rgba(34,35,53,.98),rgba(21,22,33,.99));box-shadow:0 14px 35px rgba(0,0,0,.16)}.game-card:before{content:"";position:absolute;z-index:-1;top:-95px;right:-75px;width:210px;height:210px;border-radius:50%;background:var(--accent);opacity:.09;filter:blur(8px)}.game-card-red{--accent:#fa5368}.game-card-violet{--accent:#b69aff}.game-card-gold{--accent:#f6d58b}.game-card-green{--accent:#a7e6c0}.game-card-top{display:flex;justify-content:space-between;align-items:center;gap:9px}.game-lock{font-size:.66rem;color:#f3a3ac;font-weight:950;letter-spacing:.12em}.game-lock span{color:var(--muted)}.difficulty{font-size:.59rem;font-weight:950;letter-spacing:.08em;border-radius:7px;padding:5px 7px;white-space:nowrap}.diff-hard{background:#fa53681c;color:#ff9da9;border:1px solid #fa53683b}.diff-brain{background:#b69aff1a;color:#cabbff;border:1px solid #b69aff44}.game-icon-wrap{position:relative;display:grid;place-items:center;width:69px;height:69px;border-radius:20px;margin:22px 0 17px;border:1px solid rgba(255,255,255,.13);background:rgba(255,255,255,.045)}.game-icon{font-size:2.35rem;filter:drop-shadow(0 4px 15px #0005)}.icon-orbit{position:absolute;top:-8px;right:-6px;color:var(--accent);font-size:1.3rem;animation:orbitPulse 2.2s ease-in-out infinite}@keyframes orbitPulse{50%{transform:scale(1.28) rotate(18deg);opacity:.55}}.game-card h3{font-size:clamp(1.25rem,2.5vw,1.65rem);letter-spacing:-.04em;margin:0 0 7px}.game-card p{font-size:.88rem;color:#b9b8c8;line-height:1.55;margin:0 0 14px;min-height:4.1em}.game-card p b{color:#f4edf3}.game-hud{display:flex;gap:7px;flex-wrap:wrap;margin:14px 0}.game-hud span{flex:1;min-width:72px;text-align:center;border:1px solid rgba(255,255,255,.09);border-radius:9px;background:rgba(0,0,0,.18);padding:7px 6px;font-size:.62rem;font-weight:850;letter-spacing:.07em;color:#9898ac}.game-hud b{display:block;font-size:1.03rem;color:var(--ink);letter-spacing:0;margin-top:2px}.game-main-btn{width:100%;min-height:50px;font-size:.78rem;letter-spacing:.07em;justify-content:center}.game-main-btn:disabled{opacity:.55;cursor:not-allowed}.game-main-btn span{font-size:1.1rem}.game-field{position:relative;height:205px;min-height:205px;overflow:hidden;margin:12px 0;border:1px solid rgba(255,255,255,.12);border-radius:15px;background:radial-gradient(circle at 50% 50%,rgba(250,83,104,.08),transparent 58%),#11121b;touch-action:manipulation}.field-scan{position:absolute;inset:0;opacity:.24;background:repeating-linear-gradient(0deg,transparent 0 17px,rgba(255,255,255,.05) 18px 19px)}.field-instruction{position:absolute;inset:0;display:grid;place-items:center;color:#67687b;font-size:.68rem;font-weight:950;letter-spacing:.18em;pointer-events:none}.target-btn{position:absolute;z-index:2;width:52px;height:52px;min-width:52px;min-height:52px;border:2px solid #ffe7a4;border-radius:17px;background:linear-gradient(145deg,#ff7585,#f43f5e);color:#280d17;font-size:1.45rem;font-weight:1000;box-shadow:0 0 0 5px #fa53681c,0 0 28px #fa5368a3;display:grid;place-items:center;touch-action:manipulation;user-select:none}.target-btn:active{transform:scale(.89)}.target-btn.hit-pop{animation:targetHit .14s ease}@keyframes targetHit{50%{transform:scale(1.2);filter:brightness(1.5)}}.field-shake{animation:fieldShake .19s ease}@keyframes fieldShake{25%,75%{transform:translateX(3px)}50%{transform:translateX(-3px)}}.game-message{min-height:42px;padding:10px 1px 2px;margin:3px 0 0;font-size:.81rem;line-height:1.45;color:#b9c7ca}.game-win{color:var(--green)!important;font-weight:850}.best-score{margin-top:8px;color:#77798d;font-size:.62rem;font-weight:900;letter-spacing:.13em}.best-score b{color:var(--gold);font-size:.8rem;margin-left:6px}
-.memory-board{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:14px 0}.memory-card{min-width:0;width:100%;aspect-ratio:1;border:1px solid rgba(182,154,255,.25);border-radius:13px;background:linear-gradient(145deg,#29273d,#1b1a2b);color:var(--ink);font-size:clamp(1.15rem,3vw,1.7rem);display:grid;place-items:center;transition:transform .13s,background .13s,border-color .13s;padding:0;touch-action:manipulation;min-height:48px;box-shadow:inset 0 1px rgba(255,255,255,.04)}.memory-card:not(:disabled):active{transform:scale(.94)}.memory-card.flipped{background:linear-gradient(145deg,#44345f,#2b2542);border-color:#b69aff;box-shadow:0 0 18px #b69aff24}.memory-card.matched{background:linear-gradient(145deg,#194437,#182f2b);border-color:#a7e6c0;color:#bbf7d0;animation:matchPop .24s ease}.memory-card:disabled{cursor:default}.memory-actions{display:flex;align-items:center;gap:8px}.memory-actions .game-main-btn{flex:1;font-size:.65rem;padding:10px 7px}.rank-pill{flex:none;display:inline-flex;align-items:center;justify-content:center;min-height:34px;padding:7px 9px;border-radius:9px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);font-size:.61rem;color:var(--gold);font-weight:950;letter-spacing:.06em;white-space:nowrap}@keyframes matchPop{50%{transform:scale(1.06)}}
-.vault-screen{margin:12px 0 15px;padding:15px 12px;text-align:center;border:1px solid #f6d58b33;border-radius:15px;background:radial-gradient(ellipse at center,#f6d58b12,transparent 70%),#13131b}.vault-label{font-size:.6rem;color:#a9a6b4;letter-spacing:.17em;font-weight:900}.vault-dots{font-size:clamp(1.15rem,3.8vw,1.7rem);letter-spacing:.12em;color:var(--gold);margin:10px 0 5px;font-weight:900}.vault-state{font-size:.68rem;letter-spacing:.16em;color:#fa7b8a;font-weight:950}.vault-state.vault-open{color:var(--green);text-shadow:0 0 15px #a7e6c055}.clue-list{display:grid;gap:6px}.clue-list>div{display:flex;gap:10px;align-items:flex-start;border:1px solid rgba(255,255,255,.07);border-radius:9px;padding:8px 9px;background:rgba(255,255,255,.025)}.clue-list b{flex:none;font-size:.58rem;color:#e3c47f;letter-spacing:.08em;margin-top:2px}.clue-list span{font-size:.74rem;color:#b5b4c4;line-height:1.4}.code-hud{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;margin:12px 0 8px;font-size:.57rem;color:#85869a;letter-spacing:.05em}.code-hud b{color:#e8d7a8}.code-row-advanced{display:grid;grid-template-columns:1fr auto;margin-top:6px}.code-row-advanced input{min-height:52px;font-size:1.2rem;text-align:center;letter-spacing:.28em}.code-row-advanced button{min-height:52px;padding:10px 14px;font-size:.7rem}.attempt-history{display:grid;gap:5px;margin-top:10px;max-height:150px;overflow:auto}.attempt-row{display:grid;grid-template-columns:32px 1fr auto;gap:8px;align-items:center;border:1px solid rgba(255,255,255,.07);background:#ffffff05;border-radius:8px;padding:7px 9px;font-size:.72rem}.attempt-number{color:#797b90;font-size:.62rem}.attempt-guess{letter-spacing:.2em;color:#f5eacb}.attempt-feedback{display:flex;gap:8px;font-size:.65rem;color:#bbb7ca}.attempt-feedback i{font-style:normal}.text-reset{border:0;background:none;padding:10px 0 0;color:#9491a7;font-size:.72rem;text-decoration:underline;text-underline-offset:3px;min-height:40px}
-.sequence-board{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;max-width:360px;margin:18px auto 13px}.seq-pad{width:100%;min-height:102px;border:2px solid #ffffff17;border-radius:20px;font-size:1.9rem;font-weight:1000;opacity:.68;filter:saturate(.72);transition:transform .12s,opacity .12s,filter .12s,box-shadow .12s;touch-action:manipulation;user-select:none}.pad-coral{background:linear-gradient(145deg,#743143,#45202f);color:#ffb1bd}.pad-blue{background:linear-gradient(145deg,#263f73,#182744);color:#a9c9ff}.pad-gold{background:linear-gradient(145deg,#75612c,#44371c);color:#ffde82}.pad-green{background:linear-gradient(145deg,#285d4c,#19392f);color:#a7e6c0}.seq-pad.pad-lit{opacity:1;filter:saturate(1.4) brightness(1.8);transform:scale(.97);box-shadow:0 0 35px color-mix(in srgb,currentColor 36%,transparent),inset 0 0 30px #ffffff3b}.seq-pad.pad-tap{transform:scale(.94);opacity:1}.seq-pad:disabled{cursor:default}.sequence-controls{display:flex;align-items:center;gap:8px}.sequence-controls .game-main-btn{flex:1}.arcade-footnote{display:flex;align-items:flex-start;gap:10px;margin-top:18px;border-top:1px solid rgba(255,255,255,.08);padding-top:17px;color:#9797aa;font-size:.78rem}.arcade-footnote b{color:#e2dbe5}.footnote-star{color:var(--gold);font-size:1.2rem}.confetti-bit{position:fixed;top:-14px;width:7px;height:12px;border-radius:2px;z-index:999;pointer-events:none;animation:confettiDrop 1.45s cubic-bezier(.17,.67,.39,1) forwards}@keyframes confettiDrop{to{transform:translate3d(var(--drift),110vh,0) rotate(720deg);opacity:.1}}
-@media(max-width:680px){.arcade-section{padding:18px 12px;border-radius:22px;margin:15px -3px}.arcade-head{display:block}.arcade-head h2{font-size:2.15rem}.arcade-head p{font-size:.88rem}.arcade-progress{margin-top:18px;min-width:0}.arcade-banner{padding:12px;gap:10px;align-items:flex-start}.arcade-banner-icon{font-size:1.4rem}.arcade-banner strong{font-size:.64rem}.arcade-banner span{font-size:.75rem}.arcade-chip{display:none}.arcade-grid{grid-template-columns:minmax(0,1fr);gap:13px}.game-card{padding:18px 16px;border-radius:19px}.game-card h3{font-size:1.45rem}.game-card p{min-height:0;font-size:.88rem}.game-icon-wrap{width:60px;height:60px;margin:17px 0 14px}.game-icon{font-size:2rem}.game-field{height:218px;min-height:218px}.target-btn{width:56px;height:56px;min-width:56px;min-height:56px;border-radius:18px}.memory-board{gap:7px}.memory-card{min-height:55px;border-radius:12px;font-size:1.55rem}.sequence-board{max-width:100%;gap:10px}.seq-pad{min-height:90px;border-radius:18px}.game-main-btn{min-height:52px}.game-hud span{min-width:0}.clue-list span{font-size:.78rem}.code-row-advanced{grid-template-columns:1fr}.code-row-advanced button{width:100%}.code-hud{font-size:.55rem}.arcade-footnote{font-size:.73rem}}
-@media(min-width:681px) and (max-width:950px){.arcade-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.game-card{padding:17px}.memory-card{min-height:48px}}
-@media(prefers-reduced-motion:reduce){.arcade-section *, .arcade-section *:before,.arcade-section *:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
-
+:root{--bg:#090909;--panel:#171717;--panel2:#222;--red:#e50914;--muted:#aaa;--white:#f5f5f1;--gold:#e7bd76}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--white);font-family:Arial,Helvetica,sans-serif}button,input{font:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}.hidden{display:none!important}
+.topbar{height:68px;position:fixed;inset:0 0 auto;z-index:20;display:flex;align-items:center;gap:32px;padding:0 4.5%;background:linear-gradient(180deg,rgba(0,0,0,.92),rgba(0,0,0,.45));transition:.25s}.topbar.solid{background:#090909;box-shadow:0 5px 25px #0008}.logo{font-size:25px;letter-spacing:-1.5px;font-weight:900;color:var(--red);white-space:nowrap}.logo span{color:#fff}.nav{display:flex;align-items:center;gap:22px;font-size:13px;color:#ddd}.nav a:hover,.nav button:hover{color:#fff}.nav button{border:0;background:none;color:inherit;padding:0}.rightnav{margin-left:auto;display:flex;align-items:center;gap:16px}.search{width:min(230px,25vw);background:#000b;border:1px solid #777;padding:9px 12px 9px 35px;color:#fff;outline:none}.search:focus{border-color:#fff}.searchwrap{position:relative}.searchwrap:before{content:"⌕";position:absolute;left:12px;top:4px;font-size:24px;color:#ddd}.profile-mini{display:flex;align-items:center;gap:8px;border:0;background:none;color:#fff;font-size:12px}.avatar{width:29px;height:29px;border-radius:5px;display:grid;place-items:center;font-weight:bold;color:#fff;background:#9b3c72}
+.hero{height:min(780px,88vh);min-height:590px;position:relative;background:#171717;display:flex;align-items:flex-end;padding:0 4.5% 105px;overflow:hidden}.hero:before{content:"";position:absolute;inset:0;background:linear-gradient(0deg,var(--bg) 0%,rgba(9,9,9,.35) 44%,rgba(9,9,9,.12) 100%),linear-gradient(90deg,#090909 0%,rgba(9,9,9,.85) 28%,rgba(9,9,9,.15) 78%),url('https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=2000&q=85') center 35%/cover;filter:saturate(.85)}
+.hero-content{position:relative;z-index:1;max-width:610px}.eyebrow{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:#ddd;font-weight:bold;margin-bottom:16px}.hero h1{font-size:clamp(38px,5vw,68px);line-height:.98;margin:0 0 18px;font-weight:900;letter-spacing:-2px;text-shadow:0 2px 15px #000}.hero p{font-size:15px;line-height:1.55;color:#e2e2e2;max-width:570px;text-shadow:0 1px 8px #000}.meta{display:flex;gap:12px;align-items:center;color:#ddd;font-size:13px;margin:14px 0}.match{color:#46d369;font-weight:bold}.tag{border:1px solid #aaa;padding:2px 6px;font-size:10px}.actions{display:flex;gap:10px;margin-top:23px;flex-wrap:wrap}.btn{border:0;border-radius:4px;padding:12px 20px;font-weight:bold;display:inline-flex;align-items:center;gap:9px}.btn-light{background:#fff;color:#111}.btn-light:hover{background:#ddd}.btn-dark{background:#555b;color:#fff}.btn-dark:hover{background:#777}.btn-red{background:var(--red);color:#fff}.btn-red:hover{background:#b80710}
+main{position:relative;margin-top:-50px;z-index:2;padding-bottom:70px}.rowsection{padding:0 4.5%;margin:0 0 33px}.rowhead{display:flex;align-items:baseline;gap:12px;margin-bottom:12px}.rowhead h2{font-size:20px;margin:0;font-weight:700}.rowhead small{color:#aaa;font-size:12px}.rail{display:flex;gap:9px;overflow-x:auto;padding:4px 2px 18px;scrollbar-width:thin;scrollbar-color:#555 transparent}.tile{flex:0 0 clamp(145px,15vw,205px);border-radius:4px;overflow:hidden;background:#202020;position:relative;transition:transform .22s,box-shadow .22s;cursor:pointer}.tile:hover{transform:scale(1.07);z-index:3;box-shadow:0 12px 30px #000b}.poster{aspect-ratio:2/3;background:linear-gradient(135deg,#343434,#151515);position:relative}.poster img{width:100%;height:100%;object-fit:cover;display:block}.poster .fallback{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:16px;color:#aaa;font-weight:bold;font-size:15px;background:radial-gradient(circle at 30% 20%,#4b242b,#161616 65%)}.tileinfo{padding:9px 10px 11px}.tiletitle{font-size:12px;font-weight:bold;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tilemeta{font-size:10px;color:#aaa;margin-top:5px}.tileflag{position:absolute;top:8px;left:8px;background:#000c;border:1px solid #ffffff30;padding:4px 6px;font-size:9px;border-radius:2px}
+.content-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}.section-space{margin-top:34px}
+.empty{color:#999;font-size:13px;padding:22px 0}.notice{padding:14px 16px;border:1px solid #393939;background:#141414;border-radius:6px;color:#bbb;font-size:13px;line-height:1.5}
+.checklist{margin:55px 4.5% 0;padding:25px;background:linear-gradient(120deg,#21151a,#111);border:1px solid #3b252b;border-radius:8px}.checklist h2{margin:0 0 6px}.checklist p{margin:0 0 18px;color:#aaa;font-size:13px}.checks{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:9px}.check{padding:12px;border:1px solid #383838;background:#111;border-radius:5px;color:#ddd;font-size:12px;display:flex;gap:10px;align-items:center}.check input{accent-color:var(--red)}
+footer{border-top:1px solid #222;padding:30px 4.5%;text-align:center;color:#777;font-size:11px;line-height:1.7}
+.overlay{position:fixed;inset:0;z-index:50;background:#000e;display:flex;align-items:center;justify-content:center;padding:20px;overflow:auto}.dialog{width:min(760px,100%);background:#181818;border:1px solid #333;border-radius:8px;overflow:hidden;box-shadow:0 20px 80px #000}.dialogtop{display:flex;justify-content:space-between;align-items:center;padding:17px 20px;border-bottom:1px solid #333}.dialogtop h2{margin:0;font-size:18px}.xbtn{border:0;background:#333;color:#fff;border-radius:50%;width:34px;height:34px;font-size:20px}.dialogbody{padding:20px}.field{width:100%;background:#080808;border:1px solid #555;padding:13px;color:#fff;border-radius:4px;outline:none}.field:focus{border-color:#ddd}.error{color:#ff7474;font-size:12px;min-height:18px;margin-top:8px}.profiles-screen{min-height:100vh;display:grid;place-items:center;background:radial-gradient(ellipse at center,#242424 0%,#090909 65%);padding:25px}.profiles-inner{text-align:center;width:min(850px,100%)}.profiles-logo{font-size:34px;color:var(--red);font-weight:900;letter-spacing:-2px;margin-bottom:55px}.profiles-inner h1{font-size:clamp(25px,4vw,38px);font-weight:400;margin:0 0 35px}.profiles{display:flex;justify-content:center;gap:30px;flex-wrap:wrap}.profile-card{border:0;background:none;color:#aaa;width:145px}.profile-card:hover{color:#fff}.profile-avatar{width:120px;height:120px;border-radius:7px;margin:0 auto 12px;display:grid;place-items:center;font-size:42px;font-weight:bold;color:#fff;border:3px solid transparent;transition:.15s}.profile-card:hover .profile-avatar{border-color:#fff}.profile-name{font-size:14px}.profile-manage{margin-top:55px;border:1px solid #777;color:#aaa;background:transparent;padding:9px 20px;letter-spacing:2px;font-size:11px}.profile-manage:hover{border-color:#fff;color:#fff}
+.gate{min-height:100vh;display:grid;place-items:center;padding:20px;background:linear-gradient(#0009,#000d),url('https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1800&q=80') center/cover}.gatebox{width:min(410px,100%);padding:35px;background:#090909eF;border-top:3px solid var(--red);box-shadow:0 15px 60px #000}.gatebox .logo{font-size:30px;margin-bottom:25px}.gatebox h1{font-size:24px;margin:0 0 8px}.gatebox p{font-size:13px;color:#aaa;line-height:1.5;margin:0 0 20px}.gatebox .btn{width:100%;justify-content:center;margin-top:12px}.spinner{width:22px;height:22px;border:2px solid #777;border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
+.detailbackdrop{height:270px;background:#222 center/cover;position:relative}.detailbackdrop:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#181818,transparent 75%),linear-gradient(90deg,#181818aa,transparent)}.detailcontent{padding:0 25px 25px;margin-top:-55px;position:relative}.detailcontent h2{font-size:30px;margin:0 0 10px}.detaildesc{font-size:13px;line-height:1.6;color:#ccc;max-width:650px}.detailactions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}.closefloat{position:absolute;right:16px;top:16px;z-index:2}.toast{position:fixed;bottom:22px;right:22px;z-index:80;background:#222;border:1px solid #555;padding:13px 18px;border-radius:5px;box-shadow:0 8px 30px #0008;font-size:13px}
+@media(max-width:760px){.topbar{height:58px;padding:0 4%;gap:12px}.logo{font-size:21px}.nav{display:none}.search{width:38vw}.hero{min-height:570px;height:76vh;padding:0 5% 90px}.hero:before{background:linear-gradient(0deg,var(--bg) 0%,rgba(9,9,9,.5) 55%,rgba(9,9,9,.25)),linear-gradient(90deg,#090909cc,transparent),url('https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=1200&q=80') center/cover}.hero p{font-size:13px}.rowsection{padding:0 4%}.rowhead h2{font-size:17px}.tile{flex-basis:135px}.checklist{margin:40px 4%;padding:18px}.profile-avatar{width:95px;height:95px}.profile-card{width:115px}.profiles{gap:18px}.profiles-logo{margin-bottom:35px}.profile-manage{margin-top:35px}}
+@media(max-width:430px){.searchwrap{display:none}.profile-mini span{display:none}.hero h1{font-size:38px}.hero{min-height:600px}.btn{padding:11px 14px;font-size:12px}.meta{font-size:11px;gap:8px}}
 </style>
 </head>
 <body>
-<div class="shell">
-  <header class="topbar">
-    <div class="brand"><div class="brandmark">✦</div><span>OPERAÇÃO<br>FERIADÃO</span></div>
-    <div class="status"><span class="dot"></span> protocolo confidencial · nível 04</div>
-  </header>
+<!-- LOGIN GATE -->
+<section id="gate" class="gate">
+  <div class="gatebox">
+    <div class="logo">CARETINHAS<span style="color:#fff">+</span></div>
+    <h1>Nosso cinema particular.</h1>
+    <p>Um cantinho só nosso. Digite a senha para entrar.</p>
+    <form id="login-form">
+      <input id="site-password" class="field" type="password" autocomplete="current-password" placeholder="Senha do nosso cinema" required>
+      <div id="login-error" class="error"></div>
+      <button class="btn btn-red" type="submit" id="login-button">Entrar</button>
+    </form>
+    <p style="font-size:10px;margin-top:18px">Acesso privado • CARETINHAS+</p>
+  </div>
+</section>
 
-  <main>
-    <section class="hero" id="inicio">
-      <div>
-        <div class="eyebrow"><span class="mini-dot"></span> mensagem do controle central</div>
-        <h1>AGENTE,<br><span>PRECISAMOS</span> DE VOCÊ.</h1>
-        <p class="lead">Uma missão de quatro dias foi oficialmente autorizada. O objetivo é simples: sair um pouco da rotina, fazer coisas aleatórias e acumular lembranças suspeitamente boas.</p>
-        <div class="hero-actions">
-          <button class="btn btn-primary" id="startBtn">▶ Aceitar a missão <span aria-hidden="true">↗</span></button>
-          <button class="btn btn-secondary" id="scrollMissions">Ver as fases ↓</button>
-        </div>
-        <p style="font-size:.76rem;color:var(--muted);margin-top:17px">AVISO: a missão pode envolver cinema, comida, jogos e um agente ligeiramente bobo.</p>
-      </div>
-      <div class="hero-art" aria-label="Cartaz estilizado da missão">
-        <div class="orbit"></div>
-        <div class="poster">
-          <div class="stamp">TOP SECRET · 30/10—02/11</div>
-          <div class="poster-icon">🕵️‍♀️</div>
-          <h2>OPERAÇÃO:<br><span>FERIADÃO</span></h2>
-          <p>Quatro dias. Uma equipe. Nenhum plano 100% confiável.</p>
-          <div class="poster-foot"><span>missão especial</span><span>arquivo 004</span></div>
-        </div>
-        <div class="float-note">AUTORIZAÇÃO: SIM ✅</div>
-        <div class="float-note bottom">RISCO DE RISADAS: ALTO</div>
-      </div>
-    </section>
+<!-- PROFILE SELECT -->
+<section id="profiles-screen" class="profiles-screen hidden">
+  <div class="profiles-inner">
+    <div class="profiles-logo">CARETINHAS<span style="color:#fff">+</span></div>
+    <h1>Quem está assistindo?</h1>
+    <div class="profiles">
+      <button class="profile-card" onclick="selectProfile('meu')">
+        <div class="profile-avatar" style="background:linear-gradient(135deg,#246c91,#18334c)">E</div>
+        <div class="profile-name">Meu perfil</div>
+      </button>
+      <button class="profile-card" onclick="selectProfile('dela')">
+        <div class="profile-avatar" style="background:linear-gradient(135deg,#a13e78,#59234f)">♡</div>
+        <div class="profile-name">Perfil dela</div>
+      </button>
+    </div>
+    <button class="profile-manage" onclick="logout()">SAIR</button>
+  </div>
+</section>
 
-    <section class="section" id="fases">
-      <div class="section-head">
-        <div><div class="section-kicker">Dossiê da operação</div><h2>Quatro dias. Quatro fases.</h2><p>Agente, cada fase tem uma missão opcional. Marque como concluída quando acontecer — o plano pode mudar, a diversão não precisa seguir cronograma.</p></div>
-        <div class="progress-box"><div class="progress-label"><span>Progresso da operação</span><strong id="progressText">0/4</strong></div><div class="progress"><div class="progress-bar" id="progressBar"></div></div></div>
-      </div>
-      <div class="missions">
-        <article class="mission" data-day="0">
-          <div class="mission-top"><span>Fase 01 · Sexta</span><span>30 OUT</span></div>
-          <div class="day-icon">🎬</div><h3>Operação Tela Grande</h3>
-          <p>Investigar uma obra cinematográfica, avaliar a pipoca e retornar à base para testar tecnologia de projeção.</p>
-          <div class="mission-bottom"><span class="tag">Cinema + projetor</span><button class="mission-btn" data-complete="0">Marcar missão concluída</button></div>
-        </article>
-        <article class="mission" data-day="1">
-          <div class="mission-top"><span>Fase 02 · Sábado</span><span>31 OUT</span></div>
-          <div class="day-icon">🗺️</div><h3>Exploração de Território</h3>
-          <p>Escolher um passeio, descobrir um lugar legal ou simplesmente transformar uma tarde comum numa história boa.</p>
-          <div class="mission-bottom"><span class="tag">Passeio flexível</span><button class="mission-btn" data-complete="1">Marcar missão concluída</button></div>
-        </article>
-        <article class="mission" data-day="2">
-          <div class="mission-top"><span>Fase 03 · Domingo</span><span>01 NOV</span></div>
-          <div class="day-icon">🧡</div><h3>Conexões Importantes</h3>
-          <p>Visitar a mãe dela, estar presente e, mais tarde, voltar à base para descansar ou assistir a alguma coisa juntos.</p>
-          <div class="mission-bottom"><span class="tag">Presença + conforto</span><button class="mission-btn" data-complete="2">Marcar missão concluída</button></div>
-        </article>
-        <article class="mission" data-day="3">
-          <div class="mission-top"><span>Fase 04 · Segunda</span><span>02 NOV</span></div>
-          <div class="day-icon">🍳</div><h3>O Último Capítulo</h3>
-          <p>Preparar algo gostoso, jogar, caminhar ou não fazer absolutamente nada por um tempo. Agentes também descansam.</p>
-          <div class="mission-bottom"><span class="tag">Comida + descanso</span><button class="mission-btn" data-complete="3">Marcar missão concluída</button></div>
-        </article>
-      </div>
-    </section>
+<!-- MAIN APP -->
+<div id="app" class="hidden">
+<header id="header" class="topbar">
+  <a class="logo" href="#home">CARETINHAS<span>+</span></a>
+  <nav class="nav">
+    <a href="#home">Início</a>
+    <a href="#catalogo">Filmes</a>
+    <a href="#iptv">Meu catálogo</a>
+    <a href="#checklist">Minha sessão</a>
+  </nav>
+  <div class="rightnav">
+    <div class="searchwrap"><input id="search-input" class="search" type="search" placeholder="Títulos, gêneros..." aria-label="Buscar"></div>
+    <button class="profile-mini" onclick="backToProfiles()" title="Trocar perfil">
+      <div id="current-avatar" class="avatar">E</div><span id="current-profile">Meu perfil ▾</span>
+    </button>
+  </div>
+</header>
 
+<section id="home" class="hero">
+  <div class="hero-content">
+    <div class="eyebrow">CARETINHAS+ apresenta • Escolha da casa</div>
+    <h1>A Vida Secreta de Walter Mitty</h1>
+    <div class="meta"><span class="match">Destaque especial</span><span>•</span><span>2013</span><span>•</span><span>1h 54min</span><span class="tag">FILME</span></div>
+    <p>Um sonhador embarca em uma aventura pelo mundo para encontrar uma fotografia perdida. Uma história sobre coragem, descobertas e a beleza de sair da rotina.</p>
+    <div class="actions">
+      <button class="btn btn-light" onclick="openStaticMovie('walter-mitty')">▶ Ver detalhes</button>
+      <button class="btn btn-dark" onclick="scrollToSection('catalogo')">＋ Explorar catálogo</button>
+    </div>
+  </div>
+</section>
 
-    <section class="section arcade-section" id="arcade">
-      <div class="arcade-backdrop" aria-hidden="true"></div>
-      <div class="section-head arcade-head">
-        <div><div class="section-kicker">◆ Sala de treinamento · nível avançado</div><h2>Quatro jogos. <span class="neon-text">Uma agente.</span></h2><p>Os testes ficaram mais sérios. Toque, pense rápido, memorize padrões e arrombe o cofre. Projetado para jogar no celular.</p></div>
-        <div class="progress-box arcade-progress"><div class="progress-label"><span>PROTOCOLO DE ELITE</span><strong id="gamesWonText">0/4</strong></div><div class="progress arcade-progress-track"><div class="progress-bar" id="gamesWonBar"></div></div><small id="gamesProgressCaption">Nenhum protocolo concluído</small></div>
-      </div>
-      <div class="arcade-banner"><div class="arcade-banner-icon">🎮</div><div><strong>CONTROLE CENTRAL // MODO ARCADE</strong><span>O sistema registra suas vitórias neste aparelho. Pode tentar novamente sem perder o que já desbloqueou.</span></div><div class="arcade-chip">4 MISSÕES</div></div>
-      <div class="arcade-grid">
-        <article class="game-card game-card-red" id="reflexGame">
-          <div class="game-card-top"><div class="game-lock">JOGO 01 <span>· REFLEXOS</span></div><span class="difficulty diff-hard">RÁPIDO</span></div>
-          <div class="game-icon-wrap red-glow"><span class="game-icon">🎯</span><span class="icon-orbit">✦</span></div>
-          <h3>Caça ao sinal</h3>
-          <p>O alvo muda de lugar e acelera conforme você pontua. Acerte <b>18 sinais em 20 segundos</b>. Toque no alvo — evite tocar no resto da área.</p>
-          <div class="game-stat game-hud"><span>PONTOS <b id="reflexScore">0</b></span><span>TEMPO <b id="reflexTime">20</b>s</span><span>ERROS <b id="reflexMiss">0</b></span></div>
-          <div class="game-field" id="reflexField" aria-label="Área de jogo. Toque apenas no alvo que aparece."><div class="field-scan"></div><div class="field-instruction" id="reflexIntro">TOQUE EM INICIAR</div><button class="target-btn hidden" id="reflexTarget" aria-label="Capturar o sinal">✦</button></div>
-          <button class="btn btn-primary game-main-btn" id="reflexStart">INICIAR TESTE <span>↗</span></button>
-          <div class="game-message" id="reflexMessage" role="status" aria-live="polite">Atenção: o alvo não vai esperar por você.</div>
-          <div class="best-score">RECORDE PESSOAL <b id="reflexBest">0</b></div>
-        </article>
+<main id="catalogo">
+  <section id="search-section" class="rowsection hidden">
+    <div class="rowhead"><h2>Resultados da busca</h2></div>
+    <div id="search-results" class="content-grid"></div>
+  </section>
 
-        <article class="game-card game-card-violet" id="memoryGame">
-          <div class="game-card-top"><div class="game-lock">JOGO 02 <span>· MEMÓRIA</span></div><span class="difficulty diff-brain">CÉREBRO</span></div>
-          <div class="game-icon-wrap violet-glow"><span class="game-icon">🧠</span><span class="icon-orbit">✧</span></div>
-          <h3>Arquivo fantasma</h3>
-          <p>São <b>8 pares</b> escondidos. Encontre todos antes do tempo acabar. Quanto menos jogadas, maior sua classificação.</p>
-          <div class="game-stat game-hud"><span>PARES <b id="memoryPairs">0</b>/8</span><span>JOGADAS <b id="memoryMoves">0</b></span><span>TEMPO <b id="memoryTime">75</b>s</span></div>
-          <div class="memory-board" id="memoryBoard" aria-label="Tabuleiro do jogo da memória"></div>
-          <div class="memory-actions"><button class="btn btn-secondary game-main-btn" id="memoryStart">COMEÇAR / REINICIAR</button><span id="memoryRank" class="rank-pill">RANK: ???</span></div>
-          <div class="game-message" id="memoryMessage" role="status" aria-live="polite">Memorize os símbolos. O relógio começa no primeiro toque.</div>
-        </article>
+  <section class="rowsection">
+    <div class="rowhead"><h2>Continue explorando</h2><small>Uma seleção para qualquer momento</small></div>
+    <div class="rail" id="row-featured"></div>
+  </section>
+  <section class="rowsection">
+    <div class="rowhead"><h2>Conforto, risadas & respiro</h2><small>Para relaxar e ficar no sofá</small></div>
+    <div class="rail" id="row-conforto"></div>
+  </section>
+  <section class="rowsection">
+    <div class="rowhead"><h2>Noite romântica & emoção</h2><small>Histórias que ficam com a gente</small></div>
+    <div class="rail" id="row-romantico"></div>
+  </section>
+  <section class="rowsection">
+    <div class="rowhead"><h2>Animes & universos fantásticos</h2><small>Um pouco de magia na sessão</small></div>
+    <div class="rail" id="row-animes"></div>
+  </section>
+  <section id="iptv" class="rowsection">
+    <div class="rowhead"><h2>Do nosso catálogo</h2><small>Filmes disponíveis no serviço conectado</small></div>
+    <div id="iptv-status" class="notice">Entre no cinema para carregar o catálogo.</div>
+    <div id="iptv-categories" class="actions" style="margin:14px 0;gap:8px"></div>
+    <div id="iptv-movies" class="content-grid"></div>
+  </section>
 
-        <article class="game-card game-card-gold" id="codeGame">
-          <div class="game-card-top"><div class="game-lock">JOGO 03 <span>· CRIPTOGRAFIA</span></div><span class="difficulty diff-hard">8 TENTATIVAS</span></div>
-          <div class="game-icon-wrap gold-glow"><span class="game-icon">🔐</span><span class="icon-orbit">⌁</span></div>
-          <h3>O cofre impossível</h3>
-          <p>Descubra o código de quatro algarismos. Cada tentativa revela quantos dígitos estão certos e quantos estão no lugar certo.</p>
-          <div class="vault-screen"><div class="vault-label">SECURE ACCESS // 4-DIGIT</div><div class="vault-dots" id="vaultDots">● ● ● ●</div><div class="vault-state" id="vaultState">SISTEMA ARMADO</div></div>
-          <div class="clue-list"><div><b>PISTA 01</b><span>Todos os algarismos são diferentes.</span></div><div><b>PISTA 02</b><span>A soma dos algarismos é 17.</span></div><div><b>PISTA 03</b><span>O primeiro é o dobro do último.</span></div><div><b>PISTA 04</b><span>O segundo é um a mais que o terceiro.</span></div><div><b>PISTA 05</b><span>O número completo é menor que 5000.</span></div></div>
-          <div class="code-hud"><span>TENTATIVAS RESTANTES <b id="codeRemaining">8</b></span><span>FEEDBACK <b>● EXATO / ◇ DESLOCADO</b></span></div>
-          <form class="code-row code-row-advanced" id="codeForm"><input id="codeInput" inputmode="numeric" autocomplete="off" pattern="[0-9]{4}" maxlength="4" placeholder="_ _ _ _" aria-label="Código de quatro dígitos" required><button class="btn btn-primary" type="submit">DECIFRAR</button></form>
-          <div class="attempt-history" id="codeHistory" aria-live="polite"></div>
-          <button class="text-reset" id="codeReset" type="button">Reiniciar cofre ↻</button>
-          <div class="game-message" id="codeMessage" role="status" aria-live="polite">Acesso negado. Aguardo uma mente brilhante.</div>
-        </article>
+  <section id="checklist" class="checklist">
+    <h2>🍿 Preparando nossa sessão</h2>
+    <p>Os pequenos detalhes que deixam a noite melhor.</p>
+    <div class="checks" id="checklist-grid"></div>
+  </section>
+</main>
 
-        <article class="game-card game-card-green" id="sequenceGame">
-          <div class="game-card-top"><div class="game-lock">JOGO 04 <span>· SEQUÊNCIA</span></div><span class="difficulty diff-hard">5 RODADAS</span></div>
-          <div class="game-icon-wrap green-glow"><span class="game-icon">🧬</span><span class="icon-orbit">⌘</span></div>
-          <h3>Protocolo fantasma</h3>
-          <p>Observe a sequência luminosa e repita na ordem certa. A cada rodada, um sinal é adicionado. Complete <b>5 rodadas</b> com apenas 2 vidas.</p>
-          <div class="game-stat game-hud"><span>RODADA <b id="seqRound">0</b>/5</span><span>VIDAS <b id="seqLives">♥ ♥</b></span></div>
-          <div class="sequence-board" id="sequenceBoard" aria-label="Quatro botões de sequência">
-            <button class="seq-pad pad-coral" data-pad="0" aria-label="Sinal rubi">◆</button><button class="seq-pad pad-blue" data-pad="1" aria-label="Sinal azul">●</button><button class="seq-pad pad-gold" data-pad="2" aria-label="Sinal dourado">▲</button><button class="seq-pad pad-green" data-pad="3" aria-label="Sinal verde">■</button>
-          </div>
-          <div class="sequence-controls"><button class="btn btn-primary game-main-btn" id="sequenceStart">INICIAR PROTOCOLO</button><span class="rank-pill" id="sequenceState">AGUARDANDO</span></div>
-          <div class="game-message" id="sequenceMessage" role="status" aria-live="polite">Olhe com atenção. Depois, repita a ordem tocando nas cores.</div>
-        </article>
-      </div>
-      <div class="arcade-footnote"><span class="footnote-star">✦</span><span><b>Nota do Controle Central:</b> o sistema aceita erros, revanche e reclamações de fraude. A pontuação, infelizmente, não aceita suborno.</span></div>
-    </section>
-
-    <section class="section briefing" id="briefing">
-      <div class="brief-card">
-        <div class="section-kicker">Briefing extra</div><h3>Precisa de uma missão surpresa?</h3>
-        <p>O controle central sorteou algumas atividades para quando os agentes estiverem sem ideias. Aperte o botão e aceite o destino (ou ignore com dignidade).</p>
-        <button class="btn btn-primary" id="randomBtn">🎲 Sortear uma atividade</button>
-        <div class="random-result" id="randomResult" role="status" aria-live="polite"></div>
-      </div>
-      <div class="rules-card">
-        <div class="section-kicker">Diretrizes oficiais</div><h3>Regras da operação</h3>
-        <div class="rules">
-          <div class="rule"><span class="rule-icon">🍿</span><span><b>Regra 01:</b> sempre pode existir pipoca. Não há limite oficial.</span></div>
-          <div class="rule"><span class="rule-icon">💸</span><span><b>Regra 02:</b> diversão não precisa custar caro. O orçamento também é agente.</span></div>
-          <div class="rule"><span class="rule-icon">🌀</span><span><b>Regra 03:</b> planos podem mudar. Improvisar faz parte da missão.</span></div>
-          <div class="rule"><span class="rule-icon">🫶</span><span><b>Regra 04:</b> ninguém precisa performar felicidade. Descansar também conta.</span></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="finale" id="finale">
-      <div class="big-heart">💌</div>
-      <div class="section-kicker">Mensagem final · acesso liberado</div>
-      <h2>Missão secreta.<br><span style="color:var(--pink)">Companhia favorita.</span></h2>
-      <p>A verdade é que não precisa acontecer nada extraordinário para esses quatro dias valerem a pena. Eu só queria inventar um jeito diferente de te chamar para passar esse tempo comigo. O resto a gente improvisa — como sempre.</p>
-      <button class="btn btn-primary" id="acceptFinal">Aceito participar 🫡</button>
-      <div class="signoff">fim do comunicado · início da aventura</div>
-    </section>
-  </main>
-  <footer class="footer"><span>© Controle Central de Planos Questionáveis</span><span>Documento confidencial · Para uso de dois agentes</span></footer>
+<footer><strong style="color:#e50914">CARETINHAS+</strong> · Nosso cinema particular<br>Feito para escolher histórias, dividir pipoca e aproveitar o tempo juntos. ❤️</footer>
 </div>
-<div class="toast" id="toast" role="status" aria-live="polite">Missão registrada. O Controle Central está orgulhoso. 🫡</div>
+
+<!-- DETAIL MODAL -->
+<div id="detail-modal" class="overlay hidden" role="dialog" aria-modal="true">
+  <div class="dialog" style="position:relative">
+    <button class="xbtn closefloat" onclick="closeDetail()" aria-label="Fechar">×</button>
+    <div id="detail-backdrop" class="detailbackdrop"></div>
+    <div class="detailcontent">
+      <div class="eyebrow" id="detail-kicker">CARETINHAS+ • FILME</div>
+      <h2 id="detail-title">Título</h2>
+      <div class="meta" id="detail-meta"></div>
+      <p id="detail-description" class="detaildesc"></p>
+      <div class="detailactions">
+        <button id="detail-watch" class="btn btn-light">▶ Assistir trailer</button>
+        <button id="detail-seen" class="btn btn-dark">＋ Marcar como visto</button>
+      </div>
+      <div id="detail-note" class="notice" style="margin-top:18px"></div>
+    </div>
+  </div>
+</div>
+
+<div id="toast" class="toast hidden"></div>
+
 <script>
-(function(){
-  const total=4; const completed=new Set(); const toast=document.getElementById('toast'); let toastTimer;
-  function notify(message){toast.textContent=message;toast.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove('show'),2600)}
-  function updateProgress(){const n=completed.size;document.getElementById('progressText').textContent=n+'/'+total;document.getElementById('progressBar').style.width=(n/total*100)+'%';if(n===total)notify('Todas as fases concluídas. Relatório: feriadão bem-sucedido. ❤️')}
-  document.querySelectorAll('[data-complete]').forEach(btn=>btn.addEventListener('click',()=>{const id=Number(btn.dataset.complete);const card=document.querySelector('[data-day="'+id+'"]');if(completed.has(id)){completed.delete(id);card.classList.remove('done');btn.textContent='Marcar missão concluída';notify('Missão reaberta. O roteiro é flexível!')}else{completed.add(id);card.classList.add('done');btn.textContent='✓ Missão concluída · desfazer';notify('Missão registrada. O Controle Central está orgulhoso. 🫡')}updateProgress()}));
-  document.getElementById('startBtn').addEventListener('click',()=>{document.getElementById('fases').scrollIntoView({behavior:'smooth'});notify('Agente oficialmente recrutada. Boa sorte para nós!')});
-  document.getElementById('scrollMissions').addEventListener('click',()=>document.getElementById('fases').scrollIntoView({behavior:'smooth'}));
-  const ideas=['Fazer um mini piquenique com o que já tiver na geladeira.','Cada um escolhe uma música e explica a história por trás dela.','Jogar alguma coisa: videogame, cartas ou um jogo inventado na hora.','Escolher um filme por sorteio e aceitar o resultado sem reclamar por 10 minutos.','Preparar uma sobremesa rápida juntos.','Dar uma caminhada sem destino e escolher o melhor nome para um gato imaginário.','Fazer uma sessão de fotos horríveis e tratar cada uma como uma obra-prima.','Criar uma lista de 5 coisas para fazer juntos algum dia — sem precisar marcar tudo agora.','Montar um ranking absurdamente sério dos melhores lanches.','Apagar as luzes, ligar o projetor e assistir a um episódio de algo que os dois amam.'];
-  document.getElementById('randomBtn').addEventListener('click',()=>{const result=document.getElementById('randomResult');const idea=ideas[Math.floor(Math.random()*ideas.length)];result.textContent='MISSÃO EXTRA: '+idea;result.classList.add('show')});
+/* Configure a URL do Cloudflare Worker após publicá-lo. */
+const API_BASE = "https://SEU-WORKER.workers.dev";
 
-  // ARCADE MOBILE: quatro jogos, recordes locais e progressão persistida no aparelho.
-  const gameStoreKey='operacaoFeriadaoArcadeV2';
-  let storedArcade={wins:[],best:0};
-  try{const raw=localStorage.getItem(gameStoreKey);if(raw)storedArcade={...storedArcade,...JSON.parse(raw)}}catch(e){}
-  const wonGames=new Set(Array.isArray(storedArcade.wins)?storedArcade.wins:[]);
-  let bestReflex=Number(storedArcade.best)||0;
-  function saveArcade(){try{localStorage.setItem(gameStoreKey,JSON.stringify({wins:[...wonGames],best:bestReflex}))}catch(e){}}
-  function updateGamesWon(){const n=wonGames.size;document.getElementById('gamesWonText').textContent=n+'/4';document.getElementById('gamesWonBar').style.width=(n/4*100)+'%';document.getElementById('gamesProgressCaption').textContent=n===4?'PROTOCOLO DE ELITE LIBERADO':n===0?'Nenhum protocolo concluído':(4-n)+' protocolo(s) restante(s)';if(n===4)notify('PROTOCOLO DE ELITE CONCLUÍDO. A agência está em choque. 🕵️‍♀️❤️');saveArcade()}
-  function markGameWon(id){if(wonGames.has(id))return;wonGames.add(id);updateGamesWon();saveArcade();burstConfetti()}
-  function burstConfetti(){const colors=['#fa5368','#f6d58b','#a7e6c0','#b4a1ff','#7bdfff'];for(let i=0;i<24;i++){const el=document.createElement('i');el.className='confetti-bit';el.style.left=(Math.random()*100)+'%';el.style.background=colors[i%colors.length];el.style.setProperty('--drift',((Math.random()-.5)*180)+'px');el.style.animationDelay=(Math.random()*.25)+'s';document.body.appendChild(el);setTimeout(()=>el.remove(),1800)}}
-  updateGamesWon();
+const staticMovies = [
+ {id:"walter-mitty",title:"A Vida Secreta de Walter Mitty",category:"conforto",year:"2013",duration:"1h 54min",poster:"https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=600&q=80",backdrop:"https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1400&q=80",description:"Um sonhador embarca em uma aventura pelo mundo para encontrar uma fotografia perdida. Uma história sobre coragem, descobertas e a beleza de sair da rotina.",note:"Perfeito para lembrar que o mundo é enorme e que ainda há muita coisa bonita para descobrir.",trailer:"https://www.youtube.com/embed/HddkucqSzSM"},
+ {id:"truman-show",title:"O Show de Truman",category:"conforto",year:"1998",duration:"1h 43min",poster:"https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=600&q=80",description:"Um homem começa a perceber que sua vida aparentemente comum esconde algo extraordinário.",note:"Engraçado, inteligente e cheio de perguntas interessantes.",trailer:"https://www.youtube.com/embed/dlnmQbPGuls"},
+ {id:"perks-flower",title:"As Vantagens de Ser Invisível",category:"conforto",year:"2012",duration:"1h 42min",poster:"https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=600&q=80",description:"Um garoto tímido encontra amizade, pertencimento e coragem para viver novas experiências.",note:"Um abraço no coração e uma trilha sonora inesquecível.",trailer:"https://www.youtube.com/embed/n5rh7O4IDc0"},
+ {id:"eurotrip",title:"EuroTrip: Passaporte para a Confusão",category:"conforto",year:"2004",duration:"1h 32min",poster:"https://images.unsplash.com/photo-1526772662000-3f88f10405ff?auto=format&fit=crop&w=600&q=80",description:"Um grupo de amigos cruza a Europa em uma viagem cheia de situações absurdas.",note:"Para rir sem compromisso e esquecer um pouco da rotina.",trailer:"https://www.youtube.com/embed/Seo-6E1V2vU"},
+ {id:"lalaland",title:"La La Land: Cantando Estações",category:"romantico",year:"2016",duration:"2h 08min",poster:"https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=600&q=80",description:"Um pianista de jazz e uma aspirante a atriz se apaixonam enquanto perseguem seus sonhos.",note:"A música, as cores e aquela mistura de encanto e saudade.",trailer:"https://www.youtube.com/embed/0pdqf4P9MB8"},
+ {id:"about-time",title:"Questão de Tempo",category:"romantico",year:"2013",duration:"2h 03min",poster:"https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=600&q=80",description:"Tim descobre que pode viajar no tempo e tenta construir uma vida feliz ao lado das pessoas que ama.",note:"Uma história sobre amor, família e a beleza dos dias comuns.",trailer:"https://www.youtube.com/embed/T7A810duHvw"},
+ {id:"orange-girl",title:"A Garota das Laranjas",category:"romantico",year:"2009",duration:"1h 40min",poster:"https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=600&q=80",description:"Uma carta deixada por seu pai conduz um jovem a uma história de encontros e escolhas.",note:"Poético e sensível, para pensar sobre os encontros que mudam a vida.",trailer:""},
+ {id:"one-piece-film",title:"One Piece Film: Red",category:"animes",year:"2022",duration:"1h 55min",poster:"https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=600&q=80",description:"Uta, uma cantora mundialmente famosa, prepara um grande show que pode mudar o destino de todos.",note:"Música, aventura e nosso universo de conforto.",trailer:"https://www.youtube.com/embed/89JWRYEIG-s"},
+ {id:"spirited-away",title:"A Viagem de Chihiro",category:"animes",year:"2001",duration:"2h 05min",poster:"https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=600&q=80",description:"Chihiro entra em um mundo mágico habitado por espíritos e criaturas extraordinárias.",note:"Uma obra encantadora para uma sessão tranquila.",trailer:"https://www.youtube.com/embed/ByXuk9QqQkk"},
+ {id:"your-name",title:"Your Name",category:"animes",year:"2016",duration:"1h 47min",poster:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80",description:"Dois jovens começam a trocar de corpo misteriosamente e criam uma conexão que desafia o tempo e a distância.",note:"Uma história visualmente linda sobre encontros e destino.",trailer:"https://www.youtube.com/embed/hRfHcp2GjVI"}
+];
+const checklist = ["Pipoca ou snack especial 🍿","Cobertor pronto no sofá 🛋️","Luzes apagadas e clima de cinema 💡","Celulares no silencioso 📱","Carinho e cafuné liberados 💖"];
+let currentProfile = "meu";
+let iptvMovies = [];
+let iptvCategories = [];
+let activeCategory = "";
+let currentDetail = null;
 
-  // JOGO 01 — alvo rápido: ritmo aumenta a cada sequência de acertos. Área e alvos são touch-friendly.
-  const reflexField=document.getElementById('reflexField'),reflexTarget=document.getElementById('reflexTarget');
-  let reflexActive=false,reflexScore=0,reflexMiss=0,reflexLeft=20,reflexTimer=null,reflexMover=null;
-  document.getElementById('reflexBest').textContent=String(bestReflex);
-  function moveReflexTarget(){const pad=7,maxX=Math.max(pad,reflexField.clientWidth-reflexTarget.offsetWidth-pad),maxY=Math.max(pad,reflexField.clientHeight-reflexTarget.offsetHeight-pad);reflexTarget.style.left=(pad+Math.random()*(maxX-pad))+'px';reflexTarget.style.top=(pad+Math.random()*(maxY-pad))+'px';}
-  function setReflexSpeed(){clearInterval(reflexMover);const speed=Math.max(450,950-Math.floor(reflexScore/4)*100);if(reflexActive)reflexMover=setInterval(()=>{if(reflexActive)moveReflexTarget()},speed)}
-  function finishReflex(){reflexActive=false;clearInterval(reflexTimer);clearInterval(reflexMover);reflexTimer=reflexMover=null;reflexTarget.classList.add('hidden');document.getElementById('reflexStart').textContent='TENTAR NOVAMENTE ↻';const msg=document.getElementById('reflexMessage');const passed=reflexScore>=18;msg.textContent=passed?'ALVO NEUTRALIZADO. '+reflexScore+' acertos, '+reflexMiss+' erros. Reflexos absurdos!':'Operação encerrada: '+reflexScore+'/18 sinais. Respira, agente — tente de novo.';msg.classList.toggle('game-win',passed);document.getElementById('reflexIntro').textContent=passed?'SINAL CAPTURADO ✓':'FIM DE OPERAÇÃO';if(reflexScore>bestReflex){bestReflex=reflexScore;document.getElementById('reflexBest').textContent=String(bestReflex);saveArcade()}if(passed)markGameWon('reflex')}
-  document.getElementById('reflexStart').addEventListener('click',()=>{if(reflexActive)return;clearInterval(reflexTimer);clearInterval(reflexMover);reflexActive=true;reflexScore=0;reflexMiss=0;reflexLeft=20;document.getElementById('reflexScore').textContent='0';document.getElementById('reflexTime').textContent='20';document.getElementById('reflexMiss').textContent='0';document.getElementById('reflexMessage').textContent='SINAL ATIVO. PEGUE-O!';document.getElementById('reflexMessage').classList.remove('game-win');document.getElementById('reflexIntro').textContent='ALVO ATIVO';document.getElementById('reflexStart').textContent='TESTE EM ANDAMENTO…';reflexTarget.classList.remove('hidden');moveReflexTarget();setReflexSpeed();reflexTimer=setInterval(()=>{reflexLeft--;document.getElementById('reflexTime').textContent=String(reflexLeft);if(reflexLeft<=0)finishReflex()},1000)});
-  reflexTarget.addEventListener('click',e=>{e.stopPropagation();if(!reflexActive)return;reflexScore++;document.getElementById('reflexScore').textContent=String(reflexScore);reflexTarget.classList.remove('hit-pop');void reflexTarget.offsetWidth;reflexTarget.classList.add('hit-pop');moveReflexTarget();setReflexSpeed();if(navigator.vibrate)navigator.vibrate(12)});
-  reflexField.addEventListener('click',e=>{if(!reflexActive||e.target===reflexTarget)return;reflexMiss++;document.getElementById('reflexMiss').textContent=String(reflexMiss);reflexField.classList.remove('field-shake');void reflexField.offsetWidth;reflexField.classList.add('field-shake')});
-  window.addEventListener('resize',()=>{if(reflexActive)moveReflexTarget()});
-
-  // JOGO 02 — memória com 8 pares, limite de tempo e classificação por desempenho.
-  const memorySymbols=['🎬','🍿','🎮','🐶','🕵️','❤️','🌙','⭐'];let memoryDeck=[],memoryOpen=[],memoryMatched=0,memoryMoves=0,memoryLocked=false,memoryTimeout=null,memoryTimer=null,memoryLeft=75,memoryStarted=false,memoryEnded=false;
-  function shuffle(array){for(let i=array.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[array[i],array[j]]=[array[j],array[i]]}return array}
-  function setupMemory(){clearTimeout(memoryTimeout);clearInterval(memoryTimer);memoryDeck=shuffle([...memorySymbols,...memorySymbols].map((symbol,index)=>({symbol,id:index})));memoryOpen=[];memoryMatched=0;memoryMoves=0;memoryLocked=false;memoryLeft=75;memoryStarted=false;memoryEnded=false;document.getElementById('memoryPairs').textContent='0';document.getElementById('memoryMoves').textContent='0';document.getElementById('memoryTime').textContent='75';document.getElementById('memoryRank').textContent='RANK: ???';document.getElementById('memoryMessage').textContent='Memorize os símbolos. O relógio começa no primeiro toque.';document.getElementById('memoryMessage').classList.remove('game-win');document.getElementById('memoryStart').textContent='COMEÇAR / REINICIAR';const board=document.getElementById('memoryBoard');board.innerHTML='';memoryDeck.forEach((card,index)=>{const b=document.createElement('button');b.type='button';b.className='memory-card';b.textContent='?';b.setAttribute('aria-label','Carta fechada '+(index+1));b.dataset.index=String(index);b.addEventListener('click',()=>flipMemoryCard(index,b));board.appendChild(b)})}
-  function endMemory(won){memoryEnded=true;clearInterval(memoryTimer);const msg=document.getElementById('memoryMessage');if(won){const rank=memoryMoves<=14?'S':memoryMoves<=20?'A':'B';document.getElementById('memoryRank').textContent='RANK: '+rank+' ★';msg.textContent='ARQUIVO RECUPERADO em '+memoryMoves+' jogadas. Classificação '+rank+' — memória de elite!';msg.classList.add('game-win');markGameWon('memory')}else{document.getElementById('memoryRank').textContent='RANK: D';msg.textContent='TEMPO ESGOTADO. Você recuperou '+memoryMatched+'/8 pares. Reinicie e tente uma nova abordagem.';msg.classList.remove('game-win')}}
-  function flipMemoryCard(index,button){if(memoryLocked||button.disabled||memoryEnded)return;if(!memoryStarted){memoryStarted=true;document.getElementById('memoryMessage').textContent='Relógio ativado! Encontre os pares.';memoryTimer=setInterval(()=>{memoryLeft--;document.getElementById('memoryTime').textContent=String(memoryLeft);if(memoryLeft<=0)endMemory(false)},1000)}button.textContent=memoryDeck[index].symbol;button.classList.add('flipped');button.setAttribute('aria-label','Carta '+memoryDeck[index].symbol);memoryOpen.push({index,button,symbol:memoryDeck[index].symbol});if(memoryOpen.length!==2)return;memoryMoves++;document.getElementById('memoryMoves').textContent=String(memoryMoves);if(memoryOpen[0].symbol===memoryOpen[1].symbol){memoryOpen.forEach(x=>{x.button.classList.remove('flipped');x.button.classList.add('matched');x.button.disabled=true});memoryOpen=[];memoryMatched++;document.getElementById('memoryPairs').textContent=String(memoryMatched);if(memoryMatched===8)endMemory(true);else document.getElementById('memoryMessage').textContent='Par recuperado. '+(8-memoryMatched)+' pares restantes.'}else{memoryLocked=true;memoryTimeout=setTimeout(()=>{memoryOpen.forEach(x=>{x.button.textContent='?';x.button.classList.remove('flipped');x.button.setAttribute('aria-label','Carta fechada')});memoryOpen=[];memoryLocked=false},650)}}
-  document.getElementById('memoryStart').addEventListener('click',setupMemory);setupMemory();
-
-  // JOGO 03 — Mastermind: o código é inferido por lógica e feedback de posição.
-  let codeTries=0,codeSolved=false;const secretCode='4652';const codeForm=document.getElementById('codeForm'),codeInput=document.getElementById('codeInput'),codeMessage=document.getElementById('codeMessage'),codeHistory=document.getElementById('codeHistory');
-  function resetCode(){codeTries=0;codeSolved=false;codeInput.disabled=false;codeForm.querySelector('button').disabled=false;codeInput.value='';document.getElementById('codeRemaining').textContent='8';document.getElementById('vaultDots').textContent='● ● ● ●';document.getElementById('vaultState').textContent='SISTEMA ARMADO';document.getElementById('vaultState').className='vault-state';codeHistory.innerHTML='';codeMessage.textContent='Acesso negado. Aguardo uma mente brilhante.';codeMessage.classList.remove('game-win')}
-  codeForm.addEventListener('submit',event=>{event.preventDefault();if(codeSolved)return;const guess=codeInput.value.trim();if(!/^\d{4}$/.test(guess)){codeMessage.textContent='O cofre aceita exatamente quatro algarismos.';return}if(codeTries>=8)return;codeTries++;const exact=guess.split('').filter((d,i)=>d===secretCode[i]).length;let contained=0;const remainingSecret=secretCode.split('');const remainingGuess=guess.split('');for(let i=0;i<4;i++){if(remainingGuess[i]===secretCode[i]){remainingSecret[i]=null;remainingGuess[i]=null}}for(let i=0;i<4;i++){if(remainingGuess[i]!==null&&remainingSecret.includes(remainingGuess[i])){contained++;remainingSecret[remainingSecret.indexOf(remainingGuess[i])]=null}}const row=document.createElement('div');row.className='attempt-row';row.innerHTML='<span class="attempt-number">#'+codeTries+'</span><b class="attempt-guess">'+guess.split('').join(' ')+'</b><span class="attempt-feedback"><i>● '+exact+'</i><i>◇ '+contained+'</i></span>';codeHistory.prepend(row);document.getElementById('codeRemaining').textContent=String(8-codeTries);codeInput.value='';if(guess===secretCode){codeSolved=true;document.getElementById('vaultDots').textContent=guess.split('').join(' ');document.getElementById('vaultState').textContent='ACESSO CONCEDIDO';document.getElementById('vaultState').classList.add('vault-open');codeMessage.textContent='COFRE ABERTO! Você decifrou o protocolo. O prêmio é a glória e o estoque oficial de pipoca. 🍿';codeMessage.classList.add('game-win');codeInput.disabled=true;codeForm.querySelector('button').disabled=true;markGameWon('code')}else if(codeTries>=8){document.getElementById('vaultState').textContent='BLOQUEIO TEMPORÁRIO';codeMessage.textContent='Oito tentativas. O cofre venceu esta rodada — reinicie e tente outra estratégia.';codeMessage.classList.remove('game-win')}else{codeMessage.textContent='Exatos (●): '+exact+' · Certos fora do lugar (◇): '+contained+'. Faltam '+(8-codeTries)+' tentativas.';codeInput.focus()}});
-  document.getElementById('codeReset').addEventListener('click',resetCode);
-
-  // JOGO 04 — sequência estilo Simon, com 5 rodadas progressivas e 2 vidas.
-  const seqPads=[...document.querySelectorAll('.seq-pad')];let seqPattern=[],seqRound=0,seqLives=2,seqInputAt=0,seqPlaying=false,seqActive=false,seqPause=null;
-  function wait(ms){return new Promise(resolve=>setTimeout(resolve,ms))}
-  function flashPad(index,duration=390){const pad=seqPads[index];pad.classList.add('pad-lit');if(navigator.vibrate)navigator.vibrate(16);return wait(duration).then(()=>pad.classList.remove('pad-lit'))}
-  async function playPattern(){seqPlaying=true;seqInputAt=0;document.getElementById('sequenceState').textContent='OBSERVE';document.getElementById('sequenceMessage').textContent='Observe a sequência luminosa…';await wait(420);for(const item of seqPattern){if(!seqActive)return;await flashPad(item,430);await wait(180)}seqPlaying=false;document.getElementById('sequenceState').textContent='SUA VEZ';document.getElementById('sequenceMessage').textContent='Agora repita na mesma ordem!'}
-  function beginSequence(){clearTimeout(seqPause);seqPattern=[];seqRound=0;seqLives=2;seqInputAt=0;seqActive=true;seqPlaying=false;document.getElementById('seqRound').textContent='0';document.getElementById('seqLives').textContent='♥ ♥';document.getElementById('sequenceState').textContent='PREPARANDO';document.getElementById('sequenceMessage').textContent='Inicializando protocolo…';document.getElementById('sequenceStart').textContent='RECOMEÇAR PROTOCOLO';seqPads.forEach(p=>p.disabled=false);nextSequenceRound()}
-  async function nextSequenceRound(){if(!seqActive)return;seqRound++;if(seqRound>5){seqActive=false;document.getElementById('seqRound').textContent='5';document.getElementById('sequenceState').textContent='ACESSO TOTAL';document.getElementById('sequenceMessage').textContent='PROTOCOLO DOMINADO. Você tem memória de máquina. 🧬';document.getElementById('sequenceMessage').classList.add('game-win');seqPads.forEach(p=>p.disabled=true);markGameWon('sequence');return}if(seqRound===1){seqPattern.push(Math.floor(Math.random()*4),Math.floor(Math.random()*4),Math.floor(Math.random()*4))}else{seqPattern.push(Math.floor(Math.random()*4))}document.getElementById('seqRound').textContent=String(seqRound);document.getElementById('sequenceMessage').classList.remove('game-win');await playPattern()}
-  seqPads.forEach((pad,index)=>pad.addEventListener('click',async()=>{if(!seqActive||seqPlaying)return;pad.classList.add('pad-tap');setTimeout(()=>pad.classList.remove('pad-tap'),140);if(index===seqPattern[seqInputAt]){seqInputAt++;if(seqInputAt===seqPattern.length){seqPlaying=true;document.getElementById('sequenceState').textContent='CORRETO ✓';document.getElementById('sequenceMessage').textContent='Sequência correta. Preparando a próxima…';await wait(580);nextSequenceRound()}}else{seqLives--;document.getElementById('seqLives').textContent=seqLives===2?'♥ ♥':seqLives===1?'♥ ♡':'♡ ♡';document.getElementById('sequenceMessage').textContent=seqLives>0?'Sinal incorreto! Você perdeu uma vida. A sequência será repetida.':'Protocolo falhou. Recomece e tente decorar o padrão.';if(seqLives<=0){seqActive=false;seqPlaying=false;document.getElementById('sequenceState').textContent='FALHA';seqPads.forEach(p=>p.disabled=true);document.getElementById('sequenceStart').textContent='TENTAR NOVAMENTE ↻';return}seqPlaying=true;await wait(700);playPattern()}}));
-  document.getElementById('sequenceStart').addEventListener('click',beginSequence);
-
-  document.getElementById('acceptFinal').addEventListener('click',()=>{document.getElementById('acceptFinal').textContent='Missão aceita! ❤️';notify('Resposta recebida. Agora é só viver a aventura. ❤️');document.getElementById('finale').scrollIntoView({behavior:'smooth',block:'center'})});
-})();
+const $ = id => document.getElementById(id);
+function esc(s=""){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+function token(){return sessionStorage.getItem("caretinha_session");}
+function authHeaders(){return {Authorization:`Bearer ${token()}`};}
+async function api(path){
+ const r=await fetch(`${API_BASE}${path}`,{headers:authHeaders(),cache:"no-store"});
+ if(r.status===401){sessionStorage.removeItem("caretinha_session");showGate();throw new Error("Sessão expirada.");}
+ if(!r.ok)throw new Error("Não foi possível carregar o catálogo.");
+ return r.json();
+}
+function showGate(){ $("gate").classList.remove("hidden");$("profiles-screen").classList.add("hidden");$("app").classList.add("hidden");}
+function showProfiles(){ $("gate").classList.add("hidden");$("profiles-screen").classList.remove("hidden");$("app").classList.add("hidden");}
+function showApp(){ $("gate").classList.add("hidden");$("profiles-screen").classList.add("hidden");$("app").classList.remove("hidden");}
+async function validateSession(){
+ if(!token()){showGate();return;}
+ try{await api("/api/session");showProfiles();}catch{showGate();}
+}
+$("login-form").addEventListener("submit",async e=>{
+ e.preventDefault();
+ const btn=$("login-button"),password=$("site-password").value;
+ btn.disabled=true;btn.textContent="Verificando…";$("login-error").textContent="";
+ try{
+  const r=await fetch(`${API_BASE}/api/login`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({password})});
+  const data=await r.json();
+  if(!r.ok)throw new Error(data.error||"Senha incorreta.");
+  sessionStorage.setItem("caretinha_session",data.token);
+  $("site-password").value="";showProfiles();
+ }catch(err){$("login-error").textContent=err.message.includes("Failed to fetch")?"Não foi possível conectar ao servidor. Verifique a configuração da API.":err.message;}
+ finally{btn.disabled=false;btn.textContent="Entrar";}
+});
+function selectProfile(profile){
+ currentProfile=profile;
+ $("current-profile").textContent=(profile==="meu"?"Meu perfil":"Perfil dela")+" ▾";
+ $("current-avatar").textContent=profile==="meu"?"E":"♡";
+ $("current-avatar").style.background=profile==="meu"?"linear-gradient(135deg,#246c91,#18334c)":"linear-gradient(135deg,#a13e78,#59234f)";
+ showApp();renderStatic();renderChecklist();loadIPTV();
+}
+function backToProfiles(){showProfiles();}
+function logout(){sessionStorage.removeItem("caretinha_session");showGate();}
+function scrollToSection(id){$(id).scrollIntoView({behavior:"smooth"});}
+function tile(movie,source="static"){
+ const poster=movie.poster||movie.stream_icon||"";
+ const title=movie.title||movie.name||"Filme";
+ const id=source==="iptv"?movie.stream_id:movie.id;
+ return `<article class="tile" onclick="${source==="iptv"?`openIPTVMovie('${esc(String(id))}')`:`openStaticMovie('${esc(String(id))}')`}">
+  <div class="poster">${poster?`<img loading="lazy" src="${esc(poster)}" alt="${esc(title)}" onerror="this.remove()">`:""}<div class="fallback">${esc(title)}</div><span class="tileflag">${source==="iptv"?"CATÁLOGO":"SELEÇÃO"}</span></div>
+  <div class="tileinfo"><div class="tiletitle">${esc(title)}</div><div class="tilemeta">${esc(movie.year||"")}${movie.duration?" · "+esc(movie.duration):""}</div></div>
+ </article>`;
+}
+function renderRail(id,items,source="static"){ $(id).innerHTML=items.length?items.map(m=>tile(m,source)).join(""):`<div class="empty">Ainda não há títulos nesta seleção.</div>`;}
+function renderStatic(){
+ renderRail("row-featured",staticMovies.slice(0,6));
+ renderRail("row-conforto",staticMovies.filter(m=>m.category==="conforto"));
+ renderRail("row-romantico",staticMovies.filter(m=>m.category==="romantico"));
+ renderRail("row-animes",staticMovies.filter(m=>m.category==="animes"));
+}
+function openStaticMovie(id){
+ const m=staticMovies.find(x=>x.id===id);if(!m)return;
+ currentDetail={...m,source:"static"};
+ showDetail({title:m.title,year:m.year,duration:m.duration,description:m.description,note:m.note,backdrop:m.backdrop||m.poster,trailer:m.trailer,kicker:"SELEÇÃO CARETINHAS+"});
+}
+async function openIPTVMovie(id){
+ const m=iptvMovies.find(x=>String(x.stream_id)===String(id));if(!m)return;
+ currentDetail={...m,source:"iptv"};
+ $("detail-watch").textContent="Player em preparação";
+ $("detail-watch").onclick=()=>toast("A reprodução IPTV será ativada depois de validarmos um método seguro para os links de mídia.");
+ showDetail({title:m.name,year:"Catálogo IPTV",duration:"",description:"Título disponível no catálogo conectado. Consulte os detalhes para ver as informações fornecidas pelo serviço.",note:"Disponível no nosso catálogo particular.",backdrop:m.stream_icon,kicker:"CATÁLOGO CONECTADO"});
+ try{
+  const info=await api(`/api/movie-info?id=${encodeURIComponent(id)}`);
+  if(currentDetail&&String(currentDetail.stream_id)===String(id)){
+   $("detail-description").textContent=info.info?.plot||$("detail-description").textContent;
+   $("detail-meta").textContent=[info.info?.releaseDate,info.info?.genre,info.info?.rating?`Nota ${info.info.rating}`:""].filter(Boolean).join(" · ");
+  }
+ }catch(e){toast(e.message);}
+}
+function showDetail(data){
+ $("detail-title").textContent=data.title;
+ $("detail-kicker").textContent=data.kicker||"CARETINHAS+";
+ $("detail-meta").textContent=[data.year,data.duration].filter(Boolean).join(" · ");
+ $("detail-description").textContent=data.description||"";
+ $("detail-note").textContent=data.note||"";
+ $("detail-backdrop").style.backgroundImage=data.backdrop?`linear-gradient(0deg,#181818,transparent),url("${data.backdrop}")`:"linear-gradient(135deg,#392027,#111)";
+ const watch=$("detail-watch");
+ watch.textContent=data.trailer?"▶ Assistir trailer":"Player em preparação";
+ watch.onclick=()=>{if(data.trailer){window.open(data.trailer.replace("/embed/","/watch?v="),"_blank","noopener");}else toast("A reprodução IPTV será ativada após a validação segura do player.");};
+ $("detail-seen").onclick=()=>{markSeen(currentDetail);};
+ $("detail-modal").classList.remove("hidden");
+}
+function closeDetail(){$("detail-modal").classList.add("hidden");}
+function markSeen(movie){
+ if(!movie)return;
+ const key=`caretinha_seen_${currentProfile}`;
+ const list=JSON.parse(localStorage.getItem(key)||"[]");
+ const id=String(movie.stream_id||movie.id);
+ if(!list.includes(id))list.push(id);
+ localStorage.setItem(key,JSON.stringify(list));
+ toast("Adicionado à lista de assistidos. 🎬");
+}
+function toast(message){$("toast").textContent=message;$("toast").classList.remove("hidden");clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>$("toast").classList.add("hidden"),3000);}
+async function loadIPTV(){
+ $("iptv-status").textContent="Conectando ao catálogo…";
+ $("iptv-movies").innerHTML="";
+ try{
+  const [cats,movies]=await Promise.all([api("/api/categories"),api("/api/movies")]);
+  iptvCategories=Array.isArray(cats)?cats:[];
+  iptvMovies=Array.isArray(movies)?movies:[];
+  renderCategories();
+  renderIPTVMovies();
+  $("iptv-status").textContent=`${iptvMovies.length} títulos encontrados no catálogo conectado.`;
+ }catch(e){
+  $("iptv-status").textContent="Não foi possível carregar o catálogo IPTV. Confira a URL do Worker, a origem autorizada e os secrets configurados.";
+  $("iptv-categories").innerHTML="";
+ }
+}
+function renderCategories(){
+ const all=`<button class="btn ${activeCategory===""?"btn-red":"btn-dark"}" style="padding:8px 12px;font-size:11px" onclick="filterIPTV('')">Todos</button>`;
+ const buttons=iptvCategories.map(c=>`<button class="btn ${String(activeCategory)===String(c.category_id)?"btn-red":"btn-dark"}" style="padding:8px 12px;font-size:11px" onclick="filterIPTV('${esc(String(c.category_id))}')">${esc(c.category_name)}</button>`).join("");
+ $("iptv-categories").innerHTML=all+buttons;
+}
+async function filterIPTV(category){
+ activeCategory=category;
+ renderCategories();
+ $("iptv-status").textContent="Atualizando seleção…";
+ try{
+  const data=await api(`/api/movies${category?`?category=${encodeURIComponent(category)}`:""}`);
+  iptvMovies=Array.isArray(data)?data:[];
+  renderIPTVMovies();
+  $("iptv-status").textContent=`${iptvMovies.length} títulos nesta categoria.`;
+ }catch(e){$("iptv-status").textContent=e.message;}
+}
+function renderIPTVMovies(){
+ $("iptv-movies").innerHTML=iptvMovies.length?iptvMovies.map(m=>tile(m,"iptv")).join(""):`<div class="empty">Nenhum filme encontrado nesta categoria.</div>`;
+}
+$("search-input").addEventListener("input",()=>{
+ const q=$("search-input").value.trim().toLowerCase();
+ if(!q){$("search-section").classList.add("hidden");$("catalogo").querySelectorAll(":scope > .rowsection").forEach(x=>x.classList.remove("hidden"));return;}
+ $("catalogo").querySelectorAll(":scope > .rowsection").forEach(x=>{if(x.id!=="search-section")x.classList.add("hidden");});
+ $("search-section").classList.remove("hidden");
+ const staticResults=staticMovies.filter(m=>(m.title+" "+m.category+" "+m.description).toLowerCase().includes(q)).map(m=>tile(m));
+ const iptvResults=iptvMovies.filter(m=>(m.name||"").toLowerCase().includes(q)).map(m=>tile(m,"iptv"));
+ $("search-results").innerHTML=[...staticResults,...iptvResults].join("")||`<div class="empty">Nenhum resultado para “${esc(q)}”.</div>`;
+});
+function renderChecklist(){
+ const saved=JSON.parse(localStorage.getItem(`caretinha_checks_${currentProfile}`)||"[]");
+ $("checklist-grid").innerHTML=checklist.map((label,i)=>`<label class="check"><input type="checkbox" ${saved.includes(i)?"checked":""} onchange="toggleCheck(${i},this.checked)"><span>${label}</span></label>`).join("");
+}
+function toggleCheck(i,checked){
+ const key=`caretinha_checks_${currentProfile}`,saved=JSON.parse(localStorage.getItem(key)||"[]");
+ const next=checked?[...new Set([...saved,i])]:saved.filter(x=>x!==i);
+ localStorage.setItem(key,JSON.stringify(next));
+}
+window.addEventListener("scroll",()=>{$("header").classList.toggle("solid",window.scrollY>45);});
+$("detail-modal").addEventListener("click",e=>{if(e.target===$("detail-modal"))closeDetail();});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeDetail();});
+validateSession();
 </script>
 </body>
 </html>
