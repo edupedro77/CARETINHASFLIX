@@ -3,363 +3,458 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#090909">
+<meta name="theme-color" content="#141414">
 <title>CARETINHAS+ | Nosso cinema particular</title>
 <style>
-:root{--bg:#090909;--panel:#171717;--panel2:#222;--red:#e50914;--muted:#aaa;--white:#f5f5f1;--gold:#e7bd76}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--white);font-family:Arial,Helvetica,sans-serif}button,input{font:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}.hidden{display:none!important}
-.topbar{height:68px;position:fixed;inset:0 0 auto;z-index:20;display:flex;align-items:center;gap:32px;padding:0 4.5%;background:linear-gradient(180deg,rgba(0,0,0,.92),rgba(0,0,0,.45));transition:.25s}.topbar.solid{background:#090909;box-shadow:0 5px 25px #0008}.logo{font-size:25px;letter-spacing:-1.5px;font-weight:900;color:var(--red);white-space:nowrap}.logo span{color:#fff}.nav{display:flex;align-items:center;gap:22px;font-size:13px;color:#ddd}.nav a:hover,.nav button:hover{color:#fff}.nav button{border:0;background:none;color:inherit;padding:0}.rightnav{margin-left:auto;display:flex;align-items:center;gap:16px}.search{width:min(230px,25vw);background:#000b;border:1px solid #777;padding:9px 12px 9px 35px;color:#fff;outline:none}.search:focus{border-color:#fff}.searchwrap{position:relative}.searchwrap:before{content:"⌕";position:absolute;left:12px;top:4px;font-size:24px;color:#ddd}.profile-mini{display:flex;align-items:center;gap:8px;border:0;background:none;color:#fff;font-size:12px}.avatar{width:29px;height:29px;border-radius:5px;display:grid;place-items:center;font-weight:bold;color:#fff;background:#9b3c72}
-.hero{height:min(780px,88vh);min-height:590px;position:relative;background:#171717;display:flex;align-items:flex-end;padding:0 4.5% 105px;overflow:hidden}.hero:before{content:"";position:absolute;inset:0;background:linear-gradient(0deg,var(--bg) 0%,rgba(9,9,9,.35) 44%,rgba(9,9,9,.12) 100%),linear-gradient(90deg,#090909 0%,rgba(9,9,9,.85) 28%,rgba(9,9,9,.15) 78%),url('https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=2000&q=85') center 35%/cover;filter:saturate(.85)}
-.hero-content{position:relative;z-index:1;max-width:610px}.eyebrow{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:#ddd;font-weight:bold;margin-bottom:16px}.hero h1{font-size:clamp(38px,5vw,68px);line-height:.98;margin:0 0 18px;font-weight:900;letter-spacing:-2px;text-shadow:0 2px 15px #000}.hero p{font-size:15px;line-height:1.55;color:#e2e2e2;max-width:570px;text-shadow:0 1px 8px #000}.meta{display:flex;gap:12px;align-items:center;color:#ddd;font-size:13px;margin:14px 0}.match{color:#46d369;font-weight:bold}.tag{border:1px solid #aaa;padding:2px 6px;font-size:10px}.actions{display:flex;gap:10px;margin-top:23px;flex-wrap:wrap}.btn{border:0;border-radius:4px;padding:12px 20px;font-weight:bold;display:inline-flex;align-items:center;gap:9px}.btn-light{background:#fff;color:#111}.btn-light:hover{background:#ddd}.btn-dark{background:#555b;color:#fff}.btn-dark:hover{background:#777}.btn-red{background:var(--red);color:#fff}.btn-red:hover{background:#b80710}
-main{position:relative;margin-top:-50px;z-index:2;padding-bottom:70px}.rowsection{padding:0 4.5%;margin:0 0 33px}.rowhead{display:flex;align-items:baseline;gap:12px;margin-bottom:12px}.rowhead h2{font-size:20px;margin:0;font-weight:700}.rowhead small{color:#aaa;font-size:12px}.rail{display:flex;gap:9px;overflow-x:auto;padding:4px 2px 18px;scrollbar-width:thin;scrollbar-color:#555 transparent}.tile{flex:0 0 clamp(145px,15vw,205px);border-radius:4px;overflow:hidden;background:#202020;position:relative;transition:transform .22s,box-shadow .22s;cursor:pointer}.tile:hover{transform:scale(1.07);z-index:3;box-shadow:0 12px 30px #000b}..poster {
-    aspect-ratio: 2 / 3;
-    background: linear-gradient(135deg, #343434, #151515);
-    position: relative;
-    overflow: hidden;
+/* PALETA OFICIAL NETFLIX */
+:root {
+  --bg: #141414;
+  --panel: #181818;
+  --red: #E50914; 
+  --white: #ffffff;
+  --gray: #808080;
 }
-
-.poster img {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    z-index: 2;
-    transition: transform .35s ease;
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { 
+  margin: 0; 
+  background: var(--bg); 
+  color: var(--white); 
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; 
+  -webkit-font-smoothing: antialiased;
 }
+button, input { font: inherit; }
+button { cursor: pointer; }
+a { color: inherit; text-decoration: none; }
+.hidden { display: none !important; }
 
-.tile:hover .poster img {
-    transform: scale(1.04);
+/* NAVBAR NETFLIX */
+.topbar {
+  height: 68px;
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  padding: 0 4%;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+  transition: background-color 0.4s;
 }
+.topbar.solid { background: #141414; }
+.logo { font-size: 28px; font-weight: 900; color: var(--red); white-space: nowrap; letter-spacing: -1px; }
+.nav { display: flex; gap: 20px; font-size: 14px; font-weight: 500; color: #e5e5e5; }
+.nav a:hover, .nav button:hover { color: #b3b3b3; transition: 0.3s; }
+.rightnav { margin-left: auto; display: flex; align-items: center; gap: 20px; }
+.search { width: min(230px, 25vw); background: rgba(0,0,0,0.75); border: 1px solid var(--white); padding: 6px 12px 6px 35px; color: var(--white); outline: none; transition: 0.3s; }
+.searchwrap { position: relative; }
+.searchwrap:before { content: "⌕"; position: absolute; left: 10px; top: 2px; font-size: 22px; color: var(--white); }
+.profile-mini { display: flex; align-items: center; gap: 8px; border: 0; background: none; color: var(--white); }
+.avatar { width: 32px; height: 32px; border-radius: 4px; display: grid; place-items: center; font-weight: bold; background: #E50914; }
 
-.poster .fallback {
-    position: absolute;
-    inset: 0;
-    display: grid;
-    place-items: center;
-    text-align: center;
-    padding: 16px;
-    color: #aaa;
-    font-weight: bold;
-    font-size: 15px;
-    background: radial-gradient(circle at 30% 20%, #4b242b, #161616 65%);
-    z-index: 1;
-}.tileinfo{padding:9px 10px 11px}.tiletitle{font-size:12px;font-weight:bold;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tilemeta{font-size:10px;color:#aaa;margin-top:5px}.tileflag{position:absolute;top:8px;left:8px;background:#000c;border:1px solid #ffffff30;padding:4px 6px;font-size:9px;border-radius:2px}
-.content-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}.section-space{margin-top:34px}
-.empty{color:#999;font-size:13px;padding:22px 0}.notice{padding:14px 16px;border:1px solid #393939;background:#141414;border-radius:6px;color:#bbb;font-size:13px;line-height:1.5}
-.checklist{margin:55px 4.5% 0;padding:25px;background:linear-gradient(120deg,#21151a,#111);border:1px solid #3b252b;border-radius:8px}.checklist h2{margin:0 0 6px}.checklist p{margin:0 0 18px;color:#aaa;font-size:13px}.checks{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:9px}.check{padding:12px;border:1px solid #383838;background:#111;border-radius:5px;color:#ddd;font-size:12px;display:flex;gap:10px;align-items:center}.check input{accent-color:var(--red)}
-footer{border-top:1px solid #222;padding:30px 4.5%;text-align:center;color:#777;font-size:11px;line-height:1.7}
-.overlay{position:fixed;inset:0;z-index:50;background:#000e;display:flex;align-items:center;justify-content:center;padding:20px;overflow:auto}.dialog{width:min(760px,100%);background:#181818;border:1px solid #333;border-radius:8px;overflow:hidden;box-shadow:0 20px 80px #000}.dialogtop{display:flex;justify-content:space-between;align-items:center;padding:17px 20px;border-bottom:1px solid #333}.dialogtop h2{margin:0;font-size:18px}.xbtn{border:0;background:#333;color:#fff;border-radius:50%;width:34px;height:34px;font-size:20px}.dialogbody{padding:20px}.field{width:100%;background:#080808;border:1px solid #555;padding:13px;color:#fff;border-radius:4px;outline:none}.field:focus{border-color:#ddd}.error{color:#ff7474;font-size:12px;min-height:18px;margin-top:8px}.profiles-screen{min-height:100vh;display:grid;place-items:center;background:radial-gradient(ellipse at center,#242424 0%,#090909 65%);padding:25px}.profiles-inner{text-align:center;width:min(850px,100%)}.profiles-logo{font-size:34px;color:var(--red);font-weight:900;letter-spacing:-2px;margin-bottom:55px}.profiles-inner h1{font-size:clamp(25px,4vw,38px);font-weight:400;margin:0 0 35px}.profiles{display:flex;justify-content:center;gap:30px;flex-wrap:wrap}.profile-card{border:0;background:none;color:#aaa;width:145px}.profile-card:hover{color:#fff}.profile-avatar{width:120px;height:120px;border-radius:7px;margin:0 auto 12px;display:grid;place-items:center;font-size:42px;font-weight:bold;color:#fff;border:3px solid transparent;transition:.15s}.profile-card:hover .profile-avatar{border-color:#fff}.profile-name{font-size:14px}.profile-manage{margin-top:55px;border:1px solid #777;color:#aaa;background:transparent;padding:9px 20px;letter-spacing:2px;font-size:11px}.profile-manage:hover{border-color:#fff;color:#fff}
-.gate{min-height:100vh;display:grid;place-items:center;padding:20px;background:linear-gradient(#0009,#000d),url('https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1800&q=80') center/cover}.gatebox{width:min(410px,100%);padding:35px;background:#090909eF;border-top:3px solid var(--red);box-shadow:0 15px 60px #000}.gatebox .logo{font-size:30px;margin-bottom:25px}.gatebox h1{font-size:24px;margin:0 0 8px}.gatebox p{font-size:13px;color:#aaa;line-height:1.5;margin:0 0 20px}.gatebox .btn{width:100%;justify-content:center;margin-top:12px}.spinner{width:22px;height:22px;border:2px solid #777;border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
-.detailbackdrop{height:270px;background:#222 center/cover;position:relative}.detailbackdrop:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#181818,transparent 75%),linear-gradient(90deg,#181818aa,transparent)}.detailcontent{padding:0 25px 25px;margin-top:-55px;position:relative}.detailcontent h2{font-size:30px;margin:0 0 10px}.detaildesc{font-size:13px;line-height:1.6;color:#ccc;max-width:650px}.detailactions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}.closefloat{position:absolute;right:16px;top:16px;z-index:2}.toast{position:fixed;bottom:22px;right:22px;z-index:80;background:#222;border:1px solid #555;padding:13px 18px;border-radius:5px;box-shadow:0 8px 30px #0008;font-size:13px}
-@media(max-width:760px){.topbar{height:58px;padding:0 4%;gap:12px}.logo{font-size:21px}.nav{display:none}.search{width:38vw}.hero{min-height:570px;height:76vh;padding:0 5% 90px}.hero:before{background:linear-gradient(0deg,var(--bg) 0%,rgba(9,9,9,.5) 55%,rgba(9,9,9,.25)),linear-gradient(90deg,#090909cc,transparent),url('https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=1200&q=80') center/cover}.hero p{font-size:13px}.rowsection{padding:0 4%}.rowhead h2{font-size:17px}.tile{flex-basis:135px}.checklist{margin:40px 4%;padding:18px}.profile-avatar{width:95px;height:95px}.profile-card{width:115px}.profiles{gap:18px}.profiles-logo{margin-bottom:35px}.profile-manage{margin-top:35px}}
-@media(max-width:430px){.searchwrap{display:none}.profile-mini span{display:none}.hero h1{font-size:38px}.hero{min-height:600px}.btn{padding:11px 14px;font-size:12px}.meta{font-size:11px;gap:8px}}
+/* HERO BANNERS (DESTAQUE) */
+.hero {
+  height: 85vh;
+  min-height: 600px;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  padding: 0 4% 150px;
+}
+.hero:before {
+  content: ""; position: absolute; inset: 0;
+  background: 
+    linear-gradient(0deg, var(--bg) 0%, transparent 40%),
+    linear-gradient(90deg, rgba(0,0,0,0.8) 0%, transparent 60%),
+    url('https://image.tmdb.org/t/p/original/rSPw7tgCH9c6NqICZef4kZjFOQ5.jpg') center top/cover;
+  z-index: -1;
+}
+.hero-content { max-width: 600px; }
+.eyebrow { font-size: 20px; letter-spacing: 4px; color: var(--gray); font-weight: 700; margin-bottom: 8px; text-shadow: 2px 2px 4px rgba(0,0,0,0.45); }
+.hero h1 { font-size: clamp(40px, 5vw, 72px); margin: 0 0 15px; font-weight: 800; text-shadow: 2px 2px 4px rgba(0,0,0,0.45); }
+.hero p { font-size: 1.2vw; font-size: clamp(14px, 1.2vw, 18px); line-height: 1.4; color: var(--white); text-shadow: 2px 2px 4px rgba(0,0,0,0.45); }
+.actions { display: flex; gap: 12px; margin-top: 25px; }
+.btn { border: 0; border-radius: 4px; padding: 10px 24px; font-size: 1.2rem; font-weight: bold; display: inline-flex; align-items: center; gap: 10px; transition: 0.2s; }
+.btn-light { background: var(--white); color: black; }
+.btn-light:hover { background: rgba(255,255,255,0.75); }
+.btn-dark { background: rgba(109,109,110,0.7); color: var(--white); }
+.btn-dark:hover { background: rgba(109,109,110,0.4); }
+.btn-red { background: var(--red); color: var(--white); }
+
+/* TRILHOS DE FILMES */
+main { position: relative; margin-top: -100px; z-index: 2; padding-bottom: 70px; }
+.rowsection { padding: 0 4%; margin: 0 0 40px; }
+.rowhead h2 { font-size: 1.4vw; font-size: clamp(16px, 1.4vw, 24px); margin: 0 0 12px; font-weight: 500; color: #e5e5e5; }
+.rail { display: flex; gap: 8px; overflow-x: auto; padding: 10px 0 30px; scrollbar-width: none; }
+.rail::-webkit-scrollbar { display: none; }
+.tile { flex: 0 0 clamp(160px, 15vw, 240px); border-radius: 4px; overflow: hidden; background: #222; position: relative; transition: transform 0.3s, z-index 0.3s; cursor: pointer; }
+.tile:hover { transform: scale(1.05) translateY(-5px); z-index: 10; box-shadow: 0 10px 20px rgba(0,0,0,0.8); }
+.poster { aspect-ratio: 2/3; position: relative; background: #111; }
+.poster img { width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 4px; }
+.poster .fallback { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; padding: 16px; color: #888; font-weight: bold; font-size: 14px; background: #222; }
+.tileflag { position: absolute; top: 8px; left: 8px; background: var(--red); padding: 3px 6px; font-size: 10px; font-weight: bold; border-radius: 3px; box-shadow: 0 2px 5px rgba(0,0,0,0.5); }
+.tileinfo { padding: 10px; background: #181818; }
+.tiletitle { font-size: 14px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* MODAL DE DETALHES */
+.overlay { position: fixed; inset: 0; z-index: 50; background: rgba(0,0,0,0.8); display: flex; align-items: center; justify-content: center; padding: 20px; overflow-y: auto; }
+.dialog { width: min(850px, 100%); background: #181818; border-radius: 8px; overflow: hidden; box-shadow: 0 20px 80px #000; position: relative; }
+.detailbackdrop { height: 400px; background-size: cover; background-position: center; position: relative; }
+.detailbackdrop:after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, #181818, transparent 70%); }
+.xbtn { position: absolute; right: 20px; top: 20px; z-index: 60; background: #181818; color: var(--white); border: 2px solid var(--white); border-radius: 50%; width: 40px; height: 40px; font-size: 24px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.2s; }
+.xbtn:hover { background: var(--white); color: #181818; }
+.detailcontent { padding: 0 40px 40px; margin-top: -80px; position: relative; z-index: 5; }
+.detailcontent h2 { font-size: 40px; margin: 0 0 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+.meta { display: flex; gap: 12px; align-items: center; color: #a3a3a3; font-size: 16px; margin: 10px 0 20px; }
+.match { color: #46d369; font-weight: bold; }
+.detaildesc { font-size: 16px; line-height: 1.6; color: #fff; max-width: 600px; margin-bottom: 25px; }
+
+/* CHECKLIST & OUTROS */
+.checklist { margin: 20px 4%; padding: 30px; background: #181818; border-radius: 8px; border: 1px solid #333; }
+.checks { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px; }
+.check { padding: 15px; background: #222; border-radius: 6px; color: #e5e5e5; display: flex; gap: 12px; align-items: center; cursor: pointer; }
+.check input { accent-color: var(--red); width: 18px; height: 18px; }
+.notice { padding: 15px; background: rgba(229, 9, 20, 0.1); border-left: 4px solid var(--red); border-radius: 4px; color: #fff; }
+.content-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; }
+
+/* TELAS DE ENTRADA */
+.profiles-screen, .gate { min-height: 100vh; display: grid; place-items: center; background: #141414; }
+.gatebox { width: min(400px, 100%); padding: 40px; background: rgba(0,0,0,0.75); border-radius: 4px; }
+.field { width: 100%; background: #333; border: 0; padding: 15px; color: #fff; border-radius: 4px; outline: none; margin-bottom: 20px; }
+.profiles-inner { text-align: center; }
+.profiles { display: flex; justify-content: center; gap: 4vw; margin-top: 30px; }
+.profile-card { border: 0; background: none; color: var(--gray); transition: 0.3s; }
+.profile-card:hover { color: var(--white); transform: scale(1.05); }
+.profile-avatar { width: 10vw; min-width: 84px; max-width: 200px; aspect-ratio: 1; border-radius: 4px; margin: 0 auto 10px; font-size: 3rem; display: grid; place-items: center; color: #fff; }
+.toast { position: fixed; bottom: 20px; right: 20px; z-index: 80; background: var(--red); color: #fff; padding: 15px 25px; border-radius: 4px; font-weight: bold; }
 </style>
 </head>
 <body>
-<!-- LOGIN GATE -->
+
+<!-- TELA DE LOGIN -->
 <section id="gate" class="gate">
   <div class="gatebox">
-    <div class="logo">CARETINHAS<span style="color:#fff">+</span></div>
-    <h1>Nosso cinema particular.</h1>
-    <p>Um cantinho só nosso. Digite a senha para entrar.</p>
+    <div class="logo" style="margin-bottom: 30px;">CARETINHAS<span>+</span></div>
+    <h1 style="margin: 0 0 20px; font-size: 32px;">Entrar</h1>
     <form id="login-form">
-      <input id="site-password" class="field" type="password" autocomplete="current-password" placeholder="Senha do nosso cinema" required>
-      <div id="login-error" class="error"></div>
-      <button class="btn btn-red" type="submit" id="login-button">Entrar</button>
+      <input id="site-password" class="field" type="password" placeholder="Senha do nosso cinema" required>
+      <div id="login-error" style="color:var(--red); margin-bottom:15px; font-size:14px;"></div>
+      <button class="btn btn-red" style="width: 100%; justify-content: center; padding: 15px;" type="submit" id="login-button">Acessar</button>
     </form>
-    <p style="font-size:10px;margin-top:18px">Acesso privado • CARETINHAS+</p>
   </div>
 </section>
 
-<!-- PROFILE SELECT -->
+<!-- SELEÇÃO DE PERFIL -->
 <section id="profiles-screen" class="profiles-screen hidden">
   <div class="profiles-inner">
-    <div class="profiles-logo">CARETINHAS<span style="color:#fff">+</span></div>
-    <h1>Quem está assistindo?</h1>
+    <h1 style="font-size: 3vw; font-weight: 400; margin-bottom: 20px;">Quem está assistindo?</h1>
     <div class="profiles">
       <button class="profile-card" onclick="selectProfile('meu')">
-        <div class="profile-avatar" style="background:linear-gradient(135deg,#246c91,#18334c)">E</div>
-        <div class="profile-name">André</div>
+        <div class="profile-avatar" style="background:#0277bd">E</div>
+        <div style="font-size: 1.3vw;">Eduardo</div>
       </button>
       <button class="profile-card" onclick="selectProfile('dela')">
-        <div class="profile-avatar" style="background:linear-gradient(135deg,#a13e78,#59234f)">♡</div>
-        <div class="profile-name">Marjo</div>
+        <div class="profile-avatar" style="background:#e91e63">M</div>
+        <div style="font-size: 1.3vw;">Marjo</div>
       </button>
     </div>
-    <button class="profile-manage" onclick="logout()">SAIR</button>
   </div>
 </section>
 
-<!-- MAIN APP -->
+<!-- APP PRINCIPAL -->
 <div id="app" class="hidden">
 <header id="header" class="topbar">
   <a class="logo" href="#home">CARETINHAS<span>+</span></a>
   <nav class="nav">
     <a href="#home">Início</a>
     <a href="#catalogo">Filmes</a>
-    <a href="#iptv">Meu catálogo</a>
-    <a href="#checklist">Minha sessão</a>
+    <a href="#iptv">TV Ao Vivo / Catálogo</a>
   </nav>
   <div class="rightnav">
-    <div class="searchwrap"><input id="search-input" class="search" type="search" placeholder="Títulos, gêneros..." aria-label="Buscar"></div>
-    <button class="profile-mini" onclick="backToProfiles()" title="Trocar perfil">
-      <div id="current-avatar" class="avatar">E</div><span id="current-profile">Meu perfil ▾</span>
+    <div class="searchwrap"><input id="search-input" class="search" type="search" placeholder="Títulos, gente, gêneros..."></div>
+    <button class="profile-mini" onclick="backToProfiles()">
+      <div id="current-avatar" class="avatar">E</div>
     </button>
   </div>
 </header>
 
 <section id="home" class="hero">
   <div class="hero-content">
-    <div class="eyebrow">CARETINHAS+ apresenta • Escolha da casa</div>
+    <div class="eyebrow">
+      <svg viewBox="0 0 100 100" style="width:20px; height:20px; fill:var(--red); vertical-align:middle; margin-right:5px;"><path d="M20,10 L80,10 L80,90 L20,90 Z M40,30 L60,50 L40,70 Z"/></svg>
+      FILME
+    </div>
     <h1>A Vida Secreta de Walter Mitty</h1>
-    <div class="meta"><span class="match">Destaque especial</span><span>•</span><span>2013</span><span>•</span><span>1h 54min</span><span class="tag">FILME</span></div>
     <p>Um sonhador embarca em uma aventura pelo mundo para encontrar uma fotografia perdida. Uma história sobre coragem, descobertas e a beleza de sair da rotina.</p>
     <div class="actions">
-      <button class="btn btn-light" onclick="openStaticMovie('walter-mitty')">▶ Ver detalhes</button>
-      <button class="btn btn-dark" onclick="scrollToSection('catalogo')">＋ Explorar catálogo</button>
+      <button class="btn btn-light" onclick="openStaticMovie('walter-mitty')">▶ Assistir</button>
+      <button class="btn btn-dark" onclick="scrollToSection('catalogo')">ⓘ Mais Informações</button>
     </div>
   </div>
 </section>
 
 <main id="catalogo">
   <section id="search-section" class="rowsection hidden">
-    <div class="rowhead"><h2>Resultados da busca</h2></div>
+    <div class="rowhead"><h2>Resultados da Busca</h2></div>
     <div id="search-results" class="content-grid"></div>
   </section>
 
   <section class="rowsection">
-    <div class="rowhead"><h2>Continue explorando</h2><small>Uma seleção para qualquer momento</small></div>
-    <div class="rail" id="row-featured"></div>
+    <div class="rowhead"><h2>Nossos Clássicos & Favoritos</h2></div>
+    <div class="rail" id="row-favoritos"></div>
   </section>
+  
   <section class="rowsection">
-    <div class="rowhead"><h2>Conforto, risadas & respiro</h2><small>Para relaxar e ficar no sofá</small></div>
-    <div class="rail" id="row-conforto"></div>
+    <div class="rowhead"><h2>Para Dar Risada</h2></div>
+    <div class="rail" id="row-risadas"></div>
   </section>
+
   <section class="rowsection">
-    <div class="rowhead"><h2>Noite romântica & emoção</h2><small>Histórias que ficam com a gente</small></div>
+    <div class="rowhead"><h2>Romance e Conforto</h2></div>
     <div class="rail" id="row-romantico"></div>
   </section>
-  <section class="rowsection">
-    <div class="rowhead"><h2>Animes & universos fantásticos</h2><small>Um pouco de magia na sessão</small></div>
-    <div class="rail" id="row-animes"></div>
-  </section>
-  <section id="iptv" class="rowsection">
-    <div class="rowhead"><h2>Do nosso catálogo</h2><small>Filmes disponíveis no serviço conectado</small></div>
-    <div id="iptv-status" class="notice">Entre no cinema para carregar o catálogo.</div>
-    <div id="iptv-categories" class="actions" style="margin:14px 0;gap:8px"></div>
+
+  <!-- SESSÃO DO IPTV -->
+  <section id="iptv" class="rowsection" style="margin-top: 60px;">
+    <div class="rowhead"><h2>Catálogo ao Vivo (Servidor Externo)</h2></div>
+    <div id="iptv-status" class="notice" style="margin-bottom: 20px;">Sincronizando com o servidor...</div>
+    <div id="iptv-categories" class="actions" style="margin-bottom: 20px; flex-wrap: wrap;"></div>
     <div id="iptv-movies" class="content-grid"></div>
   </section>
 
   <section id="checklist" class="checklist">
-    <h2>🍿 Preparando nossa sessão</h2>
-    <p>Os pequenos detalhes que deixam a noite melhor.</p>
+    <h2>🍿 Kit Cinéfilo de Hoje</h2>
+    <p>Marque o que já está pronto para a sessão perfeita.</p>
     <div class="checks" id="checklist-grid"></div>
   </section>
 </main>
-
-<footer><strong style="color:#e50914">CARETINHAS+</strong> · Nosso cinema particular<br>Feito para escolher histórias, dividir pipoca e aproveitar o tempo juntos. ❤️</footer>
 </div>
 
-<!-- DETAIL MODAL -->
-<div id="detail-modal" class="overlay hidden" role="dialog" aria-modal="true">
-  <div class="dialog" style="position:relative">
-    <button class="xbtn closefloat" onclick="closeDetail()" aria-label="Fechar">×</button>
+<!-- MODAL DE FILME -->
+<div id="detail-modal" class="overlay hidden">
+  <div class="dialog">
+    <button class="xbtn" onclick="closeDetail()">×</button>
     <div id="detail-backdrop" class="detailbackdrop"></div>
     <div class="detailcontent">
-      <div class="eyebrow" id="detail-kicker">CARETINHAS+ • FILME</div>
       <h2 id="detail-title">Título</h2>
-      <div class="meta" id="detail-meta"></div>
-      <p id="detail-description" class="detaildesc"></p>
-      <div class="detailactions">
-        <button id="detail-watch" class="btn btn-light">▶ Assistir trailer</button>
-        <button id="detail-seen" class="btn btn-dark">＋ Marcar como visto</button>
+      <div class="meta">
+        <span class="match">98% Relevante</span>
+        <span id="detail-year">2023</span>
+        <span id="detail-duration">2h</span>
       </div>
-      <div id="detail-note" class="notice" style="margin-top:18px"></div>
+      <p id="detail-description" class="detaildesc"></p>
+      <div id="detail-note" class="notice" style="margin-bottom: 25px; background: rgba(255,255,255,0.1); border-left-color: white;"></div>
+      <div class="actions">
+        <button id="detail-watch" class="btn btn-light">▶ Assistir Agora</button>
+        <button id="detail-seen" class="btn btn-dark">+ Minha Lista</button>
+      </div>
     </div>
   </div>
 </div>
 
-<div id="toast" class="toast hidden"></div>
+<div id="toast" class="toast hidden">Atualizado!</div>
 
 <script>
-/* Configure a URL do Cloudflare Worker após publicá-lo. */
+// COLOQUE AQUI O SEU LINK DO CLOUDFLARE WORKER
 const API_BASE = "https://caretinha-plus-api.edupedro77.workers.dev";
 
 const staticMovies = [
- {id:"walter-mitty",title:"A Vida Secreta de Walter Mitty",category:"conforto",year:"2013",duration:"1h 54min",poster:"https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=600&q=80",backdrop:"https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1400&q=80",description:"Um sonhador embarca em uma aventura pelo mundo para encontrar uma fotografia perdida. Uma história sobre coragem, descobertas e a beleza de sair da rotina.",note:"Perfeito para lembrar que o mundo é enorme e que ainda há muita coisa bonita para descobrir.",trailer:"https://www.youtube.com/embed/HddkucqSzSM"},
- {id:"truman-show",title:"O Show de Truman",category:"conforto",year:"1998",duration:"1h 43min",poster:"https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=600&q=80",description:"Um homem começa a perceber que sua vida aparentemente comum esconde algo extraordinário.",note:"Engraçado, inteligente e cheio de perguntas interessantes.",trailer:"https://www.youtube.com/embed/dlnmQbPGuls"},
- {id:"perks-flower",title:"As Vantagens de Ser Invisível",category:"conforto",year:"2012",duration:"1h 42min",poster:"https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=600&q=80",description:"Um garoto tímido encontra amizade, pertencimento e coragem para viver novas experiências.",note:"Um abraço no coração e uma trilha sonora inesquecível.",trailer:"https://www.youtube.com/embed/n5rh7O4IDc0"},
- {id:"eurotrip",title:"EuroTrip: Passaporte para a Confusão",category:"conforto",year:"2004",duration:"1h 32min",poster:"https://images.unsplash.com/photo-1526772662000-3f88f10405ff?auto=format&fit=crop&w=600&q=80",description:"Um grupo de amigos cruza a Europa em uma viagem cheia de situações absurdas.",note:"Para rir sem compromisso e esquecer um pouco da rotina.",trailer:"https://www.youtube.com/embed/Seo-6E1V2vU"},
- {id:"lalaland",title:"La La Land: Cantando Estações",category:"romantico",year:"2016",duration:"2h 08min",poster:"https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=600&q=80",description:"Um pianista de jazz e uma aspirante a atriz se apaixonam enquanto perseguem seus sonhos.",note:"A música, as cores e aquela mistura de encanto e saudade.",trailer:"https://www.youtube.com/embed/0pdqf4P9MB8"},
- {id:"about-time",title:"Questão de Tempo",category:"romantico",year:"2013",duration:"2h 03min",poster:"https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=600&q=80",description:"Tim descobre que pode viajar no tempo e tenta construir uma vida feliz ao lado das pessoas que ama.",note:"Uma história sobre amor, família e a beleza dos dias comuns.",trailer:"https://www.youtube.com/embed/T7A810duHvw"},
- {id:"orange-girl",title:"A Garota das Laranjas",category:"romantico",year:"2009",duration:"1h 40min",poster:"https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=600&q=80",description:"Uma carta deixada por seu pai conduz um jovem a uma história de encontros e escolhas.",note:"Poético e sensível, para pensar sobre os encontros que mudam a vida.",trailer:""},
- {id:"one-piece-film",title:"One Piece Film: Red",category:"animes",year:"2022",duration:"1h 55min",poster:"https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=600&q=80",description:"Uta, uma cantora mundialmente famosa, prepara um grande show que pode mudar o destino de todos.",note:"Música, aventura e nosso universo de conforto.",trailer:"https://www.youtube.com/embed/89JWRYEIG-s"},
- {id:"spirited-away",title:"A Viagem de Chihiro",category:"animes",year:"2001",duration:"2h 05min",poster:"https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=600&q=80",description:"Chihiro entra em um mundo mágico habitado por espíritos e criaturas extraordinárias.",note:"Uma obra encantadora para uma sessão tranquila.",trailer:"https://www.youtube.com/embed/ByXuk9QqQkk"},
- {id:"your-name",title:"Your Name",category:"animes",year:"2016",duration:"1h 47min",poster:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80",description:"Dois jovens começam a trocar de corpo misteriosamente e criam uma conexão que desafia o tempo e a distância.",note:"Uma história visualmente linda sobre encontros e destino.",trailer:"https://www.youtube.com/embed/hRfHcp2GjVI"}
+ {id:"walter-mitty", title:"A Vida Secreta de Walter Mitty", category:"favoritos", year:"2013", duration:"1h 54min", poster:"https://image.tmdb.org/t/p/w500/cNTgQaufDpzH9E3o1jH50G1O21W.jpg", backdrop:"https://image.tmdb.org/t/p/original/rSPw7tgCH9c6NqICZef4kZjFOQ5.jpg", description:"Um sonhador embarca em uma aventura pelo mundo para encontrar uma fotografia perdida.", note:"Perfeito para lembrar que o mundo é enorme e que ainda há muita coisa bonita para descobrir.", trailer:"https://www.youtube.com/embed/HddkucqSzSM"},
+ {id:"cartman-south-park", title:"South Park: Maior, Melhor e Sem Cortes", category:"risadas", year:"1999", duration:"1h 21min", poster:"https://image.tmdb.org/t/p/w500/uU3b0tQkQkEikB0Nq5U7L8K9jU9.jpg", backdrop:"https://image.tmdb.org/t/p/original/jXg4Ttkf3O1b2eH8P6k2ZJbJz5s.jpg", description:"Cartman e a turma se metem em confusões épicas após assistirem a um filme canadense impróprio.", note:"Aquele clássico caótico que eu precisava colocar aqui pra gente rir.", trailer:"https://www.youtube.com/embed/bpJjP9VdFv4"},
+ {id:"truman-show", title:"O Show de Truman", category:"favoritos", year:"1998", duration:"1h 43min", poster:"https://image.tmdb.org/t/p/w500/vGnxQstN0JpEwJ3QJ5iL1K1e4t5.jpg", backdrop:"https://image.tmdb.org/t/p/original/mKjFh6205iX0K1Gg56E81z5Yf1Z.jpg", description:"Um homem começa a perceber que sua vida aparentemente comum esconde algo extraordinário e controlado.", note:"Filme inteligente, faz pensar, e impossível não amar o Jim Carrey.", trailer:""},
+ {id:"eurotrip", title:"EuroTrip: Passaporte para a Confusão", category:"risadas", year:"2004", duration:"1h 32min", poster:"https://image.tmdb.org/t/p/w500/1YjXp81QqU3h2jU7mB3o8N0F8L8.jpg", backdrop:"https://image.tmdb.org/t/p/original/wz54iJtA0k2uC5w0s1i9a6Qz1hS.jpg", description:"Um grupo de amigos cruza a Europa em uma viagem cheia de situações bizarras para encontrar uma amiga virtual.", note:"Para desligar o cérebro e rir sem compromisso.", trailer:""},
+ {id:"american-pie", title:"American Pie", category:"risadas", year:"1999", duration:"1h 35min", poster:"https://image.tmdb.org/t/p/w500/8c9c4N1P2o3Q7Z2r8A0o3rR2P4g.jpg", backdrop:"https://image.tmdb.org/t/p/original/fG9E0pD31wT81O9A3Ld8U7s8f4f.jpg", description:"Quatro amigos fazem um pacto antes da formatura que resulta em confusões hilárias.", note:"Clássico das antigas, impossível não rir das vergonhas.", trailer:""},
+ {id:"lalaland", title:"La La Land: Cantando Estações", category:"romantico", year:"2016", duration:"2h 08min", poster:"https://image.tmdb.org/t/p/w500/1Xv68L4dYd2a3yB8eFj3t7y3X8a.jpg", backdrop:"https://image.tmdb.org/t/p/original/qJeU7KM4nT2C1WpOrwPcSDGFUWE.jpg", description:"Um pianista de jazz e uma aspirante a atriz se apaixonam enquanto perseguem seus sonhos em LA.", note:"A música, as cores e a vibe perfeita para assistir abraçado.", trailer:""},
+ {id:"perks-flower", title:"As Vantagens de Ser Invisível", category:"romantico", year:"2012", duration:"1h 42min", poster:"https://image.tmdb.org/t/p/w500/xebVvKz5tJymH218uI69xN4kEqU.jpg", backdrop:"https://image.tmdb.org/t/p/original/2PzQ1Z9X78M2BvF9xZ1LgV1b6B7.jpg", description:"Um garoto tímido encontra amizade, pertencimento e coragem para viver novas experiências.", note:"Aquele filme que parece um abraço quente.", trailer:""}
 ];
-const checklist = ["Pipoca ou snack especial 🍿","Cobertor pronto no sofá 🛋️","Luzes apagadas e clima de cinema 💡","Celulares no silencioso 📱","Carinho e cafuné liberados 💖"];
+
+const checklist = ["Pipoca ou docinho na mão 🍿", "Cobertor preparado 🛋️", "Celulares no modo não perturbe 📱", "Cafuné engatilhado 💖"];
 let currentProfile = "meu";
 let iptvMovies = [];
 let iptvCategories = [];
 let activeCategory = "";
-let currentDetail = null;
 
 const $ = id => document.getElementById(id);
-function esc(s=""){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
-function token(){return sessionStorage.getItem("caretinha_session");}
-function authHeaders(){return {Authorization:`Bearer ${token()}`};}
-async function api(path){
- const r=await fetch(`${API_BASE}${path}`,{headers:authHeaders(),cache:"no-store"});
- if(r.status===401){sessionStorage.removeItem("caretinha_session");showGate();throw new Error("Sessão expirada.");}
- if(!r.ok)throw new Error("Não foi possível carregar o catálogo.");
- return r.json();
+function esc(s="") { return String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
+function token() { return sessionStorage.getItem("caretinha_session"); }
+
+// FUNÇÃO PARA GERAR O QUADRADO DO FILME (COM TRATAMENTO DE IMAGEM QUEBRADA)
+function tile(movie, source="static") {
+  // Pega a imagem de onde vier (poster, stream_icon, cover, etc)
+  const poster = movie.poster || movie.stream_icon || movie.cover || movie.logo || "";
+  const title = movie.title || movie.name || "Filme";
+  const id = source === "iptv" ? movie.stream_id : movie.id;
+  const clickAction = source === "iptv" ? `openIPTVMovie('${esc(String(id))}')` : `openStaticMovie('${esc(String(id))}')`;
+
+  return `<article class="tile" onclick="${clickAction}">
+    <div class="poster">
+      <!-- Se a imagem der erro (onerror), ela some e mostra o texto alternativo da div fallback -->
+      <img loading="lazy" src="${esc(poster)}" alt="${esc(title)}" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+      <div class="fallback" style="${poster ? 'display:none;' : 'display:grid;'}">${esc(title)}</div>
+      <span class="tileflag">${source === "iptv" ? "AO VIVO / CATÁLOGO" : "NOSSOS"}</span>
+    </div>
+    <div class="tileinfo">
+      <div class="tiletitle">${esc(title)}</div>
+    </div>
+  </article>`;
 }
-function showGate(){ $("gate").classList.remove("hidden");$("profiles-screen").classList.add("hidden");$("app").classList.add("hidden");}
-function showProfiles(){ $("gate").classList.add("hidden");$("profiles-screen").classList.remove("hidden");$("app").classList.add("hidden");}
-function showApp(){ $("gate").classList.add("hidden");$("profiles-screen").classList.add("hidden");$("app").classList.remove("hidden");}
-async function validateSession(){
- if(!token()){showGate();return;}
- try{await api("/api/session");showProfiles();}catch{showGate();}
+
+// RENDERIZAR LISTAS ESTÁTICAS
+function renderStatic() {
+  const f = staticMovies.filter(m => m.category === "favoritos");
+  const r = staticMovies.filter(m => m.category === "risadas");
+  const rom = staticMovies.filter(m => m.category === "romantico");
+  
+  $("row-favoritos").innerHTML = f.map(m => tile(m)).join("");
+  $("row-risadas").innerHTML = r.map(m => tile(m)).join("");
+  $("row-romantico").innerHTML = rom.map(m => tile(m)).join("");
 }
-$("login-form").addEventListener("submit",async e=>{
- e.preventDefault();
- const btn=$("login-button"),password=$("site-password").value;
- btn.disabled=true;btn.textContent="Verificando…";$("login-error").textContent="";
- try{
-  const r=await fetch(`${API_BASE}/api/login`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({password})});
-  const data=await r.json();
-  if(!r.ok)throw new Error(data.error||"Senha incorreta.");
-  sessionStorage.setItem("caretinha_session",data.token);
-  $("site-password").value="";showProfiles();
- }catch(err){$("login-error").textContent=err.message.includes("Failed to fetch")?"Não foi possível conectar ao servidor. Verifique a configuração da API.":err.message;}
- finally{btn.disabled=false;btn.textContent="Entrar";}
-});
-function selectProfile(profile){
- currentProfile=profile;
- $("current-profile").textContent=(profile==="meu"?"Meu perfil":"Perfil dela")+" ▾";
- $("current-avatar").textContent=profile==="meu"?"E":"♡";
- $("current-avatar").style.background=profile==="meu"?"linear-gradient(135deg,#246c91,#18334c)":"linear-gradient(135deg,#a13e78,#59234f)";
- showApp();renderStatic();renderChecklist();loadIPTV();
-}
-function backToProfiles(){showProfiles();}
-function logout(){sessionStorage.removeItem("caretinha_session");showGate();}
-function scrollToSection(id){$(id).scrollIntoView({behavior:"smooth"});}
-function tile(movie,source="static"){
- const poster=movie.poster||movie.stream_icon||"";
- const title=movie.title||movie.name||"Filme";
- const id=source==="iptv"?movie.stream_id:movie.id;
- return `<article class="tile" onclick="${source==="iptv"?`openIPTVMovie('${esc(String(id))}')`:`openStaticMovie('${esc(String(id))}')`}">
-  <div class="poster">${poster?`<img loading="lazy" src="${esc(poster)}" alt="${esc(title)}" onerror="this.style.display='none'">`:""}<div class="fallback">${esc(title)}</div><span class="tileflag">${source==="iptv"?"CATÁLOGO":"SELEÇÃO"}</span></div>  <div class="tileinfo"><div class="tiletitle">${esc(title)}</div><div class="tilemeta">${esc(movie.year||"")}${movie.duration?" · "+esc(movie.duration):""}</div></div>
- </article>`;
-}
-function renderRail(id,items,source="static"){ $(id).innerHTML=items.length?items.map(m=>tile(m,source)).join(""):`<div class="empty">Ainda não há títulos nesta seleção.</div>`;}
-function renderStatic(){
- renderRail("row-featured",staticMovies.slice(0,6));
- renderRail("row-conforto",staticMovies.filter(m=>m.category==="conforto"));
- renderRail("row-romantico",staticMovies.filter(m=>m.category==="romantico"));
- renderRail("row-animes",staticMovies.filter(m=>m.category==="animes"));
-}
-function openStaticMovie(id){
- const m=staticMovies.find(x=>x.id===id);if(!m)return;
- currentDetail={...m,source:"static"};
- showDetail({title:m.title,year:m.year,duration:m.duration,description:m.description,note:m.note,backdrop:m.backdrop||m.poster,trailer:m.trailer,kicker:"SELEÇÃO CARETINHAS+"});
-}
-async function openIPTVMovie(id){
- const m=iptvMovies.find(x=>String(x.stream_id)===String(id));if(!m)return;
- currentDetail={...m,source:"iptv"};
- $("detail-watch").textContent="Player em preparação";
- $("detail-watch").onclick=()=>toast("A reprodução IPTV será ativada depois de validarmos um método seguro para os links de mídia.");
- showDetail({title:m.name,year:"Catálogo IPTV",duration:"",description:"Título disponível no catálogo conectado. Consulte os detalhes para ver as informações fornecidas pelo serviço.",note:"Disponível no nosso catálogo particular.",backdrop:m.stream_icon,kicker:"CATÁLOGO CONECTADO"});
- try{
-  const info=await api(`/api/movie-info?id=${encodeURIComponent(id)}`);
-  if(currentDetail&&String(currentDetail.stream_id)===String(id)){
-   $("detail-description").textContent=info.info?.plot||$("detail-description").textContent;
-   $("detail-meta").textContent=[info.info?.releaseDate,info.info?.genre,info.info?.rating?`Nota ${info.info.rating}`:""].filter(Boolean).join(" · ");
+
+// ABRIR MODAL COM DETALHES
+function showDetail(data) {
+  $("detail-title").textContent = data.title;
+  $("detail-year").textContent = data.year || "";
+  $("detail-duration").textContent = data.duration || "";
+  $("detail-description").textContent = data.description || "Descrição indisponível.";
+  $("detail-note").textContent = data.note || "";
+  $("detail-note").style.display = data.note ? "block" : "none";
+  
+  if(data.backdrop) {
+    $("detail-backdrop").style.backgroundImage = `url("${data.backdrop}")`;
+  } else {
+    $("detail-backdrop").style.backgroundImage = `linear-gradient(135deg, #E50914, #000)`;
   }
- }catch(e){toast(e.message);}
+  
+  const watch = $("detail-watch");
+  if(data.trailer) {
+    watch.textContent = "▶ Assistir Trailer";
+    watch.onclick = () => window.open(data.trailer.replace("/embed/", "/watch?v="), "_blank");
+  } else {
+    watch.textContent = "▶ Assistir (Player em Breve)";
+    watch.onclick = () => toast("Conectando player externo...");
+  }
+  
+  $("detail-modal").classList.remove("hidden");
 }
-function showDetail(data){
- $("detail-title").textContent=data.title;
- $("detail-kicker").textContent=data.kicker||"CARETINHAS+";
- $("detail-meta").textContent=[data.year,data.duration].filter(Boolean).join(" · ");
- $("detail-description").textContent=data.description||"";
- $("detail-note").textContent=data.note||"";
- $("detail-backdrop").style.backgroundImage=data.backdrop?`linear-gradient(0deg,#181818,transparent),url("${data.backdrop}")`:"linear-gradient(135deg,#392027,#111)";
- const watch=$("detail-watch");
- watch.textContent=data.trailer?"▶ Assistir trailer":"Player em preparação";
- watch.onclick=()=>{if(data.trailer){window.open(data.trailer.replace("/embed/","/watch?v="),"_blank","noopener");}else toast("A reprodução IPTV será ativada após a validação segura do player.");};
- $("detail-seen").onclick=()=>{markSeen(currentDetail);};
- $("detail-modal").classList.remove("hidden");
+
+function openStaticMovie(id) {
+  const m = staticMovies.find(x => x.id === id);
+  if(m) showDetail(m);
 }
-function closeDetail(){$("detail-modal").classList.add("hidden");}
-function markSeen(movie){
- if(!movie)return;
- const key=`caretinha_seen_${currentProfile}`;
- const list=JSON.parse(localStorage.getItem(key)||"[]");
- const id=String(movie.stream_id||movie.id);
- if(!list.includes(id))list.push(id);
- localStorage.setItem(key,JSON.stringify(list));
- toast("Adicionado à lista de assistidos. 🎬");
+
+function openIPTVMovie(id) {
+  const m = iptvMovies.find(x => String(x.stream_id) === String(id));
+  if(m) showDetail({
+    title: m.name, year: "Catálogo", duration: "", 
+    description: "Título extraído do servidor. Verifique o play para carregar.", backdrop: m.stream_icon
+  });
 }
-function toast(message){$("toast").textContent=message;$("toast").classList.remove("hidden");clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>$("toast").classList.add("hidden"),3000);}
-async function loadIPTV(){
- $("iptv-status").textContent="Conectando ao catálogo…";
- $("iptv-movies").innerHTML="";
- try{
-  const [cats,movies]=await Promise.all([api("/api/categories"),api("/api/movies")]);
-  iptvCategories=Array.isArray(cats)?cats:[];
-  iptvMovies=Array.isArray(movies)?movies:[];
-  renderCategories();
-  renderIPTVMovies();
-  $("iptv-status").textContent=`${iptvMovies.length} títulos encontrados no catálogo conectado.`;
- }catch(e){
-  $("iptv-status").textContent="Não foi possível carregar o catálogo IPTV. Confira a URL do Worker, a origem autorizada e os secrets configurados.";
-  $("iptv-categories").innerHTML="";
- }
+
+function closeDetail() { $("detail-modal").classList.add("hidden"); }
+
+// LÓGICA DA API IPTV
+async function api(path) {
+  const r = await fetch(`${API_BASE}${path}`, {headers: {Authorization: `Bearer ${token()}`}});
+  if(r.status === 401) { logout(); throw new Error("Sessão expirada."); }
+  if(!r.ok) throw new Error("Falha no servidor.");
+  return r.json();
 }
-function renderCategories(){
- const all=`<button class="btn ${activeCategory===""?"btn-red":"btn-dark"}" style="padding:8px 12px;font-size:11px" onclick="filterIPTV('')">Todos</button>`;
- const buttons=iptvCategories.map(c=>`<button class="btn ${String(activeCategory)===String(c.category_id)?"btn-red":"btn-dark"}" style="padding:8px 12px;font-size:11px" onclick="filterIPTV('${esc(String(c.category_id))}')">${esc(c.category_name)}</button>`).join("");
- $("iptv-categories").innerHTML=all+buttons;
+
+async function loadIPTV() {
+  try {
+    const [cats, movies] = await Promise.all([api("/api/categories"), api("/api/movies")]);
+    iptvCategories = Array.isArray(cats) ? cats.slice(0, 10) : []; // Limita a 10 categorias pra não poluir
+    iptvMovies = Array.isArray(movies) ? movies : [];
+    
+    $("iptv-categories").innerHTML = `<button class="btn btn-red" style="font-size:12px; padding: 6px 12px;" onclick="filterIPTV('')">Todos</button>` +
+      iptvCategories.map(c => `<button class="btn btn-dark" style="font-size:12px; padding: 6px 12px;" onclick="filterIPTV('${c.category_id}')">${esc(c.category_name)}</button>`).join("");
+    
+    renderIPTVMovies();
+    $("iptv-status").style.display = "none";
+  } catch(e) {
+    $("iptv-status").textContent = "Aguardando conexão com o Worker...";
+  }
 }
-async function filterIPTV(category){
- activeCategory=category;
- renderCategories();
- $("iptv-status").textContent="Atualizando seleção…";
- try{
-  const data=await api(`/api/movies${category?`?category=${encodeURIComponent(category)}`:""}`);
-  iptvMovies=Array.isArray(data)?data:[];
-  renderIPTVMovies();
-  $("iptv-status").textContent=`${iptvMovies.length} títulos nesta categoria.`;
- }catch(e){$("iptv-status").textContent=e.message;}
+
+function renderIPTVMovies(filterId = "") {
+  const list = filterId ? iptvMovies.filter(m => String(m.category_id) === String(filterId)) : iptvMovies.slice(0, 50);
+  $("iptv-movies").innerHTML = list.length ? list.map(m => tile(m, "iptv")).join("") : "Nada encontrado.";
 }
-function renderIPTVMovies(){
- $("iptv-movies").innerHTML=iptvMovies.length?iptvMovies.map(m=>tile(m,"iptv")).join(""):`<div class="empty">Nenhum filme encontrado nesta categoria.</div>`;
-}
-$("search-input").addEventListener("input",()=>{
- const q=$("search-input").value.trim().toLowerCase();
- if(!q){$("search-section").classList.add("hidden");$("catalogo").querySelectorAll(":scope > .rowsection").forEach(x=>x.classList.remove("hidden"));return;}
- $("catalogo").querySelectorAll(":scope > .rowsection").forEach(x=>{if(x.id!=="search-section")x.classList.add("hidden");});
- $("search-section").classList.remove("hidden");
- const staticResults=staticMovies.filter(m=>(m.title+" "+m.category+" "+m.description).toLowerCase().includes(q)).map(m=>tile(m));
- const iptvResults=iptvMovies.filter(m=>(m.name||"").toLowerCase().includes(q)).map(m=>tile(m,"iptv"));
- $("search-results").innerHTML=[...staticResults,...iptvResults].join("")||`<div class="empty">Nenhum resultado para “${esc(q)}”.</div>`;
+
+function filterIPTV(id) { renderIPTVMovies(id); }
+
+// NAVEGAÇÃO E AUTENTICAÇÃO
+$("login-form").addEventListener("submit", async e => {
+  e.preventDefault();
+  const btn = $("login-button"); btn.textContent = "Verificando...";
+  try {
+    const r = await fetch(`${API_BASE}/api/login`, {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({password: $("site-password").value})});
+    const data = await r.json();
+    if(!r.ok) throw new Error(data.error);
+    sessionStorage.setItem("caretinha_session", data.token);
+    $("gate").classList.add("hidden"); $("profiles-screen").classList.remove("hidden");
+  } catch(err) {
+    $("login-error").textContent = "Sem conexão com a API ou senha errada.";
+    btn.textContent = "Acessar";
+  }
 });
-function renderChecklist(){
- const saved=JSON.parse(localStorage.getItem(`caretinha_checks_${currentProfile}`)||"[]");
- $("checklist-grid").innerHTML=checklist.map((label,i)=>`<label class="check"><input type="checkbox" ${saved.includes(i)?"checked":""} onchange="toggleCheck(${i},this.checked)"><span>${label}</span></label>`).join("");
+
+function selectProfile(p) {
+  currentProfile = p;
+  $("profiles-screen").classList.add("hidden");
+  $("app").classList.remove("hidden");
+  $("current-avatar").textContent = p === "meu" ? "E" : "M";
+  $("current-avatar").style.background = p === "meu" ? "#0277bd" : "#e91e63";
+  renderStatic();
+  renderChecklist();
+  loadIPTV();
 }
-function toggleCheck(i,checked){
- const key=`caretinha_checks_${currentProfile}`,saved=JSON.parse(localStorage.getItem(key)||"[]");
- const next=checked?[...new Set([...saved,i])]:saved.filter(x=>x!==i);
- localStorage.setItem(key,JSON.stringify(next));
+
+function logout() {
+  sessionStorage.clear();
+  $("app").classList.add("hidden");
+  $("profiles-screen").classList.add("hidden");
+  $("gate").classList.remove("hidden");
 }
-window.addEventListener("scroll",()=>{$("header").classList.toggle("solid",window.scrollY>45);});
-$("detail-modal").addEventListener("click",e=>{if(e.target===$("detail-modal"))closeDetail();});
-document.addEventListener("keydown",e=>{if(e.key==="Escape")closeDetail();});
-validateSession();
+
+function scrollToSection(id) { $(id).scrollIntoView(); }
+function backToProfiles() { $("app").classList.add("hidden"); $("profiles-screen").classList.remove("hidden"); }
+
+// CHECKLIST
+function renderChecklist() {
+  const saved = JSON.parse(localStorage.getItem(`checks_${currentProfile}`) || "[]");
+  $("checklist-grid").innerHTML = checklist.map((lbl, i) => 
+    `<label class="check"><input type="checkbox" ${saved.includes(i) ? "checked" : ""} onchange="toggleCheck(${i}, this.checked)"><span>${lbl}</span></label>`
+  ).join("");
+}
+function toggleCheck(i, chk) {
+  const key = `checks_${currentProfile}`;
+  let saved = JSON.parse(localStorage.getItem(key) || "[]");
+  saved = chk ? [...new Set([...saved, i])] : saved.filter(x => x !== i);
+  localStorage.setItem(key, JSON.stringify(saved));
+}
+function toast(msg) { $("toast").textContent = msg; $("toast").classList.remove("hidden"); setTimeout(() => $("toast").classList.add("hidden"), 3000); }
+
+// EVENTOS GERAIS
+window.addEventListener("scroll", () => $("header").classList.toggle("solid", window.scrollY > 30));
+$("detail-modal").addEventListener("click", e => { if(e.target === $("detail-modal")) closeDetail(); });
+document.addEventListener("keydown", e => { if(e.key === "Escape") closeDetail(); });
+
+// BUSCA
+$("search-input").addEventListener("input", () => {
+  const q = $("search-input").value.trim().toLowerCase();
+  if(!q) {
+    $("search-section").classList.add("hidden");
+    document.querySelectorAll(".rowsection").forEach(x => x.classList.remove("hidden"));
+    return;
+  }
+  document.querySelectorAll(".rowsection").forEach(x => { if(x.id !== "search-section") x.classList.add("hidden"); });
+  $("search-section").classList.remove("hidden");
+  
+  const resS = staticMovies.filter(m => (m.title + " " + m.description).toLowerCase().includes(q)).map(m => tile(m));
+  const resI = iptvMovies.filter(m => (m.name || "").toLowerCase().includes(q)).map(m => tile(m, "iptv"));
+  $("search-results").innerHTML = [...resS, ...resI].join("") || "Nenhum resultado.";
+});
 </script>
 </body>
 </html>
