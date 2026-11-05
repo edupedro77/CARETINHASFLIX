@@ -216,7 +216,7 @@ function authHeaders(){return {Authorization:`Bearer ${token()}`};}
 async function api(path){
  const r=await fetch(`${API_BASE}${path}`,{headers:authHeaders(),cache:"no-store"});
  if(r.status===401){sessionStorage.removeItem("caretinha_session");showGate();throw new Error("Sessão expirada.");}
- if(!r.ok)throw new Error("Não foi possível carregar o catálogo.");
+ if(!r.ok){let d="";try{const j=await r.json();d=j.detail||j.error||"";}catch{} throw new Error(d||"Não foi possível carregar o catálogo.");}
  return r.json();
 }
 function showGate(){ $("gate").classList.remove("hidden");$("profiles-screen").classList.add("hidden");$("app").classList.add("hidden");}
@@ -359,7 +359,7 @@ async function loadIPTV(){
   renderCategories(); renderIPTVMovies();
   $("iptv-status").textContent=`${allIPTVMovies.length} títulos encontrados no catálogo conectado.`;
  }catch(e){
-  $("iptv-status").textContent="Não foi possível carregar o catálogo IPTV. Confira a URL do Worker, a origem autorizada e os secrets configurados.";
+  $("iptv-status").textContent="Não foi possível carregar o catálogo IPTV: "+(e&&e.message?e.message:"erro desconhecido")+" (diagnóstico: abra "+API_BASE+"/api/diagnose com o token de sessão)";
   $("iptv-categories").innerHTML="";
  }
 }
