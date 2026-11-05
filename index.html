@@ -18,6 +18,7 @@ main{position:relative;margin-top:-50px;z-index:2;padding-bottom:70px}.rowsectio
 footer{border-top:1px solid #222;padding:30px 4.5%;text-align:center;color:#777;font-size:11px;line-height:1.7}
 .overlay{position:fixed;inset:0;z-index:50;background:#000e;display:flex;align-items:center;justify-content:center;padding:20px;overflow:auto}.dialog{width:min(760px,100%);background:#181818;border:1px solid #333;border-radius:8px;overflow:hidden;box-shadow:0 20px 80px #000}.dialogtop{display:flex;justify-content:space-between;align-items:center;padding:17px 20px;border-bottom:1px solid #333}.dialogtop h2{margin:0;font-size:18px}.xbtn{border:0;background:#333;color:#fff;border-radius:50%;width:34px;height:34px;font-size:20px}.dialogbody{padding:20px}.field{width:100%;background:#080808;border:1px solid #555;padding:13px;color:#fff;border-radius:4px;outline:none}.field:focus{border-color:#ddd}.error{color:#ff7474;font-size:12px;min-height:18px;margin-top:8px}.profiles-screen{min-height:100vh;display:grid;place-items:center;background:radial-gradient(ellipse at center,#242424 0%,#090909 65%);padding:25px}.profiles-inner{text-align:center;width:min(850px,100%)}.profiles-logo{font-size:34px;color:var(--red);font-weight:900;letter-spacing:-2px;margin-bottom:55px}.profiles-inner h1{font-size:clamp(25px,4vw,38px);font-weight:400;margin:0 0 35px}.profiles{display:flex;justify-content:center;gap:30px;flex-wrap:wrap}.profile-card{border:0;background:none;color:#aaa;width:145px}.profile-card:hover{color:#fff}.profile-avatar{width:120px;height:120px;border-radius:7px;margin:0 auto 12px;display:grid;place-items:center;font-size:42px;font-weight:bold;color:#fff;border:3px solid transparent;transition:.15s}.profile-card:hover .profile-avatar{border-color:#fff}.profile-name{font-size:14px}.profile-manage{margin-top:55px;border:1px solid #777;color:#aaa;background:transparent;padding:9px 20px;letter-spacing:2px;font-size:11px}.profile-manage:hover{border-color:#fff;color:#fff}
 .gate{min-height:100vh;display:grid;place-items:center;padding:20px;background:linear-gradient(#0009,#000d),url('https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1800&q=80') center/cover}.gatebox{width:min(410px,100%);padding:35px;background:#090909eF;border-top:3px solid var(--red);box-shadow:0 15px 60px #000}.gatebox .logo{font-size:30px;margin-bottom:25px}.gatebox h1{font-size:24px;margin:0 0 8px}.gatebox p{font-size:13px;color:#aaa;line-height:1.5;margin:0 0 20px}.gatebox .btn{width:100%;justify-content:center;margin-top:12px}.spinner{width:22px;height:22px;border:2px solid #777;border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
+.player-dialog{width:min(1100px,100%)}#main-player{display:block;width:100%;max-height:75vh;aspect-ratio:16/9;background:#000;border-radius:4px}
 .detailbackdrop{height:270px;background:#222 center/cover;position:relative}.detailbackdrop:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#181818,transparent 75%),linear-gradient(90deg,#181818aa,transparent)}.detailcontent{padding:0 25px 25px;margin-top:-55px;position:relative}.detailcontent h2{font-size:30px;margin:0 0 10px}.detaildesc{font-size:13px;line-height:1.6;color:#ccc;max-width:650px}.detailactions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}.closefloat{position:absolute;right:16px;top:16px;z-index:2}.toast{position:fixed;bottom:22px;right:22px;z-index:80;background:#222;border:1px solid #555;padding:13px 18px;border-radius:5px;box-shadow:0 8px 30px #0008;font-size:13px}
 @media(max-width:760px){.topbar{height:58px;padding:0 4%;gap:12px}.logo{font-size:21px}.nav{display:none}.search{width:38vw}.hero{min-height:570px;height:76vh;padding:0 5% 90px}.hero:before{background:linear-gradient(0deg,var(--bg) 0%,rgba(9,9,9,.5) 55%,rgba(9,9,9,.25)),linear-gradient(90deg,#090909cc,transparent),url('https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=1200&q=80') center/cover}.hero p{font-size:13px}.rowsection{padding:0 4%}.rowhead h2{font-size:17px}.tile{flex-basis:135px}.checklist{margin:40px 4%;padding:18px}.profile-avatar{width:95px;height:95px}.profile-card{width:115px}.profiles{gap:18px}.profiles-logo{margin-bottom:35px}.profile-manage{margin-top:35px}}
 @media(max-width:430px){.searchwrap{display:none}.profile-mini span{display:none}.hero h1{font-size:38px}.hero{min-height:600px}.btn{padding:11px 14px;font-size:12px}.meta{font-size:11px;gap:8px}}
@@ -147,6 +148,12 @@ footer{border-top:1px solid #222;padding:30px 4.5%;text-align:center;color:#777;
   </div>
 </div>
 
+<div id="player-modal" class="overlay hidden" role="dialog" aria-modal="true">
+  <div class="dialog player-dialog">
+    <div class="dialogtop"><h2 id="player-title">Reproduzindo</h2><button class="xbtn" onclick="closePlayer()" aria-label="Fechar player">×</button></div>
+    <div class="dialogbody"><video id="main-player" controls playsinline preload="metadata" crossorigin="anonymous"></video><div id="player-error" class="error" aria-live="polite"></div></div>
+  </div>
+</div>
 <div id="toast" class="toast hidden"></div>
 
 <script>
@@ -164,10 +171,40 @@ const staticMovies = [
  {id:"one-piece-film",title:"One Piece Film: Red",category:"animes",year:"2022",duration:"1h 55min",poster:"https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=600&q=80",description:"Uta, uma cantora mundialmente famosa, prepara um grande show que pode mudar o destino de todos.",note:"Música, aventura e nosso universo de conforto.",trailer:"https://www.youtube.com/embed/89JWRYEIG-s"},
  {id:"spirited-away",title:"A Viagem de Chihiro",category:"animes",year:"2001",duration:"2h 05min",poster:"https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=600&q=80",description:"Chihiro entra em um mundo mágico habitado por espíritos e criaturas extraordinárias.",note:"Uma obra encantadora para uma sessão tranquila.",trailer:"https://www.youtube.com/embed/ByXuk9QqQkk"},
  {id:"your-name",title:"Your Name",category:"animes",year:"2016",duration:"1h 47min",poster:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80",description:"Dois jovens começam a trocar de corpo misteriosamente e criam uma conexão que desafia o tempo e a distância.",note:"Uma história visualmente linda sobre encontros e destino.",trailer:"https://www.youtube.com/embed/hRfHcp2GjVI"}
-];
+ ];
+const staticMovieAliases = {
+ "walter-mitty": ["the secret life of walter mitty"],
+ "truman-show": ["the truman show"],
+ "perks-flower": ["the perks of being a wallflower"],
+ "eurotrip": ["eurotrip"],
+ "lalaland": ["la la land"],
+ "about-time": ["about time"],
+ "orange-girl": ["the orange girl"],
+ "one-piece-film": ["one piece film red", "one piece red"],
+ "spirited-away": ["spirited away", "sen to chihiro no kamikakushi"],
+ "your-name": ["your name", "kimi no na wa"]
+};
+function normalizeMovieTitle(value="") {
+ return String(value).normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase()
+  .replace(/\b(19|20)\d{2}\b/g, " ")
+  .replace(/\b(4k|uhd|2160p|1080p|720p|480p|dublado|legendado|dual audio|multi audio)\b/g, " ")
+  .replace(/[^a-z0-9]/g, "");
+}
+function findIPTVMatch(staticMovie) {
+ const wanted = [staticMovie.title, ...(staticMovieAliases[staticMovie.id] || [])].map(normalizeMovieTitle).filter(Boolean);
+ const exact = allIPTVMovies.filter(movie => wanted.includes(normalizeMovieTitle(movie.name)));
+ if (exact.length === 1) return exact[0];
+ if (exact.length > 1) return null;
+ const partial = allIPTVMovies.filter(movie => {
+  const candidate = normalizeMovieTitle(movie.name);
+  return candidate.length >= 5 && wanted.some(name => name.length >= 5 && (candidate.includes(name) || name.includes(candidate)));
+ });
+ return partial.length === 1 ? partial[0] : null;
+}
 const checklist = ["Pipoca ou snack especial 🍿","Cobertor pronto no sofá 🛋️","Luzes apagadas e clima de cinema 💡","Celulares no silencioso 📱","Carinho e cafuné liberados 💖"];
 let currentProfile = "meu";
 let iptvMovies = [];
+let allIPTVMovies = [];
 let iptvCategories = [];
 let activeCategory = "";
 let currentDetail = null;
@@ -234,14 +271,13 @@ function openStaticMovie(id){
  showDetail({title:m.title,year:m.year,duration:m.duration,description:m.description,note:m.note,backdrop:m.backdrop||m.poster,trailer:m.trailer,kicker:"SELEÇÃO CARETINHAS+"});
 }
 async function openIPTVMovie(id){
- const m=iptvMovies.find(x=>String(x.stream_id)===String(id));if(!m)return;
+ const m=allIPTVMovies.find(x=>String(x.stream_id)===String(id)) || iptvMovies.find(x=>String(x.stream_id)===String(id));
+ if(!m)return;
  currentDetail={...m,source:"iptv"};
- $("detail-watch").textContent="Player em preparação";
- $("detail-watch").onclick=()=>toast("A reprodução IPTV será ativada depois de validarmos um método seguro para os links de mídia.");
  showDetail({title:m.name,year:"Catálogo IPTV",duration:"",description:"Título disponível no catálogo conectado. Consulte os detalhes para ver as informações fornecidas pelo serviço.",note:"Disponível no nosso catálogo particular.",backdrop:m.stream_icon,kicker:"CATÁLOGO CONECTADO"});
  try{
   const info=await api(`/api/movie-info?id=${encodeURIComponent(id)}`);
-  if(currentDetail&&String(currentDetail.stream_id)===String(id)){
+  if(currentDetail && String(currentDetail.stream_id)===String(id)){
    $("detail-description").textContent=info.info?.plot||$("detail-description").textContent;
    $("detail-meta").textContent=[info.info?.releaseDate,info.info?.genre,info.info?.rating?`Nota ${info.info.rating}`:""].filter(Boolean).join(" · ");
   }
@@ -255,11 +291,52 @@ function showDetail(data){
  $("detail-note").textContent=data.note||"";
  $("detail-backdrop").style.backgroundImage=data.backdrop?`linear-gradient(0deg,#181818,transparent),url("${data.backdrop}")`:"linear-gradient(135deg,#392027,#111)";
  const watch=$("detail-watch");
- watch.textContent=data.trailer?"▶ Assistir trailer":"Player em preparação";
- watch.onclick=()=>{if(data.trailer){window.open(data.trailer.replace("/embed/","/watch?v="),"_blank","noopener");}else toast("A reprodução IPTV será ativada após a validação segura do player.");};
- $("detail-seen").onclick=()=>{markSeen(currentDetail);};
+ let playable=null;
+ if(currentDetail?.source==="iptv") playable=currentDetail;
+ else if(currentDetail?.source==="static") playable=findIPTVMatch(currentDetail);
+ if(playable){
+  watch.textContent="▶ Assistir filme";
+  watch.onclick=()=>playIPTVMovie(playable);
+ }else if(data.trailer){
+  watch.textContent="▶ Assistir trailer";
+  watch.onclick=()=>window.open(data.trailer.replace("/embed/","/watch?v="),"_blank","noopener");
+ }else{
+  watch.textContent="Filme não localizado";
+  watch.onclick=()=>toast("Este título ainda não foi localizado no catálogo IPTV.");
+ }
+ if(currentDetail?.source==="static" && !playable){
+  $("detail-note").textContent=(data.note?data.note+" ":"")+"Ainda não encontramos uma correspondência segura deste filme no catálogo IPTV.";
+ }
+ $("detail-seen").onclick=()=>markSeen(currentDetail);
  $("detail-modal").classList.remove("hidden");
 }
+async function playIPTVMovie(movie){
+ if(!movie || !movie.stream_id){toast("Não foi possível identificar este filme no catálogo.");return;}
+ const video=$("main-player");
+ $("player-title").textContent=movie.name||movie.title||"CARETINHAS+";
+ $("player-error").textContent="Preparando reprodução…";
+ closeDetail(); closePlayer(); $("player-modal").classList.remove("hidden");
+ try{
+  const response=await fetch(`${API_BASE}/api/stream-ticket`,{
+   method:"POST",headers:{...authHeaders(),"Content-Type":"application/json"},
+   body:JSON.stringify({id:String(movie.stream_id),extension:movie.container_extension||"mp4"}),cache:"no-store"
+  });
+  const data=await response.json();
+  if(response.status===401){sessionStorage.removeItem("caretinha_session");closePlayer();showGate();throw new Error("Sessão expirada. Entre novamente.");}
+  if(!response.ok)throw new Error(data.error||"Não foi possível iniciar o filme.");
+  $("player-error").textContent=""; video.src=data.url; video.load();
+  try{await video.play();}catch{$("player-error").textContent="Use o botão ▶ do player para iniciar a reprodução.";}
+ }catch(error){$("player-error").textContent=error.message||"Falha ao iniciar a reprodução.";}
+}
+function closePlayer(){
+ const video=$("main-player");
+ if(video){video.pause();video.removeAttribute("src");video.load();}
+ $("player-modal")?.classList.add("hidden");
+}
+$("main-player").addEventListener("error",()=>{
+ const code=$("main-player").error?.code;
+ $("player-error").textContent=code?`O navegador não conseguiu reproduzir este formato (código ${code}). Tente outro título ou formato compatível.`:"Não foi possível reproduzir este vídeo.";
+});
 function closeDetail(){$("detail-modal").classList.add("hidden");}
 function markSeen(movie){
  if(!movie)return;
@@ -277,10 +354,10 @@ async function loadIPTV(){
  try{
   const [cats,movies]=await Promise.all([api("/api/categories"),api("/api/movies")]);
   iptvCategories=Array.isArray(cats)?cats:[];
-  iptvMovies=Array.isArray(movies)?movies:[];
-  renderCategories();
-  renderIPTVMovies();
-  $("iptv-status").textContent=`${iptvMovies.length} títulos encontrados no catálogo conectado.`;
+  allIPTVMovies=Array.isArray(movies)?movies:[];
+  iptvMovies=[...allIPTVMovies]; activeCategory="";
+  renderCategories(); renderIPTVMovies();
+  $("iptv-status").textContent=`${allIPTVMovies.length} títulos encontrados no catálogo conectado.`;
  }catch(e){
   $("iptv-status").textContent="Não foi possível carregar o catálogo IPTV. Confira a URL do Worker, a origem autorizada e os secrets configurados.";
   $("iptv-categories").innerHTML="";
@@ -291,16 +368,11 @@ function renderCategories(){
  const buttons=iptvCategories.map(c=>`<button class="btn ${String(activeCategory)===String(c.category_id)?"btn-red":"btn-dark"}" style="padding:8px 12px;font-size:11px" onclick="filterIPTV('${esc(String(c.category_id))}')">${esc(c.category_name)}</button>`).join("");
  $("iptv-categories").innerHTML=all+buttons;
 }
-async function filterIPTV(category){
- activeCategory=category;
- renderCategories();
- $("iptv-status").textContent="Atualizando seleção…";
- try{
-  const data=await api(`/api/movies${category?`?category=${encodeURIComponent(category)}`:""}`);
-  iptvMovies=Array.isArray(data)?data:[];
-  renderIPTVMovies();
-  $("iptv-status").textContent=`${iptvMovies.length} títulos nesta categoria.`;
- }catch(e){$("iptv-status").textContent=e.message;}
+function filterIPTV(category){
+ activeCategory=String(category||"");
+ iptvMovies=activeCategory?allIPTVMovies.filter(m=>String(m.category_id)===activeCategory):[...allIPTVMovies];
+ renderCategories(); renderIPTVMovies();
+ $("iptv-status").textContent=activeCategory?`${iptvMovies.length} títulos nesta categoria.`:`${iptvMovies.length} títulos encontrados no catálogo conectado.`;
 }
 function renderIPTVMovies(){
  $("iptv-movies").innerHTML=iptvMovies.length?iptvMovies.map(m=>tile(m,"iptv")).join(""):`<div class="empty">Nenhum filme encontrado nesta categoria.</div>`;
@@ -311,7 +383,7 @@ $("search-input").addEventListener("input",()=>{
  $("catalogo").querySelectorAll(":scope > .rowsection").forEach(x=>{if(x.id!=="search-section")x.classList.add("hidden");});
  $("search-section").classList.remove("hidden");
  const staticResults=staticMovies.filter(m=>(m.title+" "+m.category+" "+m.description).toLowerCase().includes(q)).map(m=>tile(m));
- const iptvResults=iptvMovies.filter(m=>(m.name||"").toLowerCase().includes(q)).map(m=>tile(m,"iptv"));
+ const iptvResults=allIPTVMovies.filter(m=>(m.name||"").toLowerCase().includes(q)).map(m=>tile(m,"iptv"));
  $("search-results").innerHTML=[...staticResults,...iptvResults].join("")||`<div class="empty">Nenhum resultado para “${esc(q)}”.</div>`;
 });
 function renderChecklist(){
@@ -325,7 +397,8 @@ function toggleCheck(i,checked){
 }
 window.addEventListener("scroll",()=>{$("header").classList.toggle("solid",window.scrollY>45);});
 $("detail-modal").addEventListener("click",e=>{if(e.target===$("detail-modal"))closeDetail();});
-document.addEventListener("keydown",e=>{if(e.key==="Escape")closeDetail();});
+$("player-modal").addEventListener("click",e=>{if(e.target===$("player-modal"))closePlayer();});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){closePlayer();closeDetail();}});
 validateSession();
 </script>
 </body>
