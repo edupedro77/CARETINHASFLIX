@@ -1,485 +1,175 @@
 <!doctype html>
-<html lang="pt-BR">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#141414">
-<!-- Essa tag abaixo é o truque mágico para forçar o IPTV a liberar as capas na tela inicial -->
-<meta name="referrer" content="no-referrer">
-<title>CARETINHAS+ | Nosso cinema particular</title>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#141414"><title>CARETINHAS+</title>
 <style>
-/* PALETA NETFLIX */
-:root { --bg: #141414; --panel: #181818; --red: #E50914; --white: #ffffff; --gray: #808080; }
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body { margin: 0; background: var(--bg); color: var(--white); font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
-button, input { font: inherit; }
-button { cursor: pointer; }
-a { color: inherit; text-decoration: none; }
-.hidden { display: none !important; }
-
-/* NAVBAR */
-.topbar { height: 68px; position: fixed; inset: 0 0 auto; z-index: 20; display: flex; align-items: center; gap: 32px; padding: 0 4%; background: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%); transition: background-color 0.4s; }
-.topbar.solid { background: #141414; box-shadow: 0 2px 10px rgba(0,0,0,0.5); }
-.logo { font-size: 28px; font-weight: 900; color: var(--red); white-space: nowrap; letter-spacing: -1px; }
-.nav { display: flex; gap: 20px; font-size: 14px; font-weight: 500; color: #e5e5e5; }
-.nav a:hover, .nav button:hover { color: #b3b3b3; transition: 0.3s; }
-.rightnav { margin-left: auto; display: flex; align-items: center; gap: 20px; }
-.search { width: min(230px, 25vw); background: rgba(0,0,0,0.75); border: 1px solid var(--gray); padding: 8px 12px 8px 35px; color: var(--white); outline: none; transition: 0.3s; border-radius: 4px;}
-.search:focus { border-color: var(--white); }
-.searchwrap { position: relative; }
-.searchwrap:before { content: "⌕"; position: absolute; left: 10px; top: 6px; font-size: 20px; color: var(--gray); }
-.profile-mini { display: flex; align-items: center; gap: 8px; border: 0; background: none; color: var(--white); }
-.avatar { width: 32px; height: 32px; border-radius: 4px; display: grid; place-items: center; font-weight: bold; background: #E50914; }
-
-/* DESTAQUE PRINCIPAL */
-.hero { height: 75vh; min-height: 500px; position: relative; display: flex; align-items: flex-end; padding: 0 4% 100px; }
-.hero:before { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, var(--bg) 0%, transparent 50%), linear-gradient(90deg, rgba(20,20,20,0.9) 0%, transparent 60%), url('https://image.tmdb.org/t/p/original/rSPw7tgCH9c6NqICZef4kZjFOQ5.jpg') center 20%/cover; z-index: -1; }
-.hero-content { max-width: 600px; }
-.eyebrow { font-size: 16px; letter-spacing: 3px; color: #ccc; font-weight: 700; margin-bottom: 8px; text-transform: uppercase; }
-.hero h1 { font-size: clamp(32px, 5vw, 60px); margin: 0 0 15px; font-weight: 800; text-shadow: 2px 2px 4px rgba(0,0,0,0.6); line-height: 1.1;}
-.hero p { font-size: clamp(14px, 1.2vw, 16px); line-height: 1.5; color: #e5e5e5; text-shadow: 1px 1px 3px rgba(0,0,0,0.6); }
-.actions { display: flex; gap: 12px; margin-top: 20px; flex-wrap: wrap; }
-.btn { border: 0; border-radius: 4px; padding: 10px 24px; font-size: 16px; font-weight: bold; display: inline-flex; align-items: center; justify-content: center; gap: 10px; transition: 0.2s; }
-.btn-light { background: var(--white); color: black; }
-.btn-light:hover { background: rgba(255,255,255,0.75); }
-.btn-dark { background: rgba(109,109,110,0.7); color: var(--white); }
-.btn-dark:hover { background: rgba(109,109,110,0.4); }
-.btn-red { background: var(--red); color: var(--white); }
-
-/* TRILHOS E CAPAS */
-main { position: relative; margin-top: -50px; z-index: 2; padding-bottom: 70px; }
-.rowsection { padding: 0 4%; margin: 0 0 40px; }
-.rowhead { display: flex; align-items: baseline; gap: 12px; margin-bottom: 12px; }
-.rowhead h2 { font-size: clamp(18px, 1.5vw, 22px); margin: 0; font-weight: 600; color: #e5e5e5; }
-.rail { display: flex; gap: 8px; overflow-x: auto; padding: 10px 0 20px; scrollbar-width: none; }
-.rail::-webkit-scrollbar { display: none; }
-.tile { flex: 0 0 clamp(130px, 15vw, 200px); border-radius: 4px; overflow: hidden; background: #222; position: relative; transition: transform 0.3s; cursor: pointer; }
-.tile:hover { transform: scale(1.05); z-index: 10; box-shadow: 0 10px 20px rgba(0,0,0,0.8); }
-
-/* CORREÇÃO DAS CAPAS */
-.poster { aspect-ratio: 2/3; position: relative; background-color: #111; background-size: cover; background-position: center; }
-.fallback { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; padding: 10px; color: #888; font-size: 13px; font-weight: bold; background: #222; }
-.tileinfo { padding: 10px; background: #181818; }
-.tiletitle { font-size: 13px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-
-/* MODAL DE FILME */
-.overlay { position: fixed; inset: 0; z-index: 50; background: rgba(0,0,0,0.85); display: flex; align-items: center; justify-content: center; padding: 20px; overflow-y: auto; }
-.dialog { width: min(850px, 100%); background: #181818; border-radius: 8px; overflow: hidden; box-shadow: 0 20px 80px #000; position: relative; }
-.detailbackdrop { height: 350px; background-size: cover; background-position: center; position: relative; }
-.detailbackdrop:after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, #181818, transparent 80%); }
-.xbtn { position: absolute; right: 20px; top: 20px; z-index: 60; background: #181818; color: var(--white); border: 2px solid #555; border-radius: 50%; width: 36px; height: 36px; font-size: 20px; display: flex; align-items: center; justify-content: center; transition: 0.2s; }
-.xbtn:hover { border-color: var(--white); background: var(--white); color: #181818; }
-.detailcontent { padding: 0 40px 40px; margin-top: -60px; position: relative; z-index: 5; }
-.detailcontent h2 { font-size: 32px; margin: 0 0 10px; }
-.meta { display: flex; gap: 12px; align-items: center; color: #a3a3a3; font-size: 14px; margin: 10px 0 20px; flex-wrap: wrap;}
-.match { color: #46d369; font-weight: bold; }
-.detaildesc { font-size: 15px; line-height: 1.6; color: #ddd; max-width: 650px; margin-bottom: 25px; }
-
-/* CHECKLIST & OUTROS */
-.notice { padding: 12px 15px; background: #222; border-radius: 4px; color: #ccc; font-size: 14px;}
-.content-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 10px; }
-
-/* TELAS DE ENTRADA E CHECKLIST GATEWAY */
-.gate { min-height: 100vh; display: grid; place-items: center; background: #141414; padding: 20px; }
-.gatebox { width: min(450px, 100%); padding: 40px; background: rgba(0,0,0,0.8); border-radius: 4px; border-top: 4px solid var(--red); box-shadow: 0 15px 40px rgba(0,0,0,0.5);}
-.field { width: 100%; background: #333; border: 0; padding: 14px; color: #fff; border-radius: 4px; outline: none; margin-bottom: 20px; }
-.profiles-inner { text-align: center; }
-.profiles { display: flex; justify-content: center; gap: 30px; margin-top: 30px; flex-wrap: wrap;}
-.profile-card { border: 0; background: none; color: var(--gray); transition: 0.2s; width: 120px;}
-.profile-card:hover { color: var(--white); transform: scale(1.05); }
-.profile-avatar { width: 100px; height: 100px; border-radius: 6px; margin: 0 auto 10px; font-size: 40px; display: grid; place-items: center; color: #fff; font-weight: bold;}
-.toast { position: fixed; bottom: 20px; right: 20px; z-index: 80; background: var(--red); color: #fff; padding: 12px 20px; border-radius: 4px; font-weight: bold; font-size: 14px;}
-
-/* Estilo dos itens do Checklist */
-.check-item { background: #111; padding: 15px 20px; border-radius: 6px; border: 1px solid #333; color: #e5e5e5; display: flex; gap: 15px; align-items: center; cursor: pointer; font-size: 16px; transition: 0.2s; }
-.check-item:hover { border-color: #555; background: #1a1a1a; }
-.check-item input { accent-color: var(--red); width: 22px; height: 22px; cursor: pointer; }
-</style>
-</head>
-<body>
-
-<!-- TELA 1: LOGIN -->
-<section id="login-screen" class="gate">
-  <div class="gatebox">
-    <div class="logo" style="margin-bottom: 30px;">CARETINHAS<span>+</span></div>
-    <h1 style="margin: 0 0 20px; font-size: 28px;">Nosso Cinema</h1>
-    <form id="login-form">
-      <input id="site-password" class="field" type="password" placeholder="Senha de acesso" required>
-      <div id="login-error" style="color:var(--red); margin-bottom:15px; font-size:13px;"></div>
-      <button class="btn btn-red" style="width: 100%; justify-content: center; padding: 15px;" type="submit" id="login-button">Entrar</button>
-    </form>
-  </div>
-</section>
-
-<!-- TELA 2: SELEÇÃO DE PERFIL -->
-<section id="profiles-screen" class="gate hidden">
-  <div class="profiles-inner">
-    <div class="logo" style="margin-bottom: 40px;">CARETINHAS<span>+</span></div>
-    <h1 style="font-size: 32px; font-weight: 400; margin-bottom: 10px; color: white;">Quem está assistindo?</h1>
-    <div class="profiles">
-      <button class="profile-card" onclick="selectProfile('meu')">
-        <div class="profile-avatar" style="background:linear-gradient(135deg, #0277bd, #004c8c)">E</div>
-        <div style="font-size: 16px;">Eduardo</div>
-      </button>
-      <button class="profile-card" onclick="selectProfile('dela')">
-        <div class="profile-avatar" style="background:linear-gradient(135deg, #e91e63, #880e4f)">M</div>
-        <div style="font-size: 16px;">Marjo</div>
-      </button>
-    </div>
-    <button class="btn btn-dark" style="margin-top: 50px; font-size: 12px; padding: 8px 16px;" onclick="logout()">Sair da Conta</button>
-  </div>
-</section>
-
-<!-- TELA 3: CHECKLIST (PEDÁGIO) -->
-<section id="checklist-screen" class="gate hidden">
-  <div class="gatebox" style="max-width: 500px;">
-    <div class="eyebrow" style="color:var(--red);">PASSO FINAL</div>
-    <h1 style="margin: 0 0 10px; font-size: 28px;">Kit Cinéfilo</h1>
-    <p style="color: #aaa; margin-bottom: 25px;">Marque o que já está pronto antes de abrirmos a sessão.</p>
-    
-    <div id="checklist-grid" style="display: flex; flex-direction: column; gap: 15px; margin-bottom: 30px;">
-      <!-- Gerado via JavaScript -->
-    </div>
-
-    <button class="btn btn-red" style="width: 100%; justify-content: center; padding: 16px; font-size: 18px;" onclick="enterCinema()">🎬 Tudo pronto! Entrar no cinema</button>
-    <button class="btn" style="width: 100%; justify-content: center; background: none; color: #888; margin-top: 10px; font-size: 12px;" onclick="backToProfiles()">← Voltar aos perfis</button>
-  </div>
-</section>
-
-<!-- TELA 4: APP PRINCIPAL (CATÁLOGO) -->
+:root{--bg:#141414;--red:#e50914;--mut:#b3b3b3}*{box-sizing:border-box;margin:0}html{scroll-behavior:smooth}
+body{background:var(--bg);color:#fff;font:15px/1.45 "Helvetica Neue",Arial,sans-serif}button{font:inherit;cursor:pointer;border:0;color:inherit}a{color:inherit;text-decoration:none;cursor:pointer}.hidden{display:none!important}
+.logo{font-weight:900;font-size:26px;letter-spacing:1px;color:var(--red)}
+.gate{min-height:100vh;display:grid;place-items:center;padding:20px;background:linear-gradient(#000a,#000e),url(https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1600&q=70) center/cover}
+.box{width:min(400px,100%);background:#000c;padding:40px;border-radius:6px}.box h1{font-size:26px;margin:18px 0 6px}.box p{color:var(--mut);margin-bottom:18px}
+.field{width:100%;padding:14px;margin-bottom:12px;background:#333;border:0;border-radius:4px;color:#fff;font:inherit}.err{color:#ff6b6b;font-size:13px;min-height:18px;margin-bottom:6px}
+.b{padding:10px 22px;border-radius:4px;font-weight:700;font-size:16px;background:#333}.b.w{background:#fff;color:#000}.b.g{background:#6d6d6eb3}.b.r{background:var(--red);width:100%}.b:hover{opacity:.85}
+.pbox{text-align:center}.pbox h1{font-size:clamp(28px,5vw,48px);font-weight:500;margin-bottom:30px}.plist{display:flex;gap:26px;justify-content:center;flex-wrap:wrap}
+.pf{background:none;width:140px}.pf div{width:140px;height:140px;border-radius:6px;display:grid;place-items:center;font-size:56px;border:3px solid transparent}.pf span{display:block;margin-top:10px;color:var(--mut);font-size:18px}.pf:hover div{border-color:#fff}.pf:hover span{color:#fff}
+.link{background:none;color:var(--mut);border:1px solid var(--mut);padding:8px 24px;margin-top:40px;letter-spacing:2px}
+header{position:fixed;inset:0 0 auto;z-index:20;height:64px;display:flex;align-items:center;gap:26px;padding:0 4%;background:linear-gradient(#000c,transparent);transition:background .3s}header.s{background:var(--bg)}
+header nav{display:flex;gap:20px;font-size:14px;color:#e5e5e5}header nav a:hover{color:var(--mut)}.right{margin-left:auto;display:flex;gap:14px;align-items:center}
+#q{background:#000a;border:1px solid #fff5;color:#fff;padding:7px 12px;border-radius:4px;width:190px;font:inherit}#who{display:flex;gap:8px;align-items:center;background:none}#who i{width:32px;height:32px;border-radius:4px;display:grid;place-items:center;font-style:normal}
+.hero{position:relative;height:82vh;min-height:480px;overflow:hidden;display:flex;align-items:flex-end;padding:0 4% 12vh}.herobg,.hero iframe{position:absolute;inset:0;width:100%;height:100%;background:#222 center 25%/cover;border:0;pointer-events:none}.hero iframe{inset:-18% 0;height:136%}
+.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#141414 0,#141414b0 30%,transparent 70%),linear-gradient(0deg,var(--bg) 0,transparent 35%)}.herotxt{position:relative;z-index:1;max-width:560px}
+.herotxt h1{font-size:clamp(34px,5.5vw,70px);line-height:1;font-weight:900;margin-bottom:14px;text-shadow:0 2px 12px #000}.herotxt p{font-size:clamp(14px,1.5vw,18px);margin-bottom:20px;text-shadow:0 1px 6px #000}.btns{display:flex;gap:12px;flex-wrap:wrap}
+main{position:relative;z-index:2;margin-top:-9vh;padding-bottom:50px}.row,.pad{padding:0 4%;margin-bottom:28px}.row h2,.pad h2{font-size:20px;margin-bottom:10px}.rw{position:relative}
+.rail{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:14px 0;margin:-14px 0}.rail::-webkit-scrollbar{display:none}
+.ar{position:absolute;top:0;bottom:0;width:4%;min-width:34px;z-index:5;background:#000a;font-size:34px;opacity:0;transition:.2s}.rw:hover .ar{opacity:1}.ar.l{left:-4.2%}.ar.r{right:-4.2%}
+.tile{position:relative;flex:0 0 auto;width:clamp(120px,14vw,200px);cursor:pointer;transition:transform .2s}.tile:hover{transform:scale(1.07);z-index:4}
+.pst{aspect-ratio:2/3;border-radius:4px;overflow:hidden;background:linear-gradient(145deg,#3a1218,#141414);display:grid;place-items:center;text-align:center;padding:10px;position:relative}.pst b{font-size:14px}.pst img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.cap{font-size:12px;margin-top:6px;color:#ddd;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fv{position:absolute;top:6px;right:6px;width:30px;height:30px;border-radius:50%;background:#000b;border:1px solid #fff9;font-size:16px;opacity:0;z-index:2}.tile:hover .fv,.fv.on{opacity:1}.fv.on{background:#fff;color:#000}
+.chips{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin-bottom:16px}.chip{flex:0 0 auto;padding:7px 14px;border-radius:20px;background:#2a2a2a;font-size:13px}.chip.on{background:#fff;color:#000}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:14px}.grid .tile{width:auto}.grid .tile:hover{transform:scale(1.04)}.note{color:var(--mut);font-size:13px;margin-bottom:12px}.empty{color:#888;padding:6px 0}
+footer{text-align:center;color:#777;font-size:12px;padding:30px 4%;border-top:1px solid #222}
+.ov{position:fixed;inset:0;z-index:50;background:#000d;display:grid;place-items:center;padding:16px;overflow:auto}.dlg{position:relative;width:min(780px,100%);background:#181818;border-radius:8px;overflow:hidden}.dlg.pl{width:min(1100px,100%);background:#000}
+.x{position:absolute;top:12px;right:12px;z-index:3;width:36px;height:36px;border-radius:50%;background:#181818;font-size:22px}
+.bd{height:300px;background:#222 center/cover;position:relative}.bd:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#181818,transparent 70%)}.dc{padding:0 28px 28px;margin-top:-70px;position:relative;z-index:1}.dc h2{font-size:32px;margin-bottom:8px}.dc .m{color:#46d369;font-weight:700;margin-bottom:10px}.dc p{color:#d2d2d2;margin-bottom:10px}.da{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+.cands{background:#222;border-radius:6px;padding:12px;margin-top:6px}.cands small{color:var(--mut);display:block;margin-bottom:8px}.cands button{display:block;width:100%;text-align:left;background:#2f2f2f;padding:9px 12px;margin-bottom:6px;border-radius:4px;font-size:13px}.cands button:hover{background:#444}
+video{display:block;width:100%;max-height:80vh;aspect-ratio:16/9;background:#000}.pe{color:#ff8a8a;padding:10px 16px;font-size:13px;min-height:38px}.pt{padding:14px 56px 10px 16px;font-size:18px}
+.toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);background:#fff;color:#000;padding:11px 20px;border-radius:4px;z-index:99;font-weight:600}
+.pf div{overflow:hidden}.pf div img,#wi img{width:100%;height:100%;object-fit:cover}.pfw{display:flex;flex-direction:column;align-items:center}.ed{background:none;color:var(--mut);font-size:13px;margin-top:6px;padding:4px 8px}.ed:hover{color:#fff}
+.ck label{display:flex;gap:12px;align-items:center;padding:12px;background:#222;border-radius:6px;margin-bottom:8px;cursor:pointer;font-size:17px;text-align:left}.ck input{width:20px;height:20px;accent-color:var(--red)}.b.r:disabled{opacity:.4;cursor:not-allowed}
+.emo{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}.emo button{background:#2a2a2a;font-size:28px;padding:8px;border-radius:6px}
+@media(max-width:700px){header nav{display:none}#q{width:120px}#who span{display:none}.hero{height:70vh}.tile{width:112px}.ar{display:none}.bd{height:200px}}
+</style></head><body>
+<section id="gate" class="gate"><div class="box"><div class="logo">CARETINHAS+</div><h1>Nosso cinema particular</h1><p>Digite a senha para entrar.</p>
+<form id="lf"><input id="pw" class="field" type="password" placeholder="Senha" autocomplete="current-password" required><div id="le" class="err"></div><button class="b r" id="lb">Entrar</button></form></div></section>
+<section id="profiles" class="gate hidden"><div class="pbox"><h1>Quem está assistindo?</h1><div id="plist" class="plist"></div><button class="link" onclick="logout()">SAIR</button></div></section>
+<section id="ready" class="gate hidden"><div class="box" style="width:min(460px,100%)"><div class="logo">CARETINHAS+</div><h1 id="rh"></h1><p>Marque tudo antes de começar a sessão.</p><div id="ck" class="ck"></div><button class="b r" id="go" disabled onclick="enter()">Começar a sessão 🍿</button></div></section>
+<div id="avm" class="ov hidden"><div class="dlg" style="width:min(420px,100%);padding:24px"><button class="x" onclick="$('avm').classList.add('hidden')">×</button><h2 style="margin-bottom:14px">Foto do perfil</h2><div id="emo" class="emo"></div><label class="b w" style="display:block;text-align:center;margin:14px 0 8px;cursor:pointer">📷 Escolher da galeria<input id="avf" type="file" accept="image/*" hidden></label><button class="b g" style="width:100%" onclick="setAv(null)">Voltar ao padrão</button></div></div>
 <div id="app" class="hidden">
-<header id="header" class="topbar">
-  <a class="logo" href="#home">CARETINHAS<span>+</span></a>
-  <nav class="nav">
-    <a href="#home">Início</a>
-    <a href="#section-minha-lista">Minha Lista</a>
-    <a href="#iptv">Explorar Catálogo</a>
-  </nav>
-  <div class="rightnav">
-    <div class="searchwrap"><input id="search-input" class="search" type="search" placeholder="Buscar filmes..."></div>
-    <button class="profile-mini" onclick="backToProfiles()">
-      <div id="current-avatar" class="avatar">E</div>
-    </button>
-  </div>
-</header>
-
-<section id="home" class="hero">
-  <div class="hero-content">
-    <div class="eyebrow">Nosso cinema particular</div>
-    <h1>A Vida Secreta de Walter Mitty</h1>
-    <p>Aquele filme perfeito para lembrar que o mundo é enorme, lindo e cheio de coisas boas para descobrir juntos.</p>
-    <div class="actions">
-      <button class="btn btn-dark" onclick="scrollToSection('iptv')">▼ Explorar o catálogo</button>
-    </div>
-  </div>
-</section>
-
-<main id="catalogo">
-  <section id="search-section" class="rowsection hidden">
-    <div class="rowhead"><h2>Resultados da Busca</h2></div>
-    <div id="search-results" class="content-grid"></div>
-  </section>
-
-  <!-- LISTA DE FAVORITOS DO PERFIL -->
-  <section id="section-minha-lista" class="rowsection hidden">
-    <div class="rowhead"><h2>Minha Lista ❤️</h2></div>
-    <div class="rail" id="row-minha-lista"></div>
-  </section>
-
-  <section id="iptv" class="rowsection">
-    <div class="rowhead"><h2>Explorar Catálogo</h2></div>
-    <div id="iptv-status" class="notice" style="margin-bottom: 20px;">Conectando com o servidor...</div>
-    
-    <div id="iptv-categories" class="actions" style="margin-bottom: 20px; flex-wrap: wrap; gap: 8px;"></div>
-    <div id="iptv-movies" class="content-grid"></div>
-  </section>
-</main>
-</div>
-
-<!-- MODAL DE DETALHES DO FILME -->
-<div id="detail-modal" class="overlay hidden">
-  <div class="dialog">
-    <button class="xbtn" onclick="closeDetail()">×</button>
-    <div id="detail-backdrop" class="detailbackdrop"></div>
-    <div class="detailcontent">
-      <div class="eyebrow" style="color: #ccc; font-size: 12px; margin-bottom: 5px;">CATÁLOGO CONECTADO</div>
-      <h2 id="detail-title">Título do Filme</h2>
-      <div class="meta" id="detail-meta">
-        <span class="match">Disponível</span>
-        <span id="detail-year"></span>
-      </div>
-      <p id="detail-description" class="detaildesc"></p>
-      <div class="actions">
-        <button id="detail-watch" class="btn btn-light">▶ Assistir filme</button>
-        <button id="detail-fav" class="btn btn-dark">+ Minha Lista</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div id="toast" class="toast hidden">Mensagem</div>
-
+<header id="hd"><a class="logo" onclick="scrollTo(0,0)">CARETINHAS+</a><nav><a href="#rows">Início</a><a href="#lista">Minha lista</a><a href="#catalogo">Catálogo</a></nav>
+<div class="right"><input id="q" type="search" placeholder="Buscar títulos"><button id="who" onclick="showProfiles()"><i id="wi"></i><span id="wn"></span></button></div></header>
+<section class="hero"><div class="herobg" id="hbg"></div><div id="hvid"></div><div class="herotxt"><h1 id="ht"></h1><p id="hp"></p><div class="btns"><button class="b w" id="hplay">▶ Assistir</button><button class="b g" id="hinfo">ⓘ Mais informações</button></div></div></section>
+<main><div id="rows"></div>
+<section id="catalogo" class="pad"><h2>Catálogo completo</h2><div id="st" class="note">Conectando ao catálogo…</div><div id="chips" class="chips"></div><div id="grid" class="grid"></div><div style="text-align:center;margin-top:18px"><button id="more" class="b hidden" onclick="shown+=60;renderGrid()">Mostrar mais</button></div></section>
+<section id="sres" class="pad hidden"><h2>Resultados</h2><div id="sgrid" class="grid"></div></section></main>
+<footer><b style="color:var(--red)">CARETINHAS+</b> · Nosso cinema particular ❤️</footer></div>
+<div id="dm" class="ov hidden"><div class="dlg"><button class="x" onclick="closeD()">×</button><div class="bd" id="dbd"></div><div class="dc"><h2 id="dt"></h2><div class="m" id="dm2"></div><p id="dd"></p><p id="dn" style="color:var(--mut);font-size:13px"></p>
+<div class="da"><button class="b w" id="dw"></button><button class="b g" id="dl"></button><button class="b g" id="ds"></button></div><div id="dc" class="cands hidden"></div></div></div></div>
+<div id="pm" class="ov hidden"><div class="dlg pl"><button class="x" onclick="closeP()">×</button><div class="pt" id="ptt"></div><video id="vid" controls playsinline preload="metadata"></video><div class="pe" id="pe"></div></div></div>
+<div id="toast" class="toast hidden"></div>
 <script>
-// SEU WORKER AQUI
-const API_BASE = "https://caretinha-plus-api.edupedro77.workers.dev";
-const checklistItems = ["Pipoca ou docinho na mão 🍿", "Cobertor preparado no sofá 🛋️", "Celulares no silencioso 📱", "Cafuné liberado 💖"];
-
-let currentProfile = "meu";
-let iptvMovies = [];
-let iptvCategories = [];
-let activeCategory = "";
-let currentMovieId = null;
-
-const $ = id => document.getElementById(id);
-function esc(s="") { return String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
-function token() { return sessionStorage.getItem("caretinha_session"); }
-
-// ======== CORREÇÃO DAS CAPAS: GERA O CARD DO FILME USANDO BACKGROUND IMAGE ========
-function tile(movie) {
-  // Pega o ícone que vier
-  const poster = movie.stream_icon || movie.cover || movie.logo || "";
-  const title = movie.name || movie.title || "Filme";
-  const id = movie.stream_id;
-  
-  // Em vez da tag <img>, aplicamos a imagem direto no style do background da div .poster
-  return `<article class="tile" onclick="openIPTVMovie('${esc(String(id))}')">
-    <div class="poster" style="${poster ? `background-image: url('${esc(poster)}');` : ''}">
-      <div class="fallback" style="${poster ? 'display:none;' : 'display:grid;'}">${esc(title)}</div>
-    </div>
-    <div class="tileinfo">
-      <div class="tiletitle">${esc(title)}</div>
-    </div>
-  </article>`;
-}
-
-// ======== SISTEMA DE FAVORITOS (MINHA LISTA) ========
-function getFavKey() { return `favs_${currentProfile}`; }
-function getFavs() { return JSON.parse(localStorage.getItem(getFavKey()) || "[]"); }
-
-function toggleFavorite(id) {
-  const favs = getFavs();
-  const strId = String(id);
-  let newFavs;
-  
-  if (favs.includes(strId)) {
-    newFavs = favs.filter(x => x !== strId);
-    toast("Removido da sua lista.");
-  } else {
-    newFavs = [...favs, strId];
-    toast("Adicionado à sua lista! ❤️");
-  }
-  
-  localStorage.setItem(getFavKey(), JSON.stringify(newFavs));
-  renderFavorites();
-  updateFavButtonState(strId);
-}
-
-function renderFavorites() {
-  const favs = getFavs();
-  const favMovies = favs.map(id => iptvMovies.find(m => String(m.stream_id) === String(id))).filter(Boolean);
-  
-  if (favMovies.length > 0) {
-    $("section-minha-lista").classList.remove("hidden");
-    $("row-minha-lista").innerHTML = favMovies.map(m => tile(m)).join("");
-  } else {
-    $("section-minha-lista").classList.add("hidden");
-  }
-}
-
-function updateFavButtonState(id) {
-  const favs = getFavs();
-  const btn = $("detail-fav");
-  if (favs.includes(String(id))) {
-    btn.innerHTML = "✓ Na Minha Lista";
-    btn.style.background = "rgba(70, 211, 105, 0.2)";
-    btn.style.color = "#46d369";
-    btn.style.border = "1px solid #46d369";
-  } else {
-    btn.innerHTML = "+ Minha Lista";
-    btn.style.background = "rgba(109,109,110,0.7)";
-    btn.style.color = "#fff";
-    btn.style.border = "none";
-  }
-  btn.onclick = () => toggleFavorite(id);
-}
-
-// ======== LÓGICA DO MODAL ========
-async function openIPTVMovie(id) {
-  const m = iptvMovies.find(x => String(x.stream_id) === String(id));
-  if(!m) return;
-  
-  currentMovieId = id;
-  $("detail-title").textContent = m.name || "Título Indisponível";
-  $("detail-year").textContent = m.added ? `Adicionado em ${m.added}` : "Catálogo IPTV";
-  $("detail-description").textContent = "Carregando informações completas...";
-  
-  if(m.stream_icon) {
-    $("detail-backdrop").style.backgroundImage = `url("${m.stream_icon}")`;
-  } else {
-    $("detail-backdrop").style.backgroundImage = `linear-gradient(135deg, #181818, #000)`;
-  }
-  
-  updateFavButtonState(id);
-  
-  // ROTA DO PLAYER AQUI
-  $("detail-watch").onclick = () => {
-    toast("Iniciando o player...");
-    // window.open(`${API_BASE}/api/play?id=${id}`, "_blank");
-  };
-
-  $("detail-modal").classList.remove("hidden");
-
-  try {
-    const infoRes = await api(`/api/movie-info?id=${encodeURIComponent(id)}`);
-    if (infoRes && infoRes.info && currentMovieId === id) {
-       $("detail-description").textContent = infoRes.info.plot || "Nenhuma sinopse fornecida pelo servidor.";
-       const extraMeta = [];
-       if (infoRes.info.releaseDate) extraMeta.push(infoRes.info.releaseDate);
-       if (infoRes.info.genre) extraMeta.push(infoRes.info.genre);
-       if (infoRes.info.rating) extraMeta.push(`Nota ${infoRes.info.rating}`);
-       $("detail-year").textContent = extraMeta.join(" · ");
-    }
-  } catch(e) {
-    $("detail-description").textContent = "Detalhes básicos do catálogo.";
-  }
-}
-
-function closeDetail() { $("detail-modal").classList.add("hidden"); currentMovieId = null; }
-
-// ======== LÓGICA DA API IPTV ========
-async function api(path) {
-  const r = await fetch(`${API_BASE}${path}`, {headers: {Authorization: `Bearer ${token()}`}});
-  if(r.status === 401) { logout(); throw new Error("Sessão expirada."); }
-  if(!r.ok) throw new Error("Falha no servidor.");
-  return r.json();
-}
-
-async function loadIPTV() {
-  $("iptv-status").style.display = "block";
-  $("iptv-status").textContent = "Sincronizando catálogo...";
-  try {
-    const [cats, movies] = await Promise.all([api("/api/categories"), api("/api/movies")]);
-    iptvCategories = Array.isArray(cats) ? cats : []; 
-    iptvMovies = Array.isArray(movies) ? movies : [];
-    
-    $("iptv-categories").innerHTML = `<button class="btn btn-red" style="font-size:12px; padding: 8px 14px;" onclick="filterIPTV('')">Todos</button>` +
-      iptvCategories.slice(0, 15).map(c => `<button class="btn btn-dark" style="font-size:12px; padding: 8px 14px;" onclick="filterIPTV('${c.category_id}')">${esc(c.category_name)}</button>`).join("");
-    
-    renderIPTVMovies();
-    renderFavorites(); 
-    $("iptv-status").style.display = "none";
-  } catch(e) {
-    $("iptv-status").textContent = "Não foi possível carregar os filmes. Verifique o Worker.";
-  }
-}
-
-function renderIPTVMovies(filterId = "") {
-  const list = filterId ? iptvMovies.filter(m => String(m.category_id) === String(filterId)) : iptvMovies.slice(0, 100);
-  $("iptv-movies").innerHTML = list.length ? list.map(m => tile(m)).join("") : `<div class="notice">Nenhum filme retornado nesta categoria.</div>`;
-}
-
-function filterIPTV(id) { 
-  activeCategory = id;
-  const btns = $("iptv-categories").querySelectorAll("button");
-  btns.forEach(b => {
-     b.classList.remove("btn-red"); b.classList.add("btn-dark");
-     if ((id === "" && b.textContent === "Todos") || b.getAttribute("onclick").includes(`'${id}'`)) {
-       b.classList.remove("btn-dark"); b.classList.add("btn-red");
-     }
-  });
-  renderIPTVMovies(id); 
-}
-
-// ======== LOGIN E FLUXO DE TELAS ========
-$("login-form").addEventListener("submit", async e => {
-  e.preventDefault();
-  const btn = $("login-button"); btn.textContent = "Verificando...";
-  try {
-    const r = await fetch(`${API_BASE}/api/login`, {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({password: $("site-password").value})});
-    const data = await r.json();
-    if(!r.ok) throw new Error(data.error);
-    sessionStorage.setItem("caretinha_session", data.token);
-    $("login-screen").classList.add("hidden"); 
-    $("profiles-screen").classList.remove("hidden");
-  } catch(err) {
-    $("login-error").textContent = "Senha incorreta ou servidor offline.";
-    btn.textContent = "Entrar";
-  }
-});
-
-// Passo 1: Escolhe o perfil e vai pro checklist
-function selectProfile(p) {
-  currentProfile = p;
-  $("profiles-screen").classList.add("hidden");
-  $("checklist-screen").classList.remove("hidden"); // MOSTRA O CHECKLIST AQUI
-  renderChecklist();
-}
-
-// Passo 2: Confirma o checklist e entra no app
-function enterCinema() {
-  $("checklist-screen").classList.add("hidden");
-  $("app").classList.remove("hidden");
-  loadIPTV(); // Só carrega os filmes agora
-}
-
-function logout() {
-  sessionStorage.clear();
-  $("app").classList.add("hidden");
-  $("checklist-screen").classList.add("hidden");
-  $("profiles-screen").classList.add("hidden");
-  $("login-screen").classList.remove("hidden");
-  $("site-password").value = "";
-}
-
-function scrollToSection(id) { $(id).scrollIntoView(); }
-
-function backToProfiles() { 
-  $("app").classList.add("hidden"); 
-  $("checklist-screen").classList.add("hidden");
-  $("profiles-screen").classList.remove("hidden"); 
-}
-
-// ======== CHECKLIST ========
-function renderChecklist() {
-  const saved = JSON.parse(localStorage.getItem(`checks_${currentProfile}`) || "[]");
-  $("checklist-grid").innerHTML = checklistItems.map((lbl, i) => 
-    `<label class="check-item">
-      <input type="checkbox" ${saved.includes(i) ? "checked" : ""} onchange="toggleCheck(${i}, this.checked)">
-      <span>${lbl}</span>
-    </label>`
-  ).join("");
-}
-function toggleCheck(i, chk) {
-  const key = `checks_${currentProfile}`;
-  let saved = JSON.parse(localStorage.getItem(key) || "[]");
-  saved = chk ? [...new Set([...saved, i])] : saved.filter(x => x !== i);
-  localStorage.setItem(key, JSON.stringify(saved));
-}
-function toast(msg) { $("toast").textContent = msg; $("toast").classList.remove("hidden"); setTimeout(() => $("toast").classList.add("hidden"), 3000); }
-
-// EVENTOS DE BUSCA E INTERFACE
-window.addEventListener("scroll", () => $("header").classList.toggle("solid", window.scrollY > 30));
-$("detail-modal").addEventListener("click", e => { if(e.target === $("detail-modal")) closeDetail(); });
-document.addEventListener("keydown", e => { if(e.key === "Escape") closeDetail(); });
-
-$("search-input").addEventListener("input", () => {
-  const q = $("search-input").value.trim().toLowerCase();
-  if(!q) {
-    $("search-section").classList.add("hidden");
-    document.querySelectorAll(".rowsection").forEach(x => { if(x.id !== "search-section") x.classList.remove("hidden"); });
-    renderFavorites(); 
-    return;
-  }
-  document.querySelectorAll(".rowsection").forEach(x => { if(x.id !== "search-section") x.classList.add("hidden"); });
-  $("search-section").classList.remove("hidden");
-  
-  const resI = iptvMovies.filter(m => (m.name || "").toLowerCase().includes(q)).map(m => tile(m));
-  $("search-results").innerHTML = resI.join("") || `<div class="notice">Nenhum resultado para "${q}".</div>`;
-});
-
-// Validação de sessão no load
-if (token()) { $("login-screen").classList.add("hidden"); $("profiles-screen").classList.remove("hidden"); }
-</script>
-</body>
-</html>
+/* ===== CONFIGURE AQUI ===== */
+const API_BASE="https://caretinha-proxy.onrender.com"; // cole a URL do seu servidor (a mesma que você já usava)
+const PROFILES=[ // só mude o "name" (os ids guardam sua lista)
+ {id:"meu",name:"EduGameplays",ico:"E",color:"linear-gradient(135deg,#246c91,#18334c)"},
+ {id:"dela",name:"MarjoBarbis",ico:"M",color:"linear-gradient(135deg,#a13e78,#59234f)"}];
+const CHECKLIST=["🛋️ Cobertor","🍿 Pipoca ou comida","🥤 Bebida","📱 Celulares no silencioso","💡 Luz apagada","🔌 Carregador por perto","🚽 Já fui ao banheiro"]; // edite à vontade
+const EMOJIS=["😎","🎮","🦄","🐱","🐼","🦊","🌸","🔥","⭐","👾","🍕","🌈"]; // opções de ícone do perfil
+const HERO={ // destaque no topo. Para o vídeo do Cartman: cole o ID do YouTube em videoId
+ id:"walter-mitty",title:"",desc:"",videoId:"",
+ image:"https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1800&q=70"};
+const S=[
+{id:"walter-mitty",title:"A Vida Secreta de Walter Mitty",cat:"c",year:"2013",dur:"1h 54min",desc:"Um sonhador embarca em uma aventura pelo mundo para encontrar uma fotografia perdida.",note:"Para lembrar que o mundo é enorme e ainda há muita coisa bonita para descobrir.",tr:"HddkucqSzSM",alias:["the secret life of walter mitty"]},
+{id:"truman-show",title:"O Show de Truman",cat:"c",year:"1998",dur:"1h 43min",desc:"Um homem percebe que sua vida aparentemente comum esconde algo extraordinário.",note:"Engraçado, inteligente e cheio de perguntas.",tr:"dlmQbPGuls",alias:["the truman show"]},
+{id:"perks-flower",title:"As Vantagens de Ser Invisível",cat:"c",year:"2012",dur:"1h 42min",desc:"Um garoto tímido encontra amizade, pertencimento e coragem para viver.",note:"Um abraço no coração e uma trilha inesquecível.",tr:"n5rh7O4IDc0",alias:["the perks of being a wallflower"]},
+{id:"eurotrip",title:"EuroTrip: Passaporte para a Confusão",cat:"c",year:"2004",dur:"1h 32min",desc:"Amigos cruzam a Europa em uma viagem cheia de situações absurdas.",note:"Para rir sem compromisso.",tr:"Seo-6E1V2vU",alias:["eurotrip"]},
+{id:"lalaland",title:"La La Land: Cantando Estações",cat:"r",year:"2016",dur:"2h 08min",desc:"Um pianista de jazz e uma aspirante a atriz se apaixonam enquanto perseguem seus sonhos.",note:"Música, cores e uma mistura de encanto e saudade.",tr:"0pdqf4P9MB8",alias:["la la land"]},
+{id:"about-time",title:"Questão de Tempo",cat:"r",year:"2013",dur:"2h 03min",desc:"Tim descobre que pode viajar no tempo e tenta construir uma vida feliz com quem ama.",note:"Amor, família e a beleza dos dias comuns.",tr:"T7A810duHvw",alias:["about time"]},
+{id:"orange-girl",title:"A Garota das Laranjas",cat:"r",year:"2009",dur:"1h 40min",desc:"Uma carta deixada pelo pai conduz um jovem a uma história de encontros e escolhas.",note:"Poético e sensível.",tr:"",alias:["the orange girl"]},
+{id:"one-piece-film",title:"One Piece Film: Red",cat:"a",year:"2022",dur:"1h 55min",desc:"Uta, cantora mundialmente famosa, prepara um show que pode mudar o destino de todos.",note:"Música, aventura e conforto.",tr:"89JWRYEIG-s",alias:["one piece film red","one piece red"]},
+{id:"spirited-away",title:"A Viagem de Chihiro",cat:"a",year:"2001",dur:"2h 05min",desc:"Chihiro entra em um mundo mágico habitado por espíritos.",note:"Encantadora e tranquila.",tr:"ByXuk9QqQkk",alias:["spirited away","sen to chihiro no kamikakushi"]},
+{id:"your-name",title:"Your Name",cat:"a",year:"2016",dur:"1h 47min",desc:"Dois jovens trocam de corpo misteriosamente e criam uma conexão que desafia o tempo.",note:"Linda sobre encontros e destino.",tr:"hRfHcp2GjVI",alias:["your name","kimi no na wa"]}];
+/* ========================== */
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const ls={get:(k,d)=>{try{return JSON.parse(localStorage.getItem(k))??d}catch{return d}},set:(k,v)=>localStorage.setItem(k,JSON.stringify(v))};
+const norm=s=>String(s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/\b(19|20)\d{2}\b/g," ").replace(/\b(4k|uhd|2160p|1080p|720p|480p|dublado|legendado|dual audio|multi audio)\b/g," ").replace(/[^a-z0-9]+/g," ").trim();
+const flat=s=>norm(s).replace(/ /g,"");
+let prof=PROFILES[0],all=[],cats=[],cat="",shown=60,cur=null;
+const tok=()=>sessionStorage.getItem("caretinha_session"),AH=()=>({Authorization:"Bearer "+tok()});
+async function api(p){const r=await fetch(API_BASE+p,{headers:AH(),cache:"no-store"});
+ if(r.status===401){sessionStorage.removeItem("caretinha_session");show("gate");throw new Error("Sessão expirada.")}
+ if(!r.ok){let d="";try{const j=await r.json();d=j.detail||j.error||""}catch{}throw new Error(d||"Não foi possível carregar o catálogo.")}return r.json()}
+function show(w){for(const i of["gate","profiles","ready","app"])$(i).classList.toggle("hidden",i!==w)}
+function showProfiles(){show("profiles")}function logout(){sessionStorage.removeItem("caretinha_session");show("gate")}
+const av=p=>ls.get("caretinha_av_"+p.id,null);
+const avHTML=p=>{const a=av(p);return a&&a.img?`<img src="${a.img}" alt="">`:esc(a&&a.ico||p.ico)};
+function renderProfiles(){$("plist").innerHTML=PROFILES.map((p,i)=>`<div class="pfw"><button class="pf" onclick="pick(${i})"><div style="background:${p.color}">${avHTML(p)}</div><span>${esc(p.name)}</span></button><button class="ed" onclick="editAv(${i})">✎ Alterar foto</button></div>`).join("")}
+let eIdx=0;function editAv(i){eIdx=i;$("avm").classList.remove("hidden")}
+function setAv(v){ls.set("caretinha_av_"+PROFILES[eIdx].id,v);renderProfiles();$("avm").classList.add("hidden")}
+$("emo").innerHTML=EMOJIS.map(e=>`<button onclick="setAv({ico:'${e}'})">${e}</button>`).join("");
+$("avf").addEventListener("change",e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{const c=document.createElement("canvas");c.width=c.height=200;const s=Math.min(im.width,im.height);c.getContext("2d").drawImage(im,(im.width-s)/2,(im.height-s)/2,s,s,0,0,200,200);setAv({img:c.toDataURL("image/jpeg",.85)})};im.src=r.result};r.readAsDataURL(f);e.target.value=""});
+renderProfiles();
+function renderCk(){$("ck").innerHTML=CHECKLIST.map(t=>`<label><input type="checkbox" onchange="ckChange()"> ${esc(t)}</label>`).join("");$("go").disabled=true}
+function ckChange(){$("go").disabled=![...document.querySelectorAll("#ck input")].every(c=>c.checked)}
+$("lf").addEventListener("submit",async e=>{e.preventDefault();const b=$("lb");b.disabled=true;b.textContent="Verificando…";$("le").textContent="";
+ try{const r=await fetch(API_BASE+"/api/login",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({password:$("pw").value})});const d=await r.json();
+  if(!r.ok)throw new Error(d.error||"Senha incorreta.");sessionStorage.setItem("caretinha_session",d.token);$("pw").value="";show("profiles")}
+ catch(x){$("le").textContent=String(x.message).includes("Failed to fetch")?"Não consegui conectar ao servidor. Confira o API_BASE.":x.message}
+ finally{b.disabled=false;b.textContent="Entrar"}});
+async function boot(){if(!tok())return show("gate");try{await api("/api/session");show("profiles")}catch{show("gate")}}
+function pick(i){prof=PROFILES[i];$("wn").textContent=prof.name;$("wi").innerHTML=avHTML(prof);$("wi").style.background=prof.color;$("rh").textContent="Tudo pronto, "+prof.name+"?";renderCk();show("ready");loadIPTV()}
+function enter(){show("app");scrollTo(0,0);setHero();renderRows()}
+/* ---- listas por perfil ---- */
+const favs=()=>ls.get("caretinha_fav_"+prof.id,[]),seen=()=>ls.get("caretinha_seen2_"+prof.id,[]);
+function toggleFav(k){let f=favs();f=f.includes(k)?f.filter(x=>x!==k):[...f,k];ls.set("caretinha_fav_"+prof.id,f);
+ document.querySelectorAll('[data-k="'+k+'"]').forEach(b=>{const on=f.includes(k);b.classList.toggle("on",on);b.textContent=on?"✓":"+"});renderLista()}
+/* ---- itens ---- */
+const sm=id=>S.find(x=>x.id===id),im=id=>all.find(x=>String(x.stream_id)===String(id));
+function match(m){const l=ls.get("caretinha_links",{})[m.id];if(l&&im(l))return im(l);
+ const w=[m.title,...m.alias].map(flat),ex=all.filter(x=>w.includes(flat(x.name)));return ex.find(x=>(x.container_extension||"mp4")=="mp4")||ex[0]||null}
+const sT=m=>({k:"s:"+m.id,title:m.title,img:(match(m)||{}).stream_icon||"",open:`openS('${m.id}')`});
+const iT=m=>({k:"i:"+m.stream_id,title:m.name,img:m.stream_icon,open:`openI('${m.stream_id}')`});
+const byKey=k=>k[0]=="s"?(sm(k.slice(2))&&sT(sm(k.slice(2)))):(im(k.slice(2))&&iT(im(k.slice(2))));
+function tile(t){const on=favs().includes(t.k);return `<div class="tile" onclick="${t.open}"><div class="pst"><b>${esc(t.title)}</b>${t.img?`<img loading="lazy" src="${esc(t.img)}" alt="" onerror="imgErr(this)">`:""}</div><button class="fv${on?" on":""}" data-k="${t.k}" onclick="event.stopPropagation();toggleFav('${t.k}')" title="Minha lista">${on?"✓":"+"}</button><div class="cap">${esc(t.title)}</div></div>`}
+function imgErr(i){if(!i.dataset.r){i.dataset.r=1;setTimeout(()=>{i.src=i.src.split("&_=")[0]+"&_="+Date.now()},1500)}else i.remove()}
+const row=(id,t,its,empty)=>`<section class="row" id="${id}"><h2>${t}</h2>${its.length?`<div class="rw"><button class="ar l" onclick="sc(this,-1)">‹</button><div class="rail">${its.map(tile).join("")}</div><button class="ar r" onclick="sc(this,1)">›</button></div>`:`<div class="empty">${empty||""}</div>`}</section>`;
+function sc(b,d){b.parentNode.querySelector(".rail").scrollBy({left:d*innerWidth*.75,behavior:"smooth"})}
+const items=k=>k.map(byKey).filter(Boolean);
+function renderLista(){const e=$("lista");if(e)e.outerHTML=row("lista","Minha lista",items(favs()),"Toque no + de qualquer filme para montar a sua lista.")}
+function renderRows(){const c=x=>S.filter(m=>m.cat==x).map(sT);
+ $("rows").innerHTML=row("lista","Minha lista",items(favs()),"Toque no + de qualquer filme para montar a sua lista.")+row("r1","Em destaque",S.slice(0,6).map(sT))+row("r2","Conforto, risadas & respiro",c("c"))+row("r3","Noite romântica & emoção",c("r"))+row("r4","Animes & universos fantásticos",c("a"))+(seen().length?row("r5","Já assistimos",items(seen())):"")}
+/* ---- destaque ---- */
+function setHero(){const m=sm(HERO.id);$("ht").textContent=HERO.title||(m&&m.title)||"CARETINHAS+";$("hp").textContent=HERO.desc||(m&&m.desc)||"";
+ $("hbg").style.backgroundImage=`url("${HERO.image}")`;
+ $("hvid").innerHTML=HERO.videoId?`<iframe src="https://www.youtube-nocookie.com/embed/${esc(HERO.videoId)}?autoplay=1&mute=1&controls=0&loop=1&playlist=${esc(HERO.videoId)}&playsinline=1&modestbranding=1&rel=0" allow="autoplay;encrypted-media" title=""></iframe>`:"";
+ const go=()=>m?openS(m.id):window.open("https://www.youtube.com/watch?v="+HERO.videoId,"_blank","noopener");$("hplay").onclick=go;$("hinfo").onclick=go}
+/* ---- detalhe ---- */
+function cands(m){const stop=["the","and","des","das","dos"],V=[m.title,...m.alias].map(t=>norm(t).split(" ").filter(w=>w.length>2&&!stop.includes(w))).filter(a=>a.length);
+ return all.map(x=>{const n=" "+norm(x.name)+" ";return[Math.max(0,...V.map(a=>a.filter(w=>n.includes(" "+w+" ")).length/a.length)),x]}).filter(a=>a[0]>=.75).sort((a,b)=>b[0]-a[0]).slice(0,6).map(a=>a[1])}
+function openS(id){const m=sm(id),p=match(m);detail({k:"s:"+id,title:m.title,meta:[m.year,m.dur].filter(Boolean).join(" · "),desc:m.desc,note:m.note,img:p&&p.stream_icon||HERO.image,play:p,tr:m.tr,m})}
+async function openI(id){const m=im(id);if(!m)return;detail({k:"i:"+id,title:m.name,meta:"",desc:"",note:"",img:m.stream_icon,play:m});
+ try{const d=await api("/api/movie-info?id="+encodeURIComponent(id)),i=d.info||{};if(cur&&cur.k=="i:"+id){$("dd").textContent=i.plot||"";$("dm2").textContent=[i.releaseDate,i.genre,i.rating?"Nota "+i.rating:""].filter(Boolean).join(" · ")}}catch{}}
+function detail(d){cur=d;$("dt").textContent=d.title;$("dm2").textContent=d.meta;$("dd").textContent=d.desc;$("dn").textContent=d.note;
+ $("dbd").style.backgroundImage=d.img?`url("${d.img}")`:"none";
+ const w=$("dw"),c=$("dc");c.classList.add("hidden");
+ if(d.play){w.textContent="▶ Assistir";w.onclick=()=>playI(d.play)}
+ else{w.textContent=d.tr?"▶ Ver trailer":"Filme não encontrado";w.onclick=()=>d.tr?window.open("https://www.youtube.com/watch?v="+d.tr,"_blank","noopener"):toast("Procure pelo nome no catálogo.");
+  if(d.m){const cs=cands(d.m);c.classList.remove("hidden");c.innerHTML=cs.length?`<small>Não achei sozinho. Qual destes é o filme? (eu lembro da sua escolha)</small>`+cs.map(x=>`<button onclick="linkPlay('${d.m.id}','${x.stream_id}')">${esc(x.name)} <span style="color:#888">.${esc(x.container_extension||"mp4")}</span></button>`).join(""):`<small>${all.length?"Nada parecido no catálogo. Tente buscar pelo nome em inglês na busca.":"O catálogo ainda está carregando…"}</small>`}}
+ const on=favs().includes(d.k);$("dl").textContent=on?"✓ Na minha lista":"＋ Minha lista";$("dl").onclick=()=>{toggleFav(d.k);$("dl").textContent=favs().includes(d.k)?"✓ Na minha lista":"＋ Minha lista"};
+ $("ds").textContent=seen().includes(d.k)?"✓ Já assistimos":"Marcar como visto";$("ds").onclick=()=>{const s=seen(),on=s.includes(d.k);ls.set("caretinha_seen2_"+prof.id,on?s.filter(x=>x!==d.k):[...s,d.k]);renderRows();$("ds").textContent=on?"Marcar como visto":"✓ Já assistimos";toast(on?"Tirado de já assistimos":"Marcado como visto 🎬")};
+ $("dm").classList.remove("hidden")}
+function closeD(){$("dm").classList.add("hidden")}
+function linkPlay(id,sid){const l=ls.get("caretinha_links",{});l[id]=sid;ls.set("caretinha_links",l);renderRows();playI(im(sid))}
+/* ---- player ---- */
+async function playI(m){if(!m)return;const v=$("vid");$("ptt").textContent=m.name||m.title||"";$("pe").textContent="Preparando reprodução… (o primeiro acesso pode levar ~1 min)";closeD();closeP();$("pm").classList.remove("hidden");
+ try{const r=await fetch(API_BASE+"/api/stream-ticket",{method:"POST",headers:{...AH(),"Content-Type":"application/json"},body:JSON.stringify({id:String(m.stream_id),extension:m.container_extension||"mp4"})});const d=await r.json();
+  if(!r.ok)throw new Error(d.error||"Não foi possível iniciar o filme.");$("pe").textContent="";v.src=d.url;v.load();try{await v.play()}catch{$("pe").textContent="Toque em ▶ para começar."}}
+ catch(e){$("pe").textContent=e.message}}
+function closeP(){const v=$("vid");v.pause();v.removeAttribute("src");v.load();$("pm").classList.add("hidden")}
+$("vid").addEventListener("error",()=>{const c=$("vid").error&&$("vid").error.code;if(c)$("pe").textContent="Não consegui reproduzir este arquivo (código "+c+"). Tente outra versão do filme."});
+$("vid").addEventListener("playing",()=>$("pe").textContent="");
+/* ---- catálogo ---- */
+async function loadIPTV(){$("st").textContent="Conectando ao catálogo…";
+ try{const[c,m]=await Promise.all([api("/api/categories"),api("/api/movies")]);cats=Array.isArray(c)?c:[];all=Array.isArray(m)?m:[];cat="";shown=60;
+  $("st").textContent=all.length+" títulos no catálogo.";renderRows();renderChips();renderGrid()}
+ catch(e){$("st").textContent="Não foi possível carregar o catálogo: "+(e.message||"erro")}}
+function renderChips(){$("chips").innerHTML=`<button class="chip${cat?"":" on"}" onclick="setCat('')">Todos</button>`+cats.map(c=>`<button class="chip${cat==c.category_id?" on":""}" onclick="setCat('${esc(c.category_id)}')">${esc(c.category_name)}</button>`).join("")}
+function setCat(c){cat=String(c);shown=60;renderChips();renderGrid()}
+function renderGrid(){const l=cat?all.filter(m=>String(m.category_id)===cat):all;$("grid").innerHTML=l.slice(0,shown).map(m=>tile(iT(m))).join("")||'<div class="empty">Nada aqui.</div>';$("more").classList.toggle("hidden",l.length<=shown)}
+$("q").addEventListener("input",()=>{const q=norm($("q").value),on=!!q;$("rows").classList.toggle("hidden",on);$("catalogo").classList.toggle("hidden",on);$("sres").classList.toggle("hidden",!on);
+ if(on)$("sgrid").innerHTML=[...S.filter(m=>norm(m.title+" "+m.alias.join(" ")).includes(q)).map(sT),...all.filter(m=>norm(m.name).includes(q)).slice(0,120).map(iT)].map(tile).join("")||'<div class="empty">Nenhum resultado.</div>'});
+function toast(t){const e=$("toast");e.textContent=t;e.classList.remove("hidden");clearTimeout(window.tt);window.tt=setTimeout(()=>e.classList.add("hidden"),2800)}
+addEventListener("scroll",()=>$("hd").classList.toggle("s",scrollY>40));
+$("dm").addEventListener("click",e=>{if(e.target==$("dm"))closeD()});$("pm").addEventListener("click",e=>{if(e.target==$("pm"))closeP()});
+addEventListener("keydown",e=>{if(e.key=="Escape"){closeP();closeD()}});
+boot();
+</script></body></html>
