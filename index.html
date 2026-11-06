@@ -35,18 +35,19 @@ video{display:block;width:100%;max-height:80vh;aspect-ratio:16/9;background:#000
 .toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);background:#fff;color:#000;padding:11px 20px;border-radius:4px;z-index:99;font-weight:600}
 .pf div{overflow:hidden}.pf div img,#wi img{width:100%;height:100%;object-fit:cover}.pfw{display:flex;flex-direction:column;align-items:center}.ed{background:none;color:var(--mut);font-size:13px;margin-top:6px;padding:4px 8px}.ed:hover{color:#fff}
 .ck label{display:flex;gap:12px;align-items:center;padding:12px;background:#222;border-radius:6px;margin-bottom:8px;cursor:pointer;font-size:17px;text-align:left}.ck input{width:20px;height:20px;accent-color:var(--red)}.b.r:disabled{opacity:.4;cursor:not-allowed}
+.herobg{filter:blur(28px) brightness(.55);transform:scale(1.2)}.hposter{position:absolute;right:8%;bottom:14vh;height:62%;aspect-ratio:2/3;object-fit:cover;border-radius:6px;box-shadow:0 10px 40px #000a;z-index:1}
 .emo{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}.emo button{background:#2a2a2a;font-size:28px;padding:8px;border-radius:6px}
-@media(max-width:700px){header nav{display:none}#q{width:120px}#who span{display:none}.hero{height:70vh}.tile{width:112px}.ar{display:none}.bd{height:200px}}
+@media(max-width:700px){header nav{display:none}#q{width:120px}#who span{display:none}.hero{height:70vh}.hposter{display:none}.tile{width:112px}.ar{display:none}.bd{height:200px}}
 </style></head><body>
 <section id="gate" class="gate"><div class="box"><div class="logo">CARETINHAS+</div><h1>Nosso cinema particular</h1><p>Digite a senha para entrar.</p>
 <form id="lf"><input id="pw" class="field" type="password" placeholder="Senha" autocomplete="current-password" required><div id="le" class="err"></div><button class="b r" id="lb">Entrar</button></form></div></section>
-<section id="profiles" class="gate hidden"><div class="pbox"><h1>Quem está assistindo?</h1><div id="plist" class="plist"></div><button class="link" onclick="logout()">SAIR</button></div></section>
+<section id="profiles" class="gate hidden"><div class="pbox"><h1>Quem está assistindo?</h1><div id="plist" class="plist"></div><button class="link" onclick="logout()">SAIR</button><p style="color:#555;font-size:12px;margin-top:18px">versão 4</p></div></section>
 <section id="ready" class="gate hidden"><div class="box" style="width:min(460px,100%)"><div class="logo">CARETINHAS+</div><h1 id="rh"></h1><p>Marque tudo antes de começar a sessão.</p><div id="ck" class="ck"></div><button class="b r" id="go" disabled onclick="enter()">Começar a sessão 🍿</button></div></section>
 <div id="avm" class="ov hidden"><div class="dlg" style="width:min(420px,100%);padding:24px"><button class="x" onclick="$('avm').classList.add('hidden')">×</button><h2 style="margin-bottom:14px">Foto do perfil</h2><div id="emo" class="emo"></div><label class="b w" style="display:block;text-align:center;margin:14px 0 8px;cursor:pointer">📷 Escolher da galeria<input id="avf" type="file" accept="image/*" hidden></label><button class="b g" style="width:100%" onclick="setAv(null)">Voltar ao padrão</button></div></div>
 <div id="app" class="hidden">
 <header id="hd"><a class="logo" onclick="scrollTo(0,0)">CARETINHAS+</a><nav><a href="#rows">Início</a><a href="#lista">Minha lista</a><a href="#catalogo">Catálogo</a></nav>
 <div class="right"><input id="q" type="search" placeholder="Buscar títulos"><button id="who" onclick="showProfiles()"><i id="wi"></i><span id="wn"></span></button></div></header>
-<section class="hero"><div class="herobg" id="hbg"></div><div id="hvid"></div><div class="herotxt"><h1 id="ht"></h1><p id="hp"></p><div class="btns"><button class="b w" id="hplay">▶ Assistir</button><button class="b g" id="hinfo">ⓘ Mais informações</button></div></div></section>
+<section class="hero"><div class="herobg" id="hbg"></div><div id="hvid"></div><img id="hposter" class="hposter hidden" alt=""><div class="herotxt"><h1 id="ht"></h1><p id="hp"></p><div class="btns"><button class="b w" id="hplay">▶ Assistir</button><button class="b g" id="hinfo">ⓘ Mais informações</button></div></div></section>
 <main><div id="rows"></div>
 <section id="catalogo" class="pad"><h2>Catálogo completo</h2><div id="st" class="note">Conectando ao catálogo…</div><div id="chips" class="chips"></div><div id="grid" class="grid"></div><div style="text-align:center;margin-top:18px"><button id="more" class="b hidden" onclick="shown+=60;renderGrid()">Mostrar mais</button></div></section>
 <section id="sres" class="pad hidden"><h2>Resultados</h2><div id="sgrid" class="grid"></div></section></main>
@@ -83,7 +84,7 @@ const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&
 const ls={get:(k,d)=>{try{return JSON.parse(localStorage.getItem(k))??d}catch{return d}},set:(k,v)=>localStorage.setItem(k,JSON.stringify(v))};
 const norm=s=>String(s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/\b(19|20)\d{2}\b/g," ").replace(/\b(4k|uhd|2160p|1080p|720p|480p|dublado|legendado|dual audio|multi audio)\b/g," ").replace(/[^a-z0-9]+/g," ").trim();
 const flat=s=>norm(s).replace(/ /g,"");
-let prof=PROFILES[0],all=[],cats=[],cat="",shown=60,cur=null;
+let prof=PROFILES[0],all=[],cats=[],cat="",shown=60,cur=null,hero=null;
 const tok=()=>sessionStorage.getItem("caretinha_session"),AH=()=>({Authorization:"Bearer "+tok()});
 async function api(p){const r=await fetch(API_BASE+p,{headers:AH(),cache:"no-store"});
  if(r.status===401){sessionStorage.removeItem("caretinha_session");show("gate");throw new Error("Sessão expirada.")}
@@ -106,7 +107,7 @@ $("lf").addEventListener("submit",async e=>{e.preventDefault();const b=$("lb");b
  catch(x){$("le").textContent=String(x.message).includes("Failed to fetch")?"Não consegui conectar ao servidor. Confira o API_BASE.":x.message}
  finally{b.disabled=false;b.textContent="Entrar"}});
 async function boot(){if(!tok())return show("gate");try{await api("/api/session");show("profiles")}catch{show("gate")}}
-function pick(i){prof=PROFILES[i];$("wn").textContent=prof.name;$("wi").innerHTML=avHTML(prof);$("wi").style.background=prof.color;$("rh").textContent="Tudo pronto, "+prof.name+"?";renderCk();show("ready");loadIPTV()}
+function pick(i){prof=PROFILES[i];hero=null;$("wn").textContent=prof.name;$("wi").innerHTML=avHTML(prof);$("wi").style.background=prof.color;$("rh").textContent="Tudo pronto, "+prof.name+"?";renderCk();show("ready");loadIPTV()}
 function enter(){show("app");scrollTo(0,0);setHero();renderRows()}
 /* ---- listas por perfil ---- */
 const favs=()=>ls.get("caretinha_fav_"+prof.id,[]),seen=()=>ls.get("caretinha_seen2_"+prof.id,[]);
@@ -120,7 +121,7 @@ const sT=m=>({k:"s:"+m.id,title:m.title,img:(match(m)||{}).stream_icon||"",open:
 const iT=m=>({k:"i:"+m.stream_id,title:m.name,img:m.stream_icon,open:`openI('${m.stream_id}')`});
 const byKey=k=>k[0]=="s"?(sm(k.slice(2))&&sT(sm(k.slice(2)))):(im(k.slice(2))&&iT(im(k.slice(2))));
 function tile(t){const on=favs().includes(t.k);return `<div class="tile" onclick="${t.open}"><div class="pst"><b>${esc(t.title)}</b>${t.img?`<img loading="lazy" src="${esc(t.img)}" alt="" onerror="imgErr(this)">`:""}</div><button class="fv${on?" on":""}" data-k="${t.k}" onclick="event.stopPropagation();toggleFav('${t.k}')" title="Minha lista">${on?"✓":"+"}</button><div class="cap">${esc(t.title)}</div></div>`}
-function imgErr(i){if(!i.dataset.r){i.dataset.r=1;setTimeout(()=>{i.src=i.src.split("&_=")[0]+"&_="+Date.now()},1500)}else i.remove()}
+function imgErr(i){const n=+i.dataset.r||0;if(n<3){i.dataset.r=n+1;setTimeout(()=>{i.src=i.src.split("&_=")[0]+"&_="+Date.now()},1500*(n+1)*(n+1))}else i.remove()}
 const row=(id,t,its,empty)=>`<section class="row" id="${id}"><h2>${t}</h2>${its.length?`<div class="rw"><button class="ar l" onclick="sc(this,-1)">‹</button><div class="rail">${its.map(tile).join("")}</div><button class="ar r" onclick="sc(this,1)">›</button></div>`:`<div class="empty">${empty||""}</div>`}</section>`;
 function sc(b,d){b.parentNode.querySelector(".rail").scrollBy({left:d*innerWidth*.75,behavior:"smooth"})}
 const items=k=>k.map(byKey).filter(Boolean);
@@ -128,10 +129,14 @@ function renderLista(){const e=$("lista");if(e)e.outerHTML=row("lista","Minha li
 function renderRows(){const c=x=>S.filter(m=>m.cat==x).map(sT);
  $("rows").innerHTML=row("lista","Minha lista",items(favs()),"Toque no + de qualquer filme para montar a sua lista.")+row("r1","Em destaque",S.slice(0,6).map(sT))+row("r2","Conforto, risadas & respiro",c("c"))+row("r3","Noite romântica & emoção",c("r"))+row("r4","Animes & universos fantásticos",c("a"))+(seen().length?row("r5","Já assistimos",items(seen())):"")}
 /* ---- destaque ---- */
-function setHero(){const m=sm(HERO.id);$("ht").textContent=HERO.title||(m&&m.title)||"CARETINHAS+";$("hp").textContent=HERO.desc||(m&&m.desc)||"";
- $("hbg").style.backgroundImage=`url("${HERO.image}")`;
- $("hvid").innerHTML=HERO.videoId?`<iframe src="https://www.youtube-nocookie.com/embed/${esc(HERO.videoId)}?autoplay=1&mute=1&controls=0&loop=1&playlist=${esc(HERO.videoId)}&playsinline=1&modestbranding=1&rel=0" allow="autoplay;encrypted-media" title=""></iframe>`:"";
- const go=()=>m?openS(m.id):window.open("https://www.youtube.com/watch?v="+HERO.videoId,"_blank","noopener");$("hplay").onclick=go;$("hinfo").onclick=go}
+function pickHero(){const c=S.map(m=>({m,p:match(m)})).filter(x=>x.p&&x.p.stream_icon);
+ if(c.length){const x=c[Math.random()*c.length|0];return{title:x.m.title,desc:x.m.desc,img:x.p.stream_icon,open:()=>openS(x.m.id)}}
+ const l=all.filter(x=>x.stream_icon);if(!l.length)return null;const x=l[Math.random()*l.length|0];
+ return{title:x.name,desc:"",img:x.stream_icon,id:x.stream_id,open:()=>openI(x.stream_id)}}
+function setHero(){if(!hero)hero=pickHero();const h=hero||{title:"CARETINHAS+",desc:"Escolha um filme e aproveite a sessão.",img:"",open:()=>scrollTo({top:innerHeight*.8,behavior:"smooth"})};
+ $("ht").textContent=h.title;$("hp").textContent=h.desc||"";$("hbg").style.backgroundImage=h.img?`url("${h.img}")`:"none";
+ $("hposter").src=h.img||"";$("hposter").classList.toggle("hidden",!h.img);$("hvid").innerHTML="";$("hplay").onclick=h.open;$("hinfo").onclick=h.open;
+ if(h.id&&!h.desc)api("/api/movie-info?id="+encodeURIComponent(h.id)).then(d=>{const t=d.info&&d.info.plot;if(t&&hero===h){h.desc=t.slice(0,220);$("hp").textContent=h.desc}}).catch(()=>{})}
 /* ---- detalhe ---- */
 function cands(m){const stop=["the","and","des","das","dos"],V=[m.title,...m.alias].map(t=>norm(t).split(" ").filter(w=>w.length>2&&!stop.includes(w))).filter(a=>a.length);
  return all.map(x=>{const n=" "+norm(x.name)+" ";return[Math.max(0,...V.map(a=>a.filter(w=>n.includes(" "+w+" ")).length/a.length)),x]}).filter(a=>a[0]>=.75).sort((a,b)=>b[0]-a[0]).slice(0,6).map(a=>a[1])}
@@ -160,7 +165,7 @@ $("vid").addEventListener("playing",()=>$("pe").textContent="");
 /* ---- catálogo ---- */
 async function loadIPTV(){$("st").textContent="Conectando ao catálogo…";
  try{const[c,m]=await Promise.all([api("/api/categories"),api("/api/movies")]);cats=Array.isArray(c)?c:[];all=Array.isArray(m)?m:[];cat="";shown=60;
-  $("st").textContent=all.length+" títulos no catálogo.";renderRows();renderChips();renderGrid()}
+  $("st").textContent=all.length+" títulos no catálogo.";renderRows();renderChips();renderGrid();setHero()}
  catch(e){$("st").textContent="Não foi possível carregar o catálogo: "+(e.message||"erro")}}
 function renderChips(){$("chips").innerHTML=`<button class="chip${cat?"":" on"}" onclick="setCat('')">Todos</button>`+cats.map(c=>`<button class="chip${cat==c.category_id?" on":""}" onclick="setCat('${esc(c.category_id)}')">${esc(c.category_name)}</button>`).join("")}
 function setCat(c){cat=String(c);shown=60;renderChips();renderGrid()}
